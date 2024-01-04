@@ -2,11 +2,33 @@
 
 ## Table of Contents
 
+- [Roadmap](#roadmap)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 - [TODO](#todo)
+
+## Roadmap
+
+1. Complete backend
+
+   1. models
+  
+   2. controllers & serializers & routes 
+  
+   3. authentication
+  
+   4. assosciations
+
+2. Work on frontend :")
+
+    1. learn some ts
+
+    2.  leverage the sample app
+
+    3.  plan components & structure
+  
 
 ## Installation
 
@@ -52,4 +74,4 @@ Information about the project's license.
 2. [ ] Create User model/session/controllers
 
 ### In Progress
-[ ] Create Posts model/controller/routes
+1. [ ] Create Posts model/controller/routes
