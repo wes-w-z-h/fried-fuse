@@ -7,14 +7,27 @@ class CategoriesController < ApplicationController
 
   def create
     category = Category.new(category_params)
-
-    if category.save
-      render json: CategorySerializer.new(category).serializable_hash.to_json
-    else
-      render json: {error: category.errors.messages}, status: 422
+    if category
+      if category.save
+        render json: CategorySerializer.new(category).serializable_hash.to_json
+      else
+        render json: {error: category.errors.messages}, status: 422
+      end
     end
   end
 
+  def update
+    category = Category.find_by(name: params[:id])
+    if category
+      if category.update(category_params)
+        render json: CategorySerializer.new(category).serializable_hash.to_json
+      else
+        render json: { error: category.errors.messages }, status: 422
+      end
+    else
+      render json: { error: "category not found" }, status: 404
+    end
+  end
 
   def show
     category = Category.find_by(name: params[:id])
@@ -23,11 +36,16 @@ class CategoriesController < ApplicationController
   
   def destroy
     category = Category.find_by(name: params[:id])
-    if category.destroy
-      head :no_content
+
+    if category
+      if category.destroy
+        head :no_content
+      else
+        render json: {error: category.errors.messages}, status: 422
+      end
     else
-      render json: {error: category.errors.messages}, status: 422
-    end
+      render json: { error: "category not found" }, status: 404
+    end 
 
   end
 
@@ -40,6 +58,5 @@ class CategoriesController < ApplicationController
   def options
     @options ||= { include: %i[topics] }
   end 
-
 
 end
