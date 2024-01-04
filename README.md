@@ -52,5 +52,4 @@ Information about the project's license.
 2. [ ] Create User model/session/controllers
 
 ### In Progress
-
-    -[ ] Create Posts model/controller/routes
+    [ ] Create Posts model/controller/routes
