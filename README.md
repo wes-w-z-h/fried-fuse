@@ -71,7 +71,7 @@ Information about the project's license.
 ## TODO
 
 1. [x] Create Category & Topics model/controllers/routes
-2. [ ] Create User model/session/controllers
+2. [x] Create Posts model/controller/routes
 
 ### In Progress
-1. [ ] Create Posts model/controller/routes
+1. [ ] Create User model/controller/routes
