@@ -18,8 +18,8 @@ class TopicsController < ApplicationController
 
   # kiv the update for topics
   # def update
-  # end 
-
+  # end
+  
   def destroy
     topic = Topic.find_by(slug: params[:id])
     if topic
@@ -33,7 +33,7 @@ class TopicsController < ApplicationController
     end
   end
 
-  private 
+  private
 
   def topic_params
     params.require(:topic).permit(:title, :content, :category_id)

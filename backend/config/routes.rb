@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :categories
   resources :topics, only: [:create, :destroy, :show]
-  resources :posts, only: [:create, :destroy]
+  resources :posts, only: [:create, :destroy, :update]
 
   # set defualt path to the categories page
   root "pages#index"

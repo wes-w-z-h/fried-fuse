@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_04_180530) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_05_165611) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -20,11 +20,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_180530) do
   create_table "posts", force: :cascade do |t|
     t.text "content"
     t.integer "topic_id", null: false
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["topic_id"], name: "index_posts_on_topic_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -45,6 +43,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_180530) do
   end
 
   add_foreign_key "posts", "topics"
-  add_foreign_key "posts", "users"
   add_foreign_key "topics", "categories"
 end
