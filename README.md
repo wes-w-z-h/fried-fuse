@@ -73,8 +73,9 @@ Information about the project's license.
 1. [x] Create Category & Topics model/controllers/routes
 2. [x] Create Posts model/controller/routes
 3. [x] Working optional password
+4. [ ] Check the auth with frontend
 
 ### In Progress
 1. [x] Create User model/controller/routes
 2. [x] Add update destroy methods for registration/sessions controller
-3. [x] Check update method
+3. [ ] Check update method
