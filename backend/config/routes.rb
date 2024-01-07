@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :sessions, only: [:create, :destroy]
+  resources :registrations, only: [:create, :destroy, :update]
+
   resources :categories
   resources :topics, only: [:create, :destroy, :show]
   resources :posts, only: [:create, :destroy, :update]
