@@ -18,4 +18,24 @@ class RegistrationsController < ApplicationController
       }
     end
   end
+
+  def destroy
+    user = User.find_by(username: params[:id])
+    if user
+      if user.destroy
+        render json: {
+          status: :destroyed
+        }
+      else
+        render json: {error: user.errors.messages}, status: 422
+      end
+
+    else
+      render json: {error: "user not found"}, status: 404
+    end
+  end
+
+  def update
+
+  end
 end
