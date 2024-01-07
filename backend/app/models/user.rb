@@ -6,4 +6,7 @@ class User < ApplicationRecord
   validates_presence_of :username
   validates_uniqueness_of :username
 
+  def accept_blank?
+    is_default_password
+  end
 end
