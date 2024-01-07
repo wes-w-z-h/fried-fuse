@@ -74,4 +74,5 @@ Information about the project's license.
 2. [x] Create Posts model/controller/routes
 
 ### In Progress
-1. [ ] Create User model/controller/routes
+1. [x] Create User model/controller/routes
+2. [ ] Add update destroy methods for registration/sessions controller
