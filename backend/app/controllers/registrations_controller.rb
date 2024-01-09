@@ -36,11 +36,11 @@ class RegistrationsController < ApplicationController
 
   # need to check this function if it works well
   def update
-    user = User.find_by(username: params["user"]["username"])
+    user = User.find_by(username: params[:id])
 
     if user
       if user.update(user_params)
-        render json: { user: user }, status: :updated
+        render json: { user: user }, status: 200
       else
         render json: {
           status: 422,
