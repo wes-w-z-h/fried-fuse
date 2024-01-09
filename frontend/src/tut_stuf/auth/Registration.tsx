@@ -1,10 +1,16 @@
 import React from "react";
 import { useState } from "react";
 
-type Props = {};
+interface Props {}
+
+interface FormInfo {
+  username: string;
+  password: string;
+  registrationErrors: string;
+}
 
 const Registration: React.FC<Props> = () => {
-  const [formInfo, setFormInfo] = useState({
+  const [formInfo, setFormInfo] = useState<FormInfo>({
     username: "",
     password: "",
     registrationErrors: "",
@@ -13,12 +19,13 @@ const Registration: React.FC<Props> = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("form submitted");
-    console.log(formInfo);
+    console.log(formInfo as FormInfo); // dont need to do this ts will infer based on above
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    const { name, value } = event.currentTarget;
+    const { name, value }: { name: string; value: string } =
+      event.currentTarget;
     setFormInfo((prev) => ({
       ...prev,
       [name]: value,
