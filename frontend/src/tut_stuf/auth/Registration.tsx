@@ -1,11 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
-type FormInfo = {
-  username: string;
-  password: string;
-  registrationErrors: string;
-};
+import FormInfo from "../../types/FormInfo";
 
 const Registration: React.FC = () => {
   const [formInfo, setFormInfo] = useState<FormInfo>({
