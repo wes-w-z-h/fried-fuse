@@ -1,15 +1,13 @@
 import React from "react";
 import { useState } from "react";
 
-interface Props {}
-
-interface FormInfo {
+type FormInfo = {
   username: string;
   password: string;
   registrationErrors: string;
-}
+};
 
-const Registration: React.FC<Props> = () => {
+const Registration: React.FC = () => {
   const [formInfo, setFormInfo] = useState<FormInfo>({
     username: "",
     password: "",
