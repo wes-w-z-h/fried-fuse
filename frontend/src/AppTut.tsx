@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
-import Dashboard from "./pages/DashbdTut";
-import HomeTut from "./pages/HomeTut";
+import Dashboard from "./tut_stuf/DashbdTut";
+import HomeTut from "./tut_stuf/HomeTut";
 
 const AppTut: React.FC = () => {
   return (
@@ -15,4 +15,5 @@ const AppTut: React.FC = () => {
     </div>
   );
 };
+
 export default AppTut;

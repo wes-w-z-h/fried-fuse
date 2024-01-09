@@ -55,15 +55,15 @@ class RegistrationsController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation, :is_default_password)
+    params.require(:user).permit(:username, :password, :is_default_password)
   end
 
   # function to check the user_param passed and update the defualts accordingly
   def process_params(user_param)
-    if user_param[:password].nil?
+    curr_pw = user_param[:password]
+    if curr_pw.nil? || curr_pw == ""
       password = SecureRandom.hex(12)
       user_param[:password] = password
-      user_param[:password_confirmation] = password
       user_param[:is_default_password] = true
     else
       user_param[:is_default_password] = false
