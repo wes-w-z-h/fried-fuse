@@ -32,5 +32,6 @@
 # Ignore master key for decrypting credentials and more.
 /backend/config/master.key
 
+# Ignore this huge folder and this file
 /frontend/node_modules
 .gitignore

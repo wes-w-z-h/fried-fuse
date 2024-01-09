@@ -14,21 +14,20 @@
 1. Complete backend
 
    1. models
-  
-   2. controllers & serializers & routes 
-  
+
+   2. controllers & serializers & routes
+
    3. authentication
-  
+
    4. assosciations
 
 2. Work on frontend :")
 
-    1. learn some ts
+   1. learn some tsx (opt for indent space: 2)
 
-    2.  leverage the sample app
+   2. leverage the sample app
 
-    3.  plan components & structure
-  
+   3. plan components & structure
 
 ## Installation
 
@@ -38,7 +37,7 @@ yarn install && bundle install
 
 # Initial pull
 
-For test data run (outdated seeds):
+For test data run:
 
 ```
 rails db:seed
@@ -76,6 +75,7 @@ Information about the project's license.
 4. [ ] Check the auth with frontend
 
 ### In Progress
+
 1. [x] Create User model/controller/routes
 2. [x] Add update destroy methods for registration/sessions controller
 3. [ ] Check update method
