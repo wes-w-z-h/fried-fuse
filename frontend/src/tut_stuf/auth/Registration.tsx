@@ -44,7 +44,7 @@ const Registration: React.FC<Props> = () => {
           onChange={handleChange}
           required={false}
         />
-        {/* kiv if want to add password_confirmation quite weird logic */}
+        {/* KIV if want to add password_confirmation quite weird logic */}
         {/* <input
           type="password"
           name="password_confirmation"
