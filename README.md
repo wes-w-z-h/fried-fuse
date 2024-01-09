@@ -78,4 +78,5 @@ Information about the project's license.
 
 1. [x] Create User model/controller/routes
 2. [x] Add update destroy methods for registration/sessions controller
-3. [ ] Check update method
+3. [x] Check update method
+4. [ ] Registraion form - add communications with backend
