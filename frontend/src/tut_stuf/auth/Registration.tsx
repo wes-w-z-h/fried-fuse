@@ -21,7 +21,7 @@ const Registration: React.FC<RegistrationProps> = ({
     event.preventDefault();
     axios
       .post(
-        "http://localhost:3001/registrations",
+        "http://localhost:3001/users/create_user",
         {
           user: {
             username: formInfo.username,
@@ -92,7 +92,7 @@ const Registration: React.FC<RegistrationProps> = ({
       {/* TEMP BTN TO REMOVE TEST USER REGISTRATIONS */}
       <button
         onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-          URL = "http://localhost:3001/registrations/" + username;
+          URL = "http://localhost:3001/users/" + username;
           axios
             .delete(URL)
             .then((resp) => console.log(resp))
