@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import FormInfo from "../../types/FormInfo";
+import axios from "axios";
+import { StringifyOptions } from "querystring";
 
 const Registration: React.FC = () => {
   const [formInfo, setFormInfo] = useState<FormInfo>({
@@ -11,14 +13,35 @@ const Registration: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("form submitted");
-    console.log(formInfo as FormInfo); // dont need to do this ts will infer based on above
+    axios
+      .post(
+        "http://localhost:3001/registrations",
+        {
+          user: {
+            username: formInfo.username,
+            password: formInfo.password,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((resp) => {
+        console.log(resp);
+      })
+      .catch((resp) => console.log(resp));
   };
+
+  // for testing
+  var username: string;
+  var URL: string;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const { name, value }: { name: string; value: string } =
       event.currentTarget;
+
+    // remove this after testing
+    username = name === "username" ? value : username;
+    console.log(username);
     setFormInfo((prev) => ({
       ...prev,
       [name]: value,
@@ -55,6 +78,20 @@ const Registration: React.FC = () => {
         /> */}
         <button type="submit">submit</button>
       </form>
+
+      {/* TEMP BTN TO REMOVE TEST USER REGISTRATIONS */}
+      <button
+        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+          URL = "http://localhost:3001/registrations/" + username;
+          axios
+            .delete(URL)
+            .then((resp) => console.log(resp))
+            .catch((resp) => console.log(resp));
+          return;
+        }}
+      >
+        delete
+      </button>
     </div>
   );
 };
