@@ -2,16 +2,22 @@ import React from "react";
 import { useState } from "react";
 import FormInfo from "../../types/FormInfo";
 import axios from "axios";
-import { StringifyOptions } from "querystring";
+import User from "../../types/User";
 
-const Registration: React.FC = () => {
+type RegistrationProps = {
+  handleSuccessfulAuth: (data: User) => void;
+};
+
+const Registration: React.FC<RegistrationProps> = ({
+  handleSuccessfulAuth,
+}) => {
   const [formInfo, setFormInfo] = useState<FormInfo>({
     username: "",
     password: "",
     registrationErrors: "",
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     axios
       .post(
@@ -25,19 +31,23 @@ const Registration: React.FC = () => {
         { withCredentials: true }
       )
       .then((resp) => {
-        console.log(resp);
+        if (resp.data.status === "created") {
+          // pass user data
+          const user_data: User = resp.data.user;
+          console.log(user_data);
+          handleSuccessfulAuth(user_data);
+        }
       })
       .catch((resp) => console.log(resp));
   };
 
   // for testing
-  var username: string;
+  let username: string = formInfo.username;
   var URL: string;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     event.preventDefault();
-    const { name, value }: { name: string; value: string } =
-      event.currentTarget;
+    const { name, value }: { name: string; value: string } = event.target;
 
     // remove this after testing
     username = name === "username" ? value : username;
@@ -87,7 +97,6 @@ const Registration: React.FC = () => {
             .delete(URL)
             .then((resp) => console.log(resp))
             .catch((resp) => console.log(resp));
-          return;
         }}
       >
         delete
