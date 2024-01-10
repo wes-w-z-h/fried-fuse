@@ -3,10 +3,10 @@ class RegistrationsController < ApplicationController
     user_param = user_params
     # check for nil pw and update to a secure default
     process_params(user_param)
-    user = User.create(user_param)
+    user = User.new(user_param)
 
     # created a user object thats not null
-    if user
+    if user.save
       session[:user_id] = user.id
       render json: {
         status: :created,
