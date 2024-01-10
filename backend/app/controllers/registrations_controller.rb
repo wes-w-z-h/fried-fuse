@@ -61,7 +61,7 @@ class RegistrationsController < ApplicationController
   # function to check the user_param passed and update the defualts accordingly
   def process_params(user_param)
     curr_pw = user_param[:password]
-    if curr_pw.nil? || curr_pw == ""
+    if curr_pw.blank?
       password = SecureRandom.hex(12)
       user_param[:password] = password
       user_param[:is_default_password] = true
