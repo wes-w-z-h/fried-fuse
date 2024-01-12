@@ -1,20 +1,22 @@
 import React from "react";
 import { useState } from "react";
 import FormInfo from "../../types/FormInfo";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import User from "../../types/User";
 
-type RegistrationProps = {
-  handleSuccessfulAuth: (data: User) => void;
+type AuthenticationProps = {
+  handleSuccessfulLogin: (data: User) => void;
+  handleSuccessfulLogout: () => void;
 };
 
-const Registration: React.FC<RegistrationProps> = ({
-  handleSuccessfulAuth,
+const Authentication: React.FC<AuthenticationProps> = ({
+  handleSuccessfulLogin,
+  handleSuccessfulLogout,
 }) => {
   const [formInfo, setFormInfo] = useState<FormInfo>({
     username: "",
     password: "",
-    registrationErrors: "",
+    authenticationErrors: "",
   });
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
@@ -31,11 +33,11 @@ const Registration: React.FC<RegistrationProps> = ({
         { withCredentials: true }
       )
       .then((resp) => {
-        if (resp.data.status === "created") {
+        if (resp.data.logged_in) {
           // pass user data
           const user_data: User = resp.data.user;
           console.log(user_data);
-          handleSuccessfulAuth(user_data);
+          handleSuccessfulLogin(user_data);
         }
       })
       .catch((resp) => console.log(resp));
@@ -77,17 +79,31 @@ const Registration: React.FC<RegistrationProps> = ({
           onChange={handleChange}
           required={false}
         />
-        {/* KIV if want to add password_confirmation quite weird logic */}
-        {/* <input
-          type="password"
-          name="password_confirmation"
-          placeholder="Password_Confirmation"
-          value={formInfo.password_confirmation}
-          onChange={handleChange}
-          required={false}
-        /> */}
+
         <button type="submit">submit</button>
       </form>
+
+      <button
+        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+          handleSuccessfulLogout();
+        }}
+      >
+        logout
+      </button>
+
+      <button
+        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+          axios
+            .get("http://localhost:3001/users/logged_in", {
+              withCredentials: true,
+            })
+            .then((resp: AxiosResponse) => {
+              console.log(resp);
+            });
+        }}
+      >
+        STATUS
+      </button>
 
       {/* TEMP BTN TO REMOVE TEST USER REGISTRATIONS */}
       <button
@@ -105,4 +121,4 @@ const Registration: React.FC<RegistrationProps> = ({
   );
 };
 
-export default Registration;
+export default Authentication;

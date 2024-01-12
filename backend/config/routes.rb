@@ -21,12 +21,11 @@ Rails.application.routes.draw do
   resources :authentication, path: 'users', only: [] do
     collection do
       post "/", to: "authentication#create"
-      # post "create_session", to: "authentication#create_session"
       get "logged_in", to: "authentication#logged_in"
       delete "logout", to: "authentication#logout"
       # post "create_user", to: "authentication#create_user"
       delete "/:id", to: "authentication#destroy_user"
-      patch "/:id", to: "authentication#update_user"
+      # patch "/:id", to: "authentication#update_user"
     end
   end
 

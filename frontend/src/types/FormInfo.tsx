@@ -1,6 +1,6 @@
 type FormInfo = {
   username: string;
   password: string;
-  registrationErrors: string;
+  authenticationErrors: string;
 };
 export default FormInfo;

@@ -6,6 +6,7 @@ class AuthenticationController < ApplicationController
     user = User.find_by(username: user_param[:username])
     if user
       create_session(user, user_param[:password])
+      # Rails.logger.info("this is in create: #{@current_user} \n")
     else
       create_user(user_param)
     end
@@ -13,8 +14,11 @@ class AuthenticationController < ApplicationController
 
 
   def logged_in
+    # Rails.logger.info("current session in logged in: #{session[:user_id]} \n")
+    # Rails.logger.info("current user in logged in: #{@current_user} \n")
     if @current_user
         render json: {
+        status: 200,
         logged_in: true,
         user: @current_user,
       }
@@ -31,7 +35,7 @@ class AuthenticationController < ApplicationController
     render json: {
       status: 200,
       logged_in: false,
-      logged_out: true
+      user: @current_user
     }
   end
 
@@ -54,49 +58,45 @@ class AuthenticationController < ApplicationController
 
 
   # currently no need for this update function KIV first
-  def update_user
-    user = User.find_by(username: params[:id])
+  # def update_user
+  #   user = User.find_by(username: params[:id])
 
-    if user
-      if user.update(user_params)
-        render json: { user: user }, status: 200
-      else
-        render json: {
-          status: 422,
-          errors: user.errors.messages
-        }, status: 422
-      end
-    else
-      render json: { error: "user not found" }, status: 404
-    end
-  end
+  #   if user
+  #     if user.update(user_params)
+  #       render json: { user: user }, status: 200
+  #     else
+  #       render json: {
+  #         status: 422,
+  #         errors: user.errors.messages
+  #       }, status: 422
+  #     end
+  #   else
+  #     render json: { error: "user not found" }, status: 404
+  #   end
+  # end
 
 
   private
 
+  # check if the user was created without pw else authenticate the pw passed
   def create_session(user, password)
-    # username = params["user"]["username"]
-    # password = params["user"]["password"]
-    # user = User.find_by(username: username) # .try(:authenticate, password)
-    # found an entry of the user by username
-    # check if the user was created without pw else authenticate the pw passed
     if user.accept_blank? || user.authenticate(password)
       session[:user_id] = user.id
+      # Rails.logger.info("Session set: #{session.inspect}\n")
       render json: {
         status: :created,
         logged_in: true,
         user: user,
-      },
-      status: :created
+      }
     else
-      render json: { error: "Authentication failed" }, status: 401
+      render json: { error: "Authentication failed" }, status: :unauthorized
     end
   end
 
 
+  # check for nil pw and update to a secure default
   def create_user(user_param)
     # user_param = user_params
-    # check for nil pw and update to a secure default
     process_params(user_param)
     user = User.new(user_param)
 
@@ -105,8 +105,9 @@ class AuthenticationController < ApplicationController
       session[:user_id] = user.id
       render json: {
         status: :created,
+        logged_in: true,
         user: user,
-      }, status: :created
+      }
     else
       render json: { error: "user not created" }, status: 500
     end
