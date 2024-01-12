@@ -3,15 +3,20 @@ import { useState } from "react";
 import FormInfo from "../../types/FormInfo";
 import axios, { AxiosResponse } from "axios";
 import User from "../../types/User";
+import AppState from "../../types/AppState";
 
 type AuthenticationProps = {
   handleSuccessfulLogin: (data: User) => void;
-  handleSuccessfulLogout: () => void;
+  handleSuccessfulLogout: (
+    setAppState: React.Dispatch<React.SetStateAction<AppState>>
+  ) => void;
+  setAppState: React.Dispatch<React.SetStateAction<AppState>>;
 };
 
 const Authentication: React.FC<AuthenticationProps> = ({
   handleSuccessfulLogin,
   handleSuccessfulLogout,
+  setAppState,
 }) => {
   const [formInfo, setFormInfo] = useState<FormInfo>({
     username: "",
@@ -85,7 +90,7 @@ const Authentication: React.FC<AuthenticationProps> = ({
 
       <button
         onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-          handleSuccessfulLogout();
+          handleSuccessfulLogout(setAppState);
         }}
       >
         logout
