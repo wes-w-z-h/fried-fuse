@@ -21,7 +21,7 @@ const Registration: React.FC<RegistrationProps> = ({
     event.preventDefault();
     axios
       .post(
-        "http://localhost:3001/users/create_user",
+        "http://localhost:3001/users",
         {
           user: {
             username: formInfo.username,

@@ -1,28 +1,16 @@
 class AuthenticationController < ApplicationController
   include CurrentUserConcern
 
-  #################################### SESSION FUNCTIONS ###################################
-  def create_session
-    username = params["user"]["username"]
-    password = params["user"]["password"]
-    user = User.find_by(username: username) # .try(:authenticate, password)
-    # found an entry of the user by username
+  def create
+    user_param = user_params
+    user = User.find_by(username: user_param[:username])
     if user
-      # check if the user was created without pw else authenticate the pw passed
-      if user.accept_blank? || user.authenticate(password)
-        session[:user_id] = user.id
-        render json: {
-          logged_in: true,
-          user: user,
-        },
-        status: :created
-      else
-        render json: { error: "Authentication failed" }, status: 401
-      end
+      create_session(user, user_param[:password])
     else
-      render json: { error: "user not found" }, status: 404
+      create_user(user_param)
     end
   end
+
 
   def logged_in
     if @current_user
@@ -37,6 +25,7 @@ class AuthenticationController < ApplicationController
     end
   end
 
+
   def logout
     reset_session
     render json: {
@@ -45,30 +34,10 @@ class AuthenticationController < ApplicationController
       logged_out: true
     }
   end
-  ##########################################################################################
 
-  ################################## REGISRATION FUNCTIONS #################################
-  def create_user
-    user_param = user_params
-    # check for nil pw and update to a secure default
-    process_params(user_param)
-    user = User.new(user_param)
-
-    # created a user object thats not null
-    if user.save
-      session[:user_id] = user.id
-      render json: {
-        status: :created,
-        user: user,
-      }, status: :created
-    else
-      render json: { error: "user not created" }, status: 500
-    end
-  end
 
   def destroy_user
     user = User.find_by(username: params[:id])
-
     if user
       if user.destroy
         render json: {
@@ -82,6 +51,7 @@ class AuthenticationController < ApplicationController
       render json: {error: "user not found"}, status: 404
     end
   end
+
 
   # currently no need for this update function KIV first
   def update_user
@@ -101,11 +71,52 @@ class AuthenticationController < ApplicationController
     end
   end
 
+
   private
+
+  def create_session(user, password)
+    # username = params["user"]["username"]
+    # password = params["user"]["password"]
+    # user = User.find_by(username: username) # .try(:authenticate, password)
+    # found an entry of the user by username
+    # check if the user was created without pw else authenticate the pw passed
+    if user.accept_blank? || user.authenticate(password)
+      session[:user_id] = user.id
+      render json: {
+        status: :created,
+        logged_in: true,
+        user: user,
+      },
+      status: :created
+    else
+      render json: { error: "Authentication failed" }, status: 401
+    end
+  end
+
+
+  def create_user(user_param)
+    # user_param = user_params
+    # check for nil pw and update to a secure default
+    process_params(user_param)
+    user = User.new(user_param)
+
+    # created a user object thats not null
+    if user.save
+      session[:user_id] = user.id
+      render json: {
+        status: :created,
+        user: user,
+      }, status: :created
+    else
+      render json: { error: "user not created" }, status: 500
+    end
+  end
+
 
   def user_params
     params.require(:user).permit(:username, :password, :is_default_password)
   end
+
 
   # function to check the user_param passed and update the defualts accordingly
   def process_params(user_param)
@@ -118,5 +129,4 @@ class AuthenticationController < ApplicationController
       user_param[:is_default_password] = false
     end
   end
-  ##########################################################################################
 end
