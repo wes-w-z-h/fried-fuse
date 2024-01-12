@@ -1,4 +1,4 @@
-import BasicThreadList from "../components/BasicThreadList";
+import BasicThreadList from "../sample/src/components/BasicThreadList";
 import React from "react";
 
 const Home: React.FC = () => {
