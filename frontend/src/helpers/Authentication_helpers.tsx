@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import AppState from "../types/AppState";
 import User from "../types/User";
 import React from "react";
+import { NavigateFunction } from "react-router-dom";
 
 const handleLogin = (
   data: User,

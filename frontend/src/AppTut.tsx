@@ -1,13 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Dashboard from "./pages/DashbdTut";
-import HomeTut from "./pages/HomeTut";
+import SignIn from "./pages/SignIn";
 import User from "./types/User";
 import {
   handleLogin,
   checkLoggedIn,
   handleLogout,
 } from "./helpers/Authentication_helpers";
+import Navbar from "./components/Navbar";
+import Category from "./components/Category/Category";
+import { ThemeProvider, createTheme } from "@mui/material";
+import { blue, orange } from "@mui/material/colors";
+
+const theme = createTheme({
+  palette: {
+    primary: blue,
+    secondary: orange,
+  },
+});
 
 const AppTut: React.FC = () => {
   // see how to add a type for authstate
@@ -21,25 +32,32 @@ const AppTut: React.FC = () => {
 
   return (
     <div className="App Tut">
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/dashboard"
-            element={<Dashboard loggedInStatus={appState.loggedInStatus} />}
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Navbar
+            loggedInStatus={appState.loggedInStatus}
+            setAppState={setAppState}
           />
-          <Route
-            path="/"
-            element={
-              <HomeTut
-                handleLogin={handleLogin}
-                handleLogout={handleLogout}
-                setAppState={setAppState}
-                loggedInstatus={appState.loggedInStatus}
-              />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+          <Routes>
+            <Route
+              path="/dashboard"
+              element={<Dashboard loggedInStatus={appState.loggedInStatus} />}
+            />
+            <Route
+              path="/users/sign_in"
+              element={
+                <SignIn
+                  handleLogin={handleLogin}
+                  handleLogout={handleLogout}
+                  setAppState={setAppState}
+                  loggedInStatus={appState.loggedInStatus}
+                />
+              }
+            />
+            <Route path="/" element={<Category />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 };
