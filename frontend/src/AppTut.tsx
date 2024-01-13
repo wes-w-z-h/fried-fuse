@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Dashboard from "./tut_stuf/DashbdTut";
-import HomeTut from "./tut_stuf/HomeTut";
+import Dashboard from "./pages/DashbdTut";
+import HomeTut from "./pages/HomeTut";
 import User from "./types/User";
 import {
   handleLogin,

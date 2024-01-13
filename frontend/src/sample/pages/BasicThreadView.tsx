@@ -1,4 +1,4 @@
-import BasicCommentList from "../sample/src/components/CommentList";
+import BasicCommentList from "../src/components/CommentList";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import Typewriter from "typewriter-effect";
