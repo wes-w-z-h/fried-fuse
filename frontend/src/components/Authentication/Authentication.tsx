@@ -1,28 +1,31 @@
 import React from "react";
 import { useState } from "react";
 import FormInfo from "../../types/FormInfo";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import User from "../../types/User";
-import AppState from "../../types/AppState";
+import TextField from "@mui/material/TextField";
+import {
+  Button,
+  FormControl,
+  Grid,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
+import { Send, Visibility, VisibilityOff } from "@mui/icons-material";
 
 type AuthenticationProps = {
   handleSuccessfulLogin: (data: User) => void;
-  handleSuccessfulLogout: (
-    setAppState: React.Dispatch<React.SetStateAction<AppState>>
-  ) => void;
-  setAppState: React.Dispatch<React.SetStateAction<AppState>>;
 };
 
 const Authentication: React.FC<AuthenticationProps> = ({
   handleSuccessfulLogin,
-  handleSuccessfulLogout,
-  setAppState,
 }) => {
   const [formInfo, setFormInfo] = useState<FormInfo>({
     username: "",
     password: "",
-    authenticationErrors: "",
+    authenticationStatus: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -37,92 +40,100 @@ const Authentication: React.FC<AuthenticationProps> = ({
         },
         { withCredentials: true }
       )
-      .then((resp) => {
+      .then((resp: AxiosResponse) => {
         if (resp.data.logged_in) {
           // pass user data
           const user_data: User = resp.data.user;
           console.log(user_data);
+          setFormInfo((prev: FormInfo) => ({
+            ...prev,
+            authenticationStatus: "success",
+          }));
           handleSuccessfulLogin(user_data);
         }
       })
-      .catch((resp) => console.log(resp));
+      .catch((error: AxiosError) => {
+        console.log("errors:", error);
+        setFormInfo((prev: FormInfo) => ({
+          ...prev,
+          authenticationStatus: error.response
+            ? error.response.statusText + ": check password"
+            : "",
+        }));
+      });
   };
-
-  // for testing
-  let username: string = formInfo.username;
-  var URL: string;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     event.preventDefault();
     const { name, value }: { name: string; value: string } = event.target;
 
-    // remove this after testing
-    username = name === "username" ? value : username;
-    console.log(username);
     setFormInfo((prev) => ({
       ...prev,
       [name]: value,
+      authenticationStatus: "",
     }));
   };
 
+  const handleShowPW = () => {
+    setShowPassword((show: boolean) => !show);
+  };
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="username"
-          name="username"
-          placeholder="Username"
-          value={formInfo.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password (optional)"
-          value={formInfo.password}
-          onChange={handleChange}
-          required={false}
-        />
-
-        <button type="submit">submit</button>
+    <Grid container justifyContent="center" alignItems="center">
+      <form
+        onSubmit={handleSubmit}
+        style={{ width: "60%", alignItems: "center" }}
+      >
+        <FormControl fullWidth margin="normal">
+          <TextField
+            type="username"
+            name="username"
+            value={formInfo.username}
+            onChange={handleChange}
+            required
+            label="Username"
+          />
+        </FormControl>
+        <FormControl fullWidth margin="normal">
+          <TextField
+            error={
+              !!formInfo.authenticationStatus &&
+              formInfo.authenticationStatus !== "success"
+            }
+            helperText={formInfo.authenticationStatus}
+            type={showPassword ? "text" : "password"}
+            name="password"
+            value={formInfo.password}
+            onChange={handleChange}
+            required={false}
+            label="Password (optional)"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleShowPW}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </FormControl>
+        <Button type="submit" variant="outlined" endIcon={<Send />}>
+          submit
+        </Button>
       </form>
-
-      <button
-        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-          handleSuccessfulLogout(setAppState);
-        }}
-      >
-        logout
-      </button>
-
-      <button
-        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-          axios
-            .get("http://localhost:3001/users/logged_in", {
-              withCredentials: true,
-            })
-            .then((resp: AxiosResponse) => {
-              console.log(resp);
-            });
-        }}
-      >
-        STATUS
-      </button>
-
-      {/* TEMP BTN TO REMOVE TEST USER REGISTRATIONS */}
-      <button
-        onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-          URL = "http://localhost:3001/users/" + username;
-          axios
-            .delete(URL)
-            .then((resp) => console.log(resp))
-            .catch((resp) => console.log(resp));
-        }}
-      >
-        delete
-      </button>
-    </div>
+    </Grid>
   );
 };
 

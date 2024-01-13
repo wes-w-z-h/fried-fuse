@@ -32,9 +32,9 @@ const AppTut: React.FC = () => {
             element={
               <HomeTut
                 handleLogin={handleLogin}
-                loggedInStatus={appState.loggedInStatus}
                 handleLogout={handleLogout}
                 setAppState={setAppState}
+                loggedInstatus={appState.loggedInStatus}
               />
             }
           />
