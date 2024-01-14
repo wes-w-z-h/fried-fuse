@@ -1,52 +1,67 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import AppState from "../types/AppState";
 import User from "../types/User";
 import React from "react";
-import { NavigateFunction } from "react-router-dom";
+import NoticeObj from "../types/NoticeObj";
 
 const handleLogin = (
   data: User,
-  setAppState: React.Dispatch<React.SetStateAction<AppState>>
+  setAppState: React.Dispatch<React.SetStateAction<AppState>>,
+  notice: NoticeObj
 ) => {
   setAppState({
     loggedInStatus: "LOGGED_IN",
     user: data,
   });
+  notice.setNoticeMessage("LOGGED IN SUCCESSFULLY!");
+  notice.setNoticeSeverity("success");
+  notice.setOpenNotice(true);
 };
 
 const handleLogout = (
-  setAppState: React.Dispatch<React.SetStateAction<AppState>>
+  setAppState: React.Dispatch<React.SetStateAction<AppState>>,
+  notice: NoticeObj
 ) => {
   axios
     .delete("http://localhost:3001/users/logout", { withCredentials: true })
     .then((resp: AxiosResponse) => {
-      console.log(resp.data);
+      // console.log(resp.data);
     });
   setAppState({
     loggedInStatus: "NOT_LOGGED_IN",
     user: {} as User,
   });
+  notice.setNoticeMessage("LOGGED OUT SUCCESSFULLY!");
+  notice.setNoticeSeverity("success");
+  notice.setOpenNotice(true);
 };
 
 const checkLoggedIn = (
   appState: AppState,
-  setAppState: React.Dispatch<React.SetStateAction<AppState>>
+  setAppState: React.Dispatch<React.SetStateAction<AppState>>,
+  notice: NoticeObj
 ) => {
   axios
     .get("http://localhost:3001/users/logged_in", { withCredentials: true })
     .then((resp: AxiosResponse) => {
       if (appState.loggedInStatus === "NOT_LOGGED_IN" && resp.data.logged_in) {
-        handleLogin(resp.data.user, setAppState);
+        handleLogin(resp.data.user, setAppState, notice);
         // handleLogin(resp.data.user);
       } else if (
         !resp.data.logged_in &&
         appState.loggedInStatus === "LOGGED_IN"
       ) {
-        handleLogout(setAppState);
+        handleLogout(setAppState, notice);
       }
-      console.log("logged in?", resp);
+      // console.log("logged in?", resp);
     })
-    .catch((errors) => console.log(errors));
+    .catch((errors: AxiosError) => {
+      notice.setNoticeMessage(
+        errors.response ? String(errors.response) : "error checking login"
+      );
+      notice.setNoticeSeverity("error");
+      notice.setOpenNotice(true);
+    });
 };
 
 export { handleLogin, handleLogout, checkLoggedIn };

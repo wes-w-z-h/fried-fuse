@@ -1,26 +1,32 @@
 import React from "react";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import User from "../types/User";
 import Authentication from "../components/Authentication/Authentication";
 import AppState from "../types/AppState";
-import { Box, Typography, Paper } from "@mui/material";
+import { Typography, Paper } from "@mui/material";
+import NoticeObj from "../types/NoticeObj";
 
 type SignInProps = {
   handleLogin: (
     data: User,
-    setAppState: React.Dispatch<React.SetStateAction<AppState>>
+    setAppState: React.Dispatch<React.SetStateAction<AppState>>,
+    notice: NoticeObj
   ) => void;
   handleLogout: (
-    setAppState: React.Dispatch<React.SetStateAction<AppState>>
+    setAppState: React.Dispatch<React.SetStateAction<AppState>>,
+    notice: NoticeObj
   ) => void;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
   loggedInStatus: string;
+  // notice props functions needed
+  notice: NoticeObj;
 };
 
 const SignIn: React.FC<SignInProps> = ({
   handleLogin,
   setAppState,
   loggedInStatus,
+  notice,
 }) => {
   const navigate = useNavigate();
 
@@ -35,7 +41,7 @@ const SignIn: React.FC<SignInProps> = ({
         overflow: "hidden", // Optional: hide overflowing content
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "top",
         alignItems: "center",
         marginTop: 3,
         marginLeft: 3,
@@ -46,6 +52,7 @@ const SignIn: React.FC<SignInProps> = ({
       <Typography
         variant="h4"
         sx={{
+          marginTop: 5,
           marginBottom: 11,
           textAlign: "center",
         }}
@@ -56,9 +63,10 @@ const SignIn: React.FC<SignInProps> = ({
       {loggedInStatus !== "LOGGED_IN" && (
         <Authentication
           handleSuccessfulLogin={(data) => {
-            handleLogin(data, setAppState);
+            handleLogin(data, setAppState, notice);
             navigate("/dashboard");
           }}
+          notice={notice}
         />
       )}
     </Paper>

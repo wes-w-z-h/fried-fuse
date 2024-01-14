@@ -1,47 +1,33 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import { useState } from "react";
 import FormInfo from "../../types/FormInfo";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import User from "../../types/User";
 import TextField from "@mui/material/TextField";
-import {
-  Alert,
-  AlertProps,
-  Button,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  Snackbar,
-} from "@mui/material";
+import { Button, FormControl, IconButton, InputAdornment } from "@mui/material";
 import { Send, Visibility, VisibilityOff } from "@mui/icons-material";
+import NoticeObj from "../../types/NoticeObj";
 
 type AuthenticationProps = {
   handleSuccessfulLogin: (data: User) => void;
+  notice: NoticeObj;
 };
 
 const Authentication: React.FC<AuthenticationProps> = ({
   handleSuccessfulLogin,
+  notice,
 }) => {
-  const SnackbarAlert = forwardRef<HTMLDivElement, AlertProps>(
-    function SnackbarAlert(props, ref) {
-      return <Alert elevation={6} ref={ref} {...props} />;
-    }
-  );
+  // const SnackbarAlert = forwardRef<HTMLDivElement, AlertProps>(
+  //   function SnackbarAlert(props, ref) {
+  //     return <Alert elevation={6} ref={ref} {...props} />;
+  //   }
+  // );
   const [formInfo, setFormInfo] = useState<FormInfo>({
     username: "",
     password: "",
     authenticationStatus: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [open, setOpen] = useState(false);
-
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") return;
-    setOpen(false);
-  };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -68,15 +54,17 @@ const Authentication: React.FC<AuthenticationProps> = ({
         }
       })
       .catch((error: AxiosError) => {
-        console.log("errors:", error);
+        // console.log("errors:", error);
         setFormInfo((prev: FormInfo) => ({
           ...prev,
           authenticationStatus: error.response
             ? error.response.statusText + ": check password"
-            : "",
+            : "error",
         }));
+        notice.setNoticeMessage("UNAUTHORIZED: Check Password");
+        notice.setNoticeSeverity("error");
+        notice.setOpenNotice(true);
       });
-    setOpen(true);
   };
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -118,8 +106,8 @@ const Authentication: React.FC<AuthenticationProps> = ({
       <FormControl fullWidth margin="normal">
         <TextField
           error={
-            !!formInfo.authenticationStatus &&
-            formInfo.authenticationStatus !== "success"
+            formInfo.authenticationStatus !== "success" &&
+            !!formInfo.authenticationStatus
           }
           type={showPassword ? "text" : "password"}
           name="password"
@@ -146,16 +134,6 @@ const Authentication: React.FC<AuthenticationProps> = ({
       <Button type="submit" variant="outlined" endIcon={<Send />}>
         Submit
       </Button>
-      <Snackbar
-        open={open}
-        autoHideDuration={4000}
-        onClose={handleClose}
-        anchorOrigin={{ horizontal: "center", vertical: "top" }}
-      >
-        <SnackbarAlert onClose={handleClose} severity="error">
-          UNAUTHORIZED: (Check Password)
-        </SnackbarAlert>
-      </Snackbar>
     </form>
   );
 };

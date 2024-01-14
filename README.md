@@ -72,12 +72,10 @@ Information about the project's license.
 1. [x] Create Category & Topics model/controllers/routes
 2. [x] Create Posts model/controller/routes
 3. [x] Working optional password
-4. [ ] Check the auth with frontend
+4. [x] Authentication
+5. [ ] Dashboard
 
 ### In Progress
 
-1. [x] Create User model/controller/routes
-2. [x] Add update destroy methods for registration/sessions controller
-3. [x] Check update method
-4. [x] Registraion form - add communications with backend
-5. [ ] Login component + combine into one auth component (backend done) 
+1. [ ] hooks to generate content on the page
+2. [ ] posts/ topics layout

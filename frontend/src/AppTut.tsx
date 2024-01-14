@@ -9,9 +9,14 @@ import {
   handleLogout,
 } from "./helpers/Authentication_helpers";
 import Navbar from "./components/Navbar";
-import Category from "./components/Category/Category";
-import { ThemeProvider, createTheme } from "@mui/material";
+
+import { AlertColor, ThemeProvider, createTheme } from "@mui/material";
 import { blue, orange } from "@mui/material/colors";
+import Notice from "./components/Notice";
+import NoticeObj from "./types/NoticeObj";
+import CategoryPage from "./pages/Categories";
+import HomePage from "./pages/HomeIndex";
+import AboutUsPage from "./pages/About";
 
 const theme = createTheme({
   palette: {
@@ -21,28 +26,42 @@ const theme = createTheme({
 });
 
 const AppTut: React.FC = () => {
-  // see how to add a type for authstate
   const [appState, setAppState] = useState({
     loggedInStatus: "NOT_LOGGED_IN",
     user: {} as User,
   });
 
+  const [openNotice, setOpenNotice] = useState(false);
+  const [noticeMessage, setNoticeMessage] = useState("hihi");
+  const [noticeSeverity, setNoticeSeverity] = useState<AlertColor>("info");
+  const NoticeObject: NoticeObj = {
+    setNoticeMessage: setNoticeMessage,
+    setNoticeSeverity: setNoticeSeverity,
+    setOpenNotice: setOpenNotice,
+  };
+
   // use effect with dependecies on authstate crashes the program even though no errors
-  useEffect(() => checkLoggedIn(appState, setAppState), []);
+  useEffect(() => checkLoggedIn(appState, setAppState, NoticeObject), []);
 
   return (
     <div className="App Tut">
       <ThemeProvider theme={theme}>
         <BrowserRouter>
+          <Notice
+            message={noticeMessage}
+            severity={noticeSeverity}
+            noticeState={[openNotice, setOpenNotice]}
+          />
           <Navbar
             loggedInStatus={appState.loggedInStatus}
             setAppState={setAppState}
+            notice={NoticeObject}
           />
           <Routes>
-            <Route
+            {/* <Route
               path="/dashboard"
               element={<Dashboard loggedInStatus={appState.loggedInStatus} />}
-            />
+            /> */}
             <Route
               path="/users/sign_in"
               element={
@@ -51,10 +70,13 @@ const AppTut: React.FC = () => {
                   handleLogout={handleLogout}
                   setAppState={setAppState}
                   loggedInStatus={appState.loggedInStatus}
+                  notice={NoticeObject}
                 />
               }
             />
-            <Route path="/" element={<Category />} />
+            <Route path="/dashboard" element={<CategoryPage />} />
+            <Route path="/about" element={<AboutUsPage />} />
+            <Route path="/" element={<HomePage />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
