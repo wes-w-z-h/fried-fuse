@@ -24,7 +24,7 @@ const HomePage: React.FC = () => {
       </Button>
       <Button
         onClick={() => navigate("/about")}
-        variant="outlined"
+        variant="contained"
         color="secondary"
       >
         About Us
