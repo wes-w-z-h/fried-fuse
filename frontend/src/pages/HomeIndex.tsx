@@ -1,10 +1,8 @@
-// Import necessary React components and styles
-
-import { useNavigate } from "react-router-dom"; // If you're using React Router for navigation
+import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import React from "react";
 
-// Functional component for the Home page
+// edit this use soem MUI component instead of div tags
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   return (
