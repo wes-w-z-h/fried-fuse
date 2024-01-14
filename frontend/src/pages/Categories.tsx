@@ -1,6 +1,5 @@
 // Import necessary components and styles from Material-UI
 import React from "react";
-import { Theme, makeStyles } from "@mui/material";
 import { Card, CardContent, Typography, Grid } from "@mui/material";
 
 interface Category {
@@ -19,7 +18,7 @@ const CategoryPage: React.FC = () => {
   return (
     <Grid container spacing={3} sx={{ marginTop: 3 }}>
       {categories.map((category) => (
-        <Card>
+        <Card key={category.title}>
           <CardContent>
             <Typography variant="h6" gutterBottom>
               {category.title}

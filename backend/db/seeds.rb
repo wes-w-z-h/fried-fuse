@@ -20,7 +20,7 @@ categories = Category.create([
 users = User.create([
   { username: 'pw', password_digest: BCrypt::Password.create('123'), is_default_password: false },
   { username: 'test', password_digest: BCrypt::Password.create('123'), is_default_password: false },
-  { username: 'pwless', password_digest: BCrypt::Password.create('dfiuchn12498723906vcdescfknoq7^#$%*!#'), is_default_passsword: true}
+  { username: 'pwless', password_digest: BCrypt::Password.create('dfiuchn12498723906vcdescfknoq7^#$%*!#'), is_default_password: true}
 ])
 
 # Create topics
