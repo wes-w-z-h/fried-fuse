@@ -33,6 +33,14 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           src={`${process.env.PUBLIC_URL}/images/${img_url}`}
         />
         <CardContent>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            sx={{ fontSize: 13 }}
+          >
+            image via nintendo
+          </Typography>
+
           <Typography gutterBottom variant="h4" component="div">
             {title}
           </Typography>

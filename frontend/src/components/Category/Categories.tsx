@@ -50,13 +50,6 @@ const Categories: React.FC = () => {
         overflow: "auto",
       }}
     >
-      {/* <Grid container sx={{ overflow: "auto" }}>
-        {first_half.map((item, index) => (
-          <Grid item key={index}>
-            {item}
-          </Grid>
-        ))}
-      </Grid> */}
       <Grid container sx={{ overflow: "auto", margin: "auto" }}>
         {list.map((item, index) => (
           <Grid item key={index} margin={"auto"} marginBottom={2}>

@@ -79,3 +79,4 @@ Information about the project's license.
 
 1. [ ] hooks to generate content on the page
 2. [ ] posts/ topics layout
+3. [ ] resize the images
