@@ -29,7 +29,8 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
       <CardActionArea>
         <CardMedia
           component="img"
-          height="300"
+          height="400"
+          width="600"
           src={`${process.env.PUBLIC_URL}/images/${img_url}`}
         />
         <CardContent>
