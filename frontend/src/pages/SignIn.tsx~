@@ -37,8 +37,8 @@ const SignIn: React.FC<SignInProps> = ({
       sx={{
         paddingTop: 3,
         paddingBottom: 7,
-        borderRadius: 30, 
-        overflow: "hidden",
+        borderRadius: 30, // Adjust the border radius as needed
+        overflow: "hidden", // Optional: hide overflowing content
         display: "flex",
         flexDirection: "column",
         justifyContent: "top",
