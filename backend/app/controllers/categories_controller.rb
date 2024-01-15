@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
 
-  def index 
-    categories = Category.all 
+  def index
+    categories = Category.all
     render json: CategorySerializer.new(categories, options).serializable_hash.to_json
-  end 
+  end
 
   def create
     category = Category.new(category_params)
@@ -32,8 +32,8 @@ class CategoriesController < ApplicationController
   def show
     category = Category.find_by(name: params[:id])
     render json: CategorySerializer.new(category, options).serializable_hash.to_json
-  end 
-  
+  end
+
   def destroy
     category = Category.find_by(name: params[:id])
 
@@ -45,18 +45,18 @@ class CategoriesController < ApplicationController
       end
     else
       render json: { error: "category not found" }, status: 404
-    end 
+    end
 
   end
 
-  private 
+  private
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :description, :img_url)
   end
 
   def options
     @options ||= { include: %i[topics] }
-  end 
+  end
 
 end

@@ -33,20 +33,19 @@ const SignIn: React.FC<SignInProps> = ({
   return (
     <Paper
       elevation={24}
-      className="HomeIndex"
       sx={{
         paddingTop: 3,
         paddingBottom: 7,
-        borderRadius: 30, 
+        borderRadius: 30,
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
         justifyContent: "top",
         alignItems: "center",
+        margin: "auto",
         marginTop: 3,
-        marginLeft: 3,
-        marginRight: 3,
         height: "70vh",
+        width: "70vh",
       }}
     >
       <Typography

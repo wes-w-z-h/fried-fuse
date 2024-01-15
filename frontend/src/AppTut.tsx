@@ -17,6 +17,7 @@ import NoticeObj from "./types/NoticeObj";
 import CategoryPage from "./pages/Categories";
 import HomePage from "./pages/HomeIndex";
 import AboutUsPage from "./pages/About";
+import Categories from "./components/Category/Categories";
 
 const theme = createTheme({
   palette: {
@@ -74,7 +75,7 @@ const AppTut: React.FC = () => {
                 />
               }
             />
-            <Route path="/dashboard" element={<CategoryPage />} />
+            <Route path="/dashboard" element={<Categories />} />
             <Route path="/about" element={<AboutUsPage />} />
             <Route path="/" element={<HomePage />} />
           </Routes>

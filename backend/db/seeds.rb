@@ -11,9 +11,15 @@
 
 # Create categories
 categories = Category.create([
-  { name: 'Gen1' },
-  { name: 'Gen2' },
-  { name: 'Gen3' }
+  { name: 'Gen1', description: 'all things gen 1 related', img_url: "Gen1_main.png" },
+  { name: 'Gen2', description: 'all things gen 2 related', img_url: "Gen2_main.png" },
+  { name: 'Gen3', description: 'all things gen 3 realted', img_url: "Gen3_main.png"  },
+  { name: 'Gen4', description: 'all things gen 4 realted', img_url: "Gen4_main.png"  },
+  { name: 'Gen5', description: 'all things gen 5 realted', img_url: "Gen5_main.png"  },
+  { name: 'Gen6', description: 'all things gen 6 realted', img_url: "Gen6_main.png"  },
+  { name: 'Gen7', description: 'all things gen 7 realted', img_url: "Gen7_main.png"  },
+  { name: 'Gen8', description: 'all things gen 8 realted', img_url: "Gen8_main.png"  }
+
 ])
 
 # Create users
