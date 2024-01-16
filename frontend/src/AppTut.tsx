@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Dashboard from "./pages/DashbdTut";
-import SignIn from "./pages/SignIn";
+import SignIn from "./pages/SignInView";
 import User from "./types/User";
 import {
   handleLogin,
@@ -14,10 +13,9 @@ import { AlertColor, ThemeProvider, createTheme } from "@mui/material";
 import { blue, orange } from "@mui/material/colors";
 import Notice from "./components/Notice";
 import NoticeObj from "./types/NoticeObj";
-import CategoryPage from "./pages/Categories";
 import HomePage from "./pages/HomeIndex";
-import AboutUsPage from "./pages/About";
-import Categories from "./components/Category/Categories";
+  import AboutView from "./pages/AboutView";
+import CategoriesView from "./pages/CategoriesView";
 
 const theme = createTheme({
   palette: {
@@ -75,8 +73,9 @@ const AppTut: React.FC = () => {
                 />
               }
             />
-            <Route path="/dashboard" element={<Categories />} />
-            <Route path="/about" element={<AboutUsPage />} />
+            <Route path="/dashboard" element={<CategoriesView />} />
+            {/* <Route path="/category/:id" element={<Category />} /> */}
+            <Route path="/about" element={<AboutView />} />
             <Route path="/" element={<HomePage />} />
           </Routes>
         </BrowserRouter>

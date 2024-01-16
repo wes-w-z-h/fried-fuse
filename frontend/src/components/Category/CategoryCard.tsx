@@ -24,6 +24,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
       sx={{
         maxWidth: 600,
         width: 600,
+        borderRadius: 10,
       }}
     >
       <CardActionArea>

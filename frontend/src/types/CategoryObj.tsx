@@ -1,4 +1,4 @@
-type CategoryObj = {
+type CategoryDataObj = {
   attributes: {
     name: string;
     description: string;
@@ -13,4 +13,20 @@ type CategoryObj = {
   type: "category";
 };
 
-export default CategoryObj;
+type CategoryIncludeObj = {
+  attributes: {
+    category_id: number;
+    content: string;
+    slug: string;
+    title: string;
+  };
+  id: string;
+  relationships: {
+    posts: {
+      data: [{ id: string; type: "post" }];
+    };
+  };
+  type: "topic";
+};
+
+export type { CategoryDataObj, CategoryIncludeObj };

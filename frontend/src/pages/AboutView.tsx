@@ -2,7 +2,7 @@ import React from "react";
 import { Paper, Typography } from "@mui/material";
 
 // Functional component for the About Us page
-const AboutUsPage: React.FC = () => {
+const AboutView: React.FC = () => {
   return (
     <Paper
       elevation={24}
@@ -29,4 +29,4 @@ const AboutUsPage: React.FC = () => {
   );
 };
 
-export default AboutUsPage;
+export default AboutView;
