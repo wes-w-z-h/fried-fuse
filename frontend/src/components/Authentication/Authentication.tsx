@@ -17,11 +17,6 @@ const Authentication: React.FC<AuthenticationProps> = ({
   handleSuccessfulLogin,
   notice,
 }) => {
-  // const SnackbarAlert = forwardRef<HTMLDivElement, AlertProps>(
-  //   function SnackbarAlert(props, ref) {
-  //     return <Alert elevation={6} ref={ref} {...props} />;
-  //   }
-  // );
   const [formInfo, setFormInfo] = useState<FormInfo>({
     username: "",
     password: "",
