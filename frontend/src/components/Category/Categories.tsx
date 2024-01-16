@@ -1,9 +1,9 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
 import CategoryObj from "../../types/CategoryObj";
 import CategoryCard from "./Category";
-import { Box, Grid, Paper } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 
 const Categories: React.FC = () => {
   const [categories, setCategories] = useState<CategoryObj[]>([]);
@@ -11,11 +11,12 @@ const Categories: React.FC = () => {
   useEffect(() => {
     axios
       .get("http://localhost:3001/categories")
-      .then((resp: AxiosResponse) => {
+      .then((resp) => {
         setCategories(resp.data.data);
         // console.log("level up: ", resp.data.included[0]);
+        console.log("included: ", resp.data.included);
       })
-      .catch((errors: AxiosError) => {
+      .catch((errors) => {
         console.log("errors: ", errors);
       });
   }, [categories.length]);
@@ -32,8 +33,6 @@ const Categories: React.FC = () => {
     );
   });
   // console.log("data: ", categories[0]);
-  const first_half = list.slice(0, 4);
-  const second_half = list.slice(4, 8);
   return (
     <Paper
       elevation={24}

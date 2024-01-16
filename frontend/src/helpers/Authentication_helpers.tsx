@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios from "axios";
 import AppState from "../types/AppState";
 import User from "../types/User";
 import React from "react";
@@ -24,7 +24,7 @@ const handleLogout = (
 ) => {
   axios
     .delete("http://localhost:3001/users/logout", { withCredentials: true })
-    .then((resp: AxiosResponse) => {
+    .then((resp) => {
       // console.log(resp.data);
     });
   setAppState({
@@ -43,7 +43,7 @@ const checkLoggedIn = (
 ) => {
   axios
     .get("http://localhost:3001/users/logged_in", { withCredentials: true })
-    .then((resp: AxiosResponse) => {
+    .then((resp) => {
       if (appState.loggedInStatus === "NOT_LOGGED_IN" && resp.data.logged_in) {
         handleLogin(resp.data.user, setAppState, notice);
         // handleLogin(resp.data.user);
@@ -55,7 +55,7 @@ const checkLoggedIn = (
       }
       // console.log("logged in?", resp);
     })
-    .catch((errors: AxiosError) => {
+    .catch((errors) => {
       notice.setNoticeMessage(
         errors.response ? String(errors.response) : "error checking login"
       );

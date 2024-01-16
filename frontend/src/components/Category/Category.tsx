@@ -41,7 +41,6 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           >
             image via nintendo
           </Typography>
-
           <Typography gutterBottom variant="h4" component="div">
             {title}
           </Typography>

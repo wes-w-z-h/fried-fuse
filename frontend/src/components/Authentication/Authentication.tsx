@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import FormInfo from "../../types/FormInfo";
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios from "axios";
 import User from "../../types/User";
 import TextField from "@mui/material/TextField";
 import { Button, FormControl, IconButton, InputAdornment } from "@mui/material";
@@ -42,7 +42,7 @@ const Authentication: React.FC<AuthenticationProps> = ({
         },
         { withCredentials: true }
       )
-      .then((resp: AxiosResponse) => {
+      .then((resp) => {
         if (resp.data.logged_in) {
           // pass user data
           const user_data: User = resp.data.user;
@@ -53,7 +53,7 @@ const Authentication: React.FC<AuthenticationProps> = ({
           handleSuccessfulLogin(user_data);
         }
       })
-      .catch((error: AxiosError) => {
+      .catch((error) => {
         // console.log("errors:", error);
         setFormInfo((prev: FormInfo) => ({
           ...prev,
