@@ -53,7 +53,7 @@ To fire the server run
 rails s -p 3001
 ```
 
-For front end
+For frontend
 
 ```
 yarn start
@@ -79,10 +79,12 @@ Information about the project's license.
 2. [x] Create Posts model/controller/routes
 3. [x] Working optional password
 4. [x] Authentication
-5. [ ] Dashboard
+5. [x] Dashboard
+6. [ ] Render topics
+7. [ ] Add post functionality to frontend
 
 ### In Progress
 
-1. [ ] hooks to generate content on the page
-2. [ ] posts/ topics layout
-3. [ ] resize the images
+1. [x] hooks to generate content on the page
+2. [x] resize the images
+3. [ ] posts/ topics layout
