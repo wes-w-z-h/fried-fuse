@@ -21,13 +21,13 @@
 
    4. assosciations
 
-2. Work on frontend :")
+2. Complete frontend
 
-   1. learn some tsx (opt for indent space: 2)
+   1. Utilise mui library
 
-   2. leverage the sample app
+   2. Organise the file structure 
 
-   3. plan components & structure
+   3. Check routes
 
 ## Installation
 
@@ -51,6 +51,12 @@ To fire the server run
 
 ```
 rails s -p 3001
+```
+
+For front end
+
+```
+yarn start
 ```
 
 To open the console
