@@ -34,6 +34,8 @@ topics = Topic.create([
   { title: 'Fire', content: 'Recent sports events and scores', category: categories.third },
   { title: 'Water', content: 'Introduction to Ruby on Rails', category: categories.first },
   { title: 'Grass', content: 'Latest discoveries in the scientific world', category: categories.second },
+  { title: 'Starters', content: 'Latest discoveries in the scientific world', category: categories.first },
+  { title: 'Gyms', content: 'Latest discoveries in the scientific world', category: categories.first }
 ])
 
 # Create posts

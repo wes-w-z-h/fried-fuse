@@ -14,8 +14,9 @@ import { blue, orange } from "@mui/material/colors";
 import Notice from "./components/Notice";
 import NoticeObj from "./types/NoticeObj";
 import HomePage from "./pages/HomeIndex";
-  import AboutView from "./pages/AboutView";
+import AboutView from "./pages/AboutView";
 import CategoriesView from "./pages/CategoriesView";
+import CategoryView from "./pages/CategoryView";
 
 const theme = createTheme({
   palette: {
@@ -40,7 +41,7 @@ const AppTut: React.FC = () => {
   };
 
   // use effect with dependecies on authstate crashes the program even though no errors
-  useEffect(() => checkLoggedIn(appState, setAppState, NoticeObject), []);
+  useEffect(() => checkLoggedIn(appState, setAppState, NoticeObject));
 
   return (
     <div className="App Tut">
@@ -76,6 +77,7 @@ const AppTut: React.FC = () => {
             <Route path="/dashboard" element={<CategoriesView />} />
             {/* <Route path="/category/:id" element={<Category />} /> */}
             <Route path="/about" element={<AboutView />} />
+            <Route path="/categories/:id" element={<CategoryView />} />
             <Route path="/" element={<HomePage />} />
           </Routes>
         </BrowserRouter>

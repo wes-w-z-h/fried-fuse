@@ -7,6 +7,7 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface CategoryCardProps {
   title: string;
@@ -19,6 +20,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   description,
   img_url,
 }) => {
+  const navigate = useNavigate();
   return (
     <Card
       sx={{
@@ -27,7 +29,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
         borderRadius: 10,
       }}
     >
-      <CardActionArea>
+      <CardActionArea onClick={() => navigate(`/categories/${title}`)}>
         <CardMedia
           component="img"
           height="290"
