@@ -80,11 +80,14 @@ Information about the project's license.
 3. [x] Working optional password
 4. [x] Authentication
 5. [x] Dashboard
-6. [ ] Render topics
+6. [x] Render topics
 7. [ ] Add post functionality to frontend
 
 ### In Progress
 
 1. [x] hooks to generate content on the page
 2. [x] resize the images
-3. [ ] posts/ topics layout
+3. [x] topics layout
+4. [ ] add new test seeds to populate data
+5. [ ] start posts page & components
+6. [ ] add img to topics (if got time)
