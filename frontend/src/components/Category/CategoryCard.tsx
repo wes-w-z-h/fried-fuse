@@ -1,4 +1,3 @@
-// CategoryCard.tsx
 import React from "react";
 import {
   Card,
@@ -26,7 +25,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
       sx={{
         maxWidth: 600,
         width: 600,
-        borderRadius: 10,
+        borderRadius: 5,
       }}
     >
       <CardActionArea onClick={() => navigate(`/categories/${title}`)}>
@@ -47,6 +46,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           <Typography gutterBottom variant="h4" component="div">
             {title}
           </Typography>
+          {/* a bit faded text */}
           <Typography variant="body2" color="text.secondary">
             {description}
           </Typography>

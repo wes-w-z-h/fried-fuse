@@ -81,7 +81,7 @@ const Navbar: React.FC<NavBarProps> = ({
         <IconButton
           size="large"
           onClick={() => navigate("/")}
-          sx={{ color: "#FE0000" }} // off red
+          sx={{ color: "floralwhite" }} // off red
         >
           <CatchingPokemon />
         </IconButton>
@@ -89,12 +89,12 @@ const Navbar: React.FC<NavBarProps> = ({
           variant="h4"
           sx={{
             color: "#FFFFFF",
-            fontFamily: "Helvetica",
-            fontStyle: "oblique",
+            fontFamily: "chatter",
             paddingRight: 2,
+            paddingLeft: 1,
           }}
         >
-          Chatter
+          C H A T T E R
         </Typography>
         <IconButton
           size="large"

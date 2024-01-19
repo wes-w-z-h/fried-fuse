@@ -17,6 +17,8 @@ import HomePage from "./pages/HomeIndex";
 import AboutView from "./pages/AboutView";
 import CategoriesView from "./pages/CategoriesView";
 import CategoryView from "./pages/CategoryView";
+import Topics from "./components/Topic/TopicList";
+import "./App.css";
 
 const theme = createTheme({
   palette: {
@@ -77,7 +79,8 @@ const AppTut: React.FC = () => {
             <Route path="/dashboard" element={<CategoriesView />} />
             {/* <Route path="/category/:id" element={<Category />} /> */}
             <Route path="/about" element={<AboutView />} />
-            <Route path="/categories/:id" element={<CategoryView />} />
+            {/* change the route below to TopicsView */}
+            <Route path="/categories/:id" element={<Topics />} />
             <Route path="/" element={<HomePage />} />
           </Routes>
         </BrowserRouter>

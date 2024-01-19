@@ -1,7 +1,7 @@
 // Import necessary components and styles from Material-UI
 import React from "react";
-import { Box, Paper } from "@mui/material";
-import Categories from "../components/Category/Categories";
+import { Box, Typography } from "@mui/material";
+import CategoriesList from "../components/Category/CategoriesList";
 
 const CategoryPage: React.FC = () => {
   return (
@@ -17,7 +17,7 @@ const CategoryPage: React.FC = () => {
         borderRadius: 20,
       }}
     >
-      <Categories />
+      <CategoriesList />
     </Box>
   );
 };

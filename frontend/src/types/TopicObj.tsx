@@ -6,11 +6,6 @@ type TopicObj = {
     slug: string;
   };
   id: number;
-  //   relationships: {
-  //     posts: {
-  //       [{ id: string, type: "post" }];
-  //     };
-  //   };
   type: "topic";
 };
 

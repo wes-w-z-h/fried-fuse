@@ -3,9 +3,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { CategoryDataObj } from "../../types/CategoryObj";
 import CategoryCard from "./CategoryCard";
-import { Grid } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 
-const Categories: React.FC = () => {
+const CategoriesList: React.FC = () => {
   const [categories, setCategories] = useState<CategoryDataObj[]>([]);
 
   useEffect(() => {
@@ -32,14 +32,27 @@ const Categories: React.FC = () => {
     );
   });
   return (
-    <Grid container sx={{ overflow: "auto", margin: "auto", marginTop: 3 }}>
-      {list.map((item, index) => (
-        <Grid item key={index} margin={"auto"} marginBottom={2}>
-          {item}
-        </Grid>
-      ))}
+    <Grid container sx={{ justifyContent: "center" }}>
+      <Typography variant="h3" marginBottom={3} fontFamily={"monospace"}>
+        Generations
+      </Typography>
+      <Grid
+        container
+        sx={{
+          overflow: "auto",
+          // justifyContent: "center",
+          marginTop: 3,
+          margin: "auto",
+        }}
+      >
+        {list.map((item, index) => (
+          <Grid item key={index} margin={"auto"} marginBottom={2}>
+            {item}
+          </Grid>
+        ))}
+      </Grid>
     </Grid>
   );
 };
 
-export default Categories;
+export default CategoriesList;

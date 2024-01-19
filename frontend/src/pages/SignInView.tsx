@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import User from "../types/User";
 import Authentication from "../components/Authentication/Authentication";
@@ -50,6 +50,7 @@ const SignIn: React.FC<SignInProps> = ({
     >
       <Typography
         variant="h4"
+        fontFamily={"monospace"}
         sx={{
           marginTop: 5,
           marginBottom: 11,
@@ -68,6 +69,24 @@ const SignIn: React.FC<SignInProps> = ({
           notice={notice}
         />
       )}
+
+      <Typography
+        variant="body1"
+        sx={{
+          marginTop: 5,
+          marginBottom: 11,
+          textAlign: "center",
+        }}
+      >
+        {loggedInStatus !== "LOGGED_IN" ? (
+          <Fragment>
+            <pre>Sign up using a new username</pre>
+            <pre>Sign in with an existing one!</pre>
+          </Fragment>
+        ) : (
+          ""
+        )}
+      </Typography>
     </Paper>
   );
 };
