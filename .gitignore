@@ -34,4 +34,4 @@
 
 # Ignore this huge folder and this file
 /frontend/node_modules
-# .gitignore
+.gitignore
