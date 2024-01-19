@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import React from "react";
 
 // edit this use soem MUI component instead of div tags
@@ -7,25 +7,39 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <h1>Welcome to the Pokemon Forum!</h1>
-      <p>
+      <Typography
+        variant="h3"
+        paddingTop={3}
+        paddingBottom={3}
+        fontFamily={"chatter"}
+        sx={{ color: "steelblue" }}
+      >
+        Welcome to the Pokemon Forum!
+      </Typography>
+      <Typography
+        variant="body1"
+        fontFamily={"monospace"}
+        fontSize={20}
+        fontWeight={"bold"}
+        paddingBottom={3}
+      >
         Discuss your favorite Pokemon, share strategies, and connect with other
-        trainers.
-      </p>
+        trainers!
+      </Typography>
       <Button
         onClick={() => navigate("/dashboard")}
         variant="contained"
         color="primary"
         sx={{ marginRight: 1 }}
       >
-        Go to Forum
+        <Typography variant="button">Go to Forum</Typography>
       </Button>
       <Button
         onClick={() => navigate("/about")}
         variant="contained"
         color="secondary"
       >
-        About Us
+        <Typography variant="button">About Us</Typography>
       </Button>
     </div>
   );

@@ -8,8 +8,13 @@ const AboutView: React.FC = () => {
       elevation={24}
       sx={{ width: "60vw", margin: "auto", marginTop: 10, padding: 3 }}
     >
-      <Typography variant="h4" gutterBottom>
-        About Us
+      <Typography
+        variant="h4"
+        gutterBottom
+        fontFamily={"chatter"}
+        sx={{ color: "steelblue" }}
+      >
+        ABOUT US
       </Typography>
       <Typography variant="body1" paragraph>
         Welcome to the Pokemon Forum, where trainers come together to discuss

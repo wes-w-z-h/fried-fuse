@@ -1,9 +1,9 @@
 // Import necessary components and styles from Material-UI
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import CategoriesList from "../components/Category/CategoriesList";
 
-const CategoryPage: React.FC = () => {
+const CategoriesView: React.FC = () => {
   return (
     <Box
       sx={{
@@ -14,7 +14,6 @@ const CategoryPage: React.FC = () => {
         justifyContent: "center",
         alignItems: "center",
         overflow: "auto",
-        borderRadius: 20,
       }}
     >
       <CategoriesList />
@@ -22,4 +21,4 @@ const CategoryPage: React.FC = () => {
   );
 };
 
-export default CategoryPage;
+export default CategoriesView;

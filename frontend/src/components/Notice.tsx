@@ -1,12 +1,5 @@
 import { Snackbar, Alert, AlertColor } from "@mui/material";
-
 import React from "react";
-
-// const SnackbarAlert = forwardRef<HTMLDivElement, AlertProps>(
-//   function SnackbarAlert(props, ref) {
-//     return <Alert elevation={6} ref={ref} {...props} />;
-//   }
-// );
 
 type NoticeProps = {
   message: string;

@@ -49,12 +49,14 @@ const SignIn: React.FC<SignInProps> = ({
       }}
     >
       <Typography
-        variant="h4"
+        variant="h3"
         fontFamily={"monospace"}
+        fontWeight={"bold"}
         sx={{
           marginTop: 5,
-          marginBottom: 11,
+          marginBottom: 7,
           textAlign: "center",
+          color: "steelblue",
         }}
       >
         {loggedInStatus !== "LOGGED_IN" ? "SIGN IN" : "SIGNED IN"}
@@ -80,8 +82,24 @@ const SignIn: React.FC<SignInProps> = ({
       >
         {loggedInStatus !== "LOGGED_IN" ? (
           <Fragment>
-            <pre>Sign up using a new username</pre>
-            <pre>Sign in with an existing one!</pre>
+            <Typography
+              variant="body1"
+              fontFamily={"monospace"}
+              fontStyle={"italic"}
+              fontWeight={"bold"}
+              fontSize={17}
+            >
+              Sign up using a new username!
+            </Typography>
+            <Typography
+              variant="body1"
+              fontFamily={"monospace"}
+              fontStyle={"italic"}
+              fontWeight={"bold"}
+              fontSize={17}
+            >
+              Sign in with an existing one!
+            </Typography>
           </Fragment>
         ) : (
           ""

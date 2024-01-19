@@ -3,10 +3,10 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  CardMedia,
+  // CardMedia,
   Typography,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 interface TopicCardProps {
   title: string;
@@ -14,8 +14,8 @@ interface TopicCardProps {
   slug: string;
 }
 
-const TopicCard: React.FC<TopicCardProps> = ({ title, content, slug }) => {
-  const navigate = useNavigate();
+const TopicCard: React.FC<TopicCardProps> = ({ title, content }) => {
+  // const navigate = useNavigate();
   return (
     <Card
       sx={{
@@ -24,6 +24,7 @@ const TopicCard: React.FC<TopicCardProps> = ({ title, content, slug }) => {
         borderRadius: 7,
       }}
     >
+      {/* add onClick action to direct to the posts related same as how topics rendered */}
       <CardActionArea>
         <CardContent>
           <Typography variant="h5">{title}</Typography>

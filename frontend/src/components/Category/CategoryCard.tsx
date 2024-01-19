@@ -31,8 +31,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
       <CardActionArea onClick={() => navigate(`/categories/${title}`)}>
         <CardMedia
           component="img"
-          height="290"
-          width="100"
+          height="300" // fix all img height to be consistent
           src={`${process.env.PUBLIC_URL}/images/${img_url}`}
         />
         <CardContent>
@@ -43,11 +42,11 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           >
             image via nintendo
           </Typography>
-          <Typography gutterBottom variant="h4" component="div">
+          <Typography gutterBottom variant="h4">
             {title}
           </Typography>
           {/* a bit faded text */}
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body1" color="text.secondary">
             {description}
           </Typography>
         </CardContent>

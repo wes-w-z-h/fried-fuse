@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { CategoryDataObj } from "../../types/CategoryObj";
 import CategoryCard from "./CategoryCard";
-import { Container, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 const CategoriesList: React.FC = () => {
   const [categories, setCategories] = useState<CategoryDataObj[]>([]);
@@ -33,8 +33,13 @@ const CategoriesList: React.FC = () => {
   });
   return (
     <Grid container sx={{ justifyContent: "center" }}>
-      <Typography variant="h3" marginBottom={3} fontFamily={"monospace"}>
-        Generations
+      <Typography
+        variant="h3"
+        marginBottom={3}
+        fontFamily={"chatter"}
+        sx={{ color: "steelblue" }}
+      >
+        GENERATIONS
       </Typography>
       <Grid
         container
@@ -46,7 +51,7 @@ const CategoriesList: React.FC = () => {
         }}
       >
         {list.map((item, index) => (
-          <Grid item key={index} margin={"auto"} marginBottom={2}>
+          <Grid item key={index} margin="auto" marginBottom={2}>
             {item}
           </Grid>
         ))}

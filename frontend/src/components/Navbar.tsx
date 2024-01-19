@@ -81,14 +81,14 @@ const Navbar: React.FC<NavBarProps> = ({
         <IconButton
           size="large"
           onClick={() => navigate("/")}
-          sx={{ color: "floralwhite" }} // off red
+          sx={{ color: "antiquewhite" }}
         >
           <CatchingPokemon />
         </IconButton>
         <Typography
           variant="h4"
           sx={{
-            color: "#FFFFFF",
+            color: "antiquewhite",
             fontFamily: "chatter",
             paddingRight: 2,
             paddingLeft: 1,
@@ -102,10 +102,10 @@ const Navbar: React.FC<NavBarProps> = ({
           sx={{
             marginLeft: "auto",
             color: "white",
-            borderRadius: "50%", // Make it a circle
-            transition: "background-color 0.5s ease-out", // Add a smooth transition effect
+            borderRadius: "50%",
+            transition: "background-color 0.5s ease-out",
             "&:hover": {
-              backgroundColor: "#8F8F8F", // Change the background color on hover to your desired color
+              backgroundColor: "#8F8F8F",
             },
           }}
         >
