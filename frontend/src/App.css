@@ -45,6 +45,7 @@ ul {
   padding-inline-start: unset;
 }
 
+/* added custom font may add more if time permits */
 @font-face {
   font-family: "chatter";
   src: url("../public/fonts/Eazy Chat.ttf") format("truetype");
