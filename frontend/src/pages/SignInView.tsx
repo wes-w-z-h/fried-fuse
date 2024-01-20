@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import User from "../types/User";
 import Authentication from "../components/Authentication/Authentication";
 import AppState from "../types/AppState";
-import { Typography, Paper } from "@mui/material";
+import { Typography, Paper, Box } from "@mui/material";
 import NoticeObj from "../types/NoticeObj";
 
 type SignInProps = {
@@ -37,7 +37,7 @@ const SignIn: React.FC<SignInProps> = ({
         paddingTop: 3,
         paddingBottom: 7,
         borderRadius: 30,
-        overflow: "hidden",
+        overflowY: "auto ",
         display: "flex",
         flexDirection: "column",
         justifyContent: "top",
@@ -72,39 +72,36 @@ const SignIn: React.FC<SignInProps> = ({
         />
       )}
 
-      <Typography
-        variant="body1"
-        sx={{
-          marginTop: 5,
-          marginBottom: 11,
-          textAlign: "center",
-        }}
-      >
-        {loggedInStatus !== "LOGGED_IN" ? (
-          <Fragment>
-            <Typography
-              variant="body1"
-              fontFamily={"monospace"}
-              fontStyle={"italic"}
-              fontWeight={"bold"}
-              fontSize={17}
-            >
-              Sign up using a new username!
-            </Typography>
-            <Typography
-              variant="body1"
-              fontFamily={"monospace"}
-              fontStyle={"italic"}
-              fontWeight={"bold"}
-              fontSize={17}
-            >
-              Sign in with an existing one!
-            </Typography>
-          </Fragment>
-        ) : (
-          ""
-        )}
-      </Typography>
+      {loggedInStatus !== "LOGGED_IN" && (
+        <Fragment>
+          <Typography
+            variant="body1"
+            fontFamily={"monospace"}
+            fontStyle={"italic"}
+            fontWeight={"bold"}
+            fontSize={17}
+            sx={{
+              marginTop: 5,
+              textAlign: "center",
+            }}
+          >
+            Sign up using a new username!
+          </Typography>
+          <Typography
+            variant="body1"
+            fontFamily={"monospace"}
+            fontStyle={"italic"}
+            fontWeight={"bold"}
+            fontSize={17}
+            sx={{
+              marginTop: 5,
+              textAlign: "center",
+            }}
+          >
+            Sign in with an existing one!
+          </Typography>
+        </Fragment>
+      )}
     </Paper>
   );
 };

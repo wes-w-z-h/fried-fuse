@@ -31,18 +31,32 @@ users = User.create([
 
 # Create topics
 topics = Topic.create([
-  { title: 'Fire', content: 'Recent sports events and scores', category: categories.third },
-  { title: 'Water', content: 'Introduction to Ruby on Rails', category: categories.first },
-  { title: 'Grass', content: 'Latest discoveries in the scientific world', category: categories.second },
-  { title: 'Starters', content: 'Latest discoveries in the scientific world', category: categories.first },
-  { title: 'Gyms', content: 'Latest discoveries in the scientific world', category: categories.first }
+  { title: 'Gen1 Starters', content: 'Discuss your favorite Generation 1 starter Pokémon', category: categories[0] },
+  { title: 'Gen1 Gyms', content: 'Toughest gyms discussion', category: categories[0] },
+  { title: 'Gen1 Pokemon', content: 'Discuss your favorite Generation 1 Pokémon', category: categories[0] },
+  { title: 'Gen1 Regions', content: 'Discuss your favorite Generation 1 region', category: categories[0] },
+  { title: 'Gen2 Legendaries', content: 'Share your thoughts on Generation 2 legendary Pokémon', category: categories[1] },
+  { title: 'Gen3 Evolutions', content: 'Discuss interesting evolutions in Generation 3', category: categories[2] },
+  { title: 'Gen4 Gym Leaders', content: 'Talk about the challenging gym leaders in Generation 4', category: categories[3] },
+  { title: 'Gen5 Unova Region', content: 'Explore the Unova region in Generation 5', category: categories[4] },
+  { title: 'Gen6 Mega Evolutions', content: 'Share your favorite Mega Evolutions from Generation 6', category: categories[5] },
+  { title: 'Gen7 Alola Region', content: 'Discuss the unique Alola region in Generation 7', category: categories[6] },
+  { title: 'Gen8 Galar Region', content: 'Share your experiences in the Galar region of Generation 8', category: categories[7] }
 ])
 
 # Create posts
 posts = Post.create([
-  { content: 'Blaziken so hot', topic: topics.first, user: users.first },
-  { content: 'Blastoise so cool', topic: topics.second, user: users.second },
-  { content: 'Venasaur so sick', topic: topics.third, user: users.third }
+  { content: 'Charizard is the ultimate Gen1 starter!', topic_id: topics[0].id, user_id: users[0].id },
+  { content: 'testing many posts', topic_id: topics[1].id, user_id: users[1].id },
+  { content: 'so confusing', topic_id: topics[0].id, user_id: users[2].id },
+  { content: 'Blastoise is the ultimate Gen1 starter!', topic_id: topics[0].id, user_id: users[1].id },
+  { content: 'Typhlosion has the best design in Gen2', topic_id: topics[4].id, user_id: users[2].id },
+  { content: 'Sceptile\'s mega evolution is amazing in Gen3', topic_id: topics[5].id, user_id: users[2].id },
+  { content: 'Lucario is my favorite from Gen4 gyms', topic_id: topics[6].id, user_id: users[1].id },
+  { content: 'Serperior is a sleek Gen5 Pokémon', topic_id: topics[7].id, user_id: users[0].id },
+  { content: 'Greninja\'s ninja-like moves in Gen6 are awesome!', topic_id: topics[8].id, user_id: users[2].id },
+  { content: 'Decidueye is my go-to in Gen7 Alola region', topic_id: topics[9].id, user_id: users[1].id },
+  { content: 'Cinderace is a speedy choice in Gen8 Galar region', topic_id: topics[10].id, user_id: users[0].id }
 ])
 
-puts 'Seed data created successfully!'
+puts 'Seed data updated successfully!'

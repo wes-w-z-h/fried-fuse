@@ -18,7 +18,7 @@ import {
   AccountCircle,
   CatchingPokemon,
 } from "@mui/icons-material";
-import { handleLogout } from "../helpers/Authentication_helpers";
+import { handleLogout } from "../helpers/AuthenticationHelpers";
 import AppState from "../types/AppState";
 import NoticeObj from "../types/NoticeObj";
 

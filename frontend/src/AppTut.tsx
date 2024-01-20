@@ -6,9 +6,8 @@ import {
   handleLogin,
   checkLoggedIn,
   handleLogout,
-} from "./helpers/Authentication_helpers";
+} from "./helpers/AuthenticationHelpers";
 import Navbar from "./components/Navbar";
-
 import { AlertColor, ThemeProvider, createTheme } from "@mui/material";
 import { blue, orange } from "@mui/material/colors";
 import Notice from "./components/Notice";
@@ -16,9 +15,9 @@ import NoticeObj from "./types/NoticeObj";
 import HomePage from "./pages/HomeIndex";
 import AboutView from "./pages/AboutView";
 import CategoriesView from "./pages/CategoriesView";
-import Topics from "./components/Topic/TopicsList";
 import TopicsView from "./pages/TopicsView";
 import "./App.css";
+import PostsView from "./pages/PostsView";
 
 const theme = createTheme({
   palette: {
@@ -60,10 +59,6 @@ const AppTut: React.FC = () => {
             notice={NoticeObject}
           />
           <Routes>
-            {/* <Route
-              path="/dashboard"
-              element={<Dashboard loggedInStatus={appState.loggedInStatus} />}
-            /> */}
             <Route
               path="/users/sign_in"
               element={
@@ -77,10 +72,9 @@ const AppTut: React.FC = () => {
               }
             />
             <Route path="/dashboard" element={<CategoriesView />} />
-            {/* <Route path="/category/:id" element={<Category />} /> */}
             <Route path="/about" element={<AboutView />} />
-            {/* change the route below to TopicsView */}
             <Route path="/categories/:id" element={<TopicsView />} />
+            <Route path="/topics/:id" element={<PostsView />} />
             <Route path="/" element={<HomePage />} />
           </Routes>
         </BrowserRouter>

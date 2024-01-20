@@ -46,14 +46,12 @@ const checkLoggedIn = (
     .then((resp) => {
       if (appState.loggedInStatus === "NOT_LOGGED_IN" && resp.data.logged_in) {
         handleLogin(resp.data.user, setAppState, notice);
-        // handleLogin(resp.data.user);
       } else if (
         !resp.data.logged_in &&
         appState.loggedInStatus === "LOGGED_IN"
       ) {
         handleLogout(setAppState, notice);
       }
-      // console.log("logged in?", resp);
     })
     .catch((errors) => {
       notice.setNoticeMessage(

@@ -1,33 +1,33 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import TopicObj from "../../types/TopicObj";
-import TopicCard from "./TopicCard";
 import { Container, Grid, Typography } from "@mui/material";
+import PostItem from "./PostItem";
 
 // render relavant topics -> GET request to the categories end point
-const TopicsList: React.FC = () => {
+const PostsList: React.FC = () => {
   const { id } = useParams();
-  const [topics, setTopics] = useState<TopicObj[]>([]);
+  const [posts, setPosts] = useState<PostObj[]>([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/categories/${id}`)
+      .get(`http://localhost:3001/topics/${id}`)
       .then((resp) => {
         // console.log(resp.data.included);
-        setTopics(resp.data.included);
+        setPosts(resp.data.included);
       })
       .catch((error) => console.log(error));
-  }, [topics.length, id]);
+  }, [posts.length, id]);
 
-  const list = topics.map((item) => {
+  const handlePostItemUpdate = (update: PostObj) => {
+    setPosts((prevPosts: PostObj[]) =>
+      prevPosts.map((item) => (item.id === update.id ? update : item))
+    );
+  };
+
+  const list = posts.map((item) => {
     return (
-      <TopicCard
-        key={item.attributes.slug}
-        title={item.attributes.title}
-        content={item.attributes.content}
-        slug={item.attributes.slug}
-      />
+      <PostItem key={item.id} post={item} handleUpdate={handlePostItemUpdate} />
     );
   });
 
@@ -46,10 +46,10 @@ const TopicsList: React.FC = () => {
         fontFamily={"chatter"}
         sx={{ color: "steelblue" }}
       >
-        {id} threads
+        {id}
       </Typography>
       <Grid style={{ width: "90vw" }}>{list}</Grid>
     </Container>
   );
 };
-export default TopicsList;
+export default PostsList;
