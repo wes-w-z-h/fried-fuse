@@ -25,7 +25,7 @@
 
    1. Utilise mui library
 
-   2. Organise the file structure 
+   2. Organise the file structure
 
    3. Check routes
 
@@ -90,4 +90,5 @@ Information about the project's license.
 3. [x] topics layout
 4. [ ] add new test seeds to populate data
 5. [ ] start posts page & components
-6. [ ] add img to topics (if got time)
+6. [ ] add the logout timer
+7. [ ] add img to topics (if got time)

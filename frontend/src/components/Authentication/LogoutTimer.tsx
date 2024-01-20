@@ -34,7 +34,7 @@ const LogoutTimer: React.FC<LogoutTimerProps> = ({ handleLogout }) => {
     };
   }, []);
 
-  return <div></div>;
+  return <></>;
 };
 
 export default LogoutTimer;
