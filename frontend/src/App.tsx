@@ -26,7 +26,7 @@ const theme = createTheme({
   },
 });
 
-const AppTut: React.FC = () => {
+const App: React.FC = () => {
   const [appState, setAppState] = useState({
     loggedInStatus: "NOT_LOGGED_IN",
     user: {} as User,
@@ -87,4 +87,4 @@ const AppTut: React.FC = () => {
   );
 };
 
-export default AppTut;
+export default App;
