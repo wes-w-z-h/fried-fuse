@@ -9,13 +9,19 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Grid, TextField } from "@mui/material";
 import axios from "axios";
+import AppState from "../../types/AppState";
 
 type PostItemProps = {
   post: PostObj;
+  appState: AppState;
   handleUpdate: (update: PostObj) => void;
 };
 
-const PostItem: React.FC<PostItemProps> = ({ post, handleUpdate }) => {
+const PostItem: React.FC<PostItemProps> = ({
+  post,
+  handleUpdate,
+  appState,
+}) => {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState(false);
   const [update, setUpdate] = useState(post.attributes.content);
@@ -39,7 +45,8 @@ const PostItem: React.FC<PostItemProps> = ({ post, handleUpdate }) => {
           attributes: { ...post.attributes, content: update },
         });
         setEditing(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleEdit = () => {
@@ -95,32 +102,35 @@ const PostItem: React.FC<PostItemProps> = ({ post, handleUpdate }) => {
           </Grid>
           <Grid item xs={1} md={1} lg={1}></Grid>
           <Grid item xs={1} md={1} lg={1}>
-            <SpeedDial
-              ariaLabel="SpeedDial"
-              icon={<SpeedDialIcon />}
-              onClose={handleClose}
-              onOpen={handleOpen}
-              open={open}
-              FabProps={{
-                sx: {
-                  backgroundColor: "aliceblue",
-                  color: "blueviolet",
-                  ":hover": {
-                    backgroundColor: "blueviolet",
-                    color: "aliceblue",
-                  },
-                },
-              }}
-            >
-              {speedDialActions.map((action) => (
-                <SpeedDialAction
-                  key={action.name}
-                  icon={action.icon}
-                  tooltipTitle={action.name}
-                  onClick={action.onClick}
-                />
-              ))}
-            </SpeedDial>
+            {appState.loggedInStatus === "LOGGED_IN" &&
+              appState.user.id === parseInt(post.attributes.user_id) && (
+                <SpeedDial
+                  ariaLabel="SpeedDial"
+                  icon={<SpeedDialIcon />}
+                  onClose={handleClose}
+                  onOpen={handleOpen}
+                  open={open}
+                  FabProps={{
+                    sx: {
+                      backgroundColor: "aliceblue",
+                      color: "blueviolet",
+                      ":hover": {
+                        backgroundColor: "blueviolet",
+                        color: "aliceblue",
+                      },
+                    },
+                  }}
+                >
+                  {speedDialActions.map((action) => (
+                    <SpeedDialAction
+                      key={action.name}
+                      icon={action.icon}
+                      tooltipTitle={action.name}
+                      onClick={action.onClick}
+                    />
+                  ))}
+                </SpeedDial>
+              )}
           </Grid>
         </Grid>
       </CardContent>

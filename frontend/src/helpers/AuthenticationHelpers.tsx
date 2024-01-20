@@ -3,6 +3,7 @@ import AppState from "../types/AppState";
 import User from "../types/User";
 import React from "react";
 import NoticeObj from "../types/NoticeObj";
+import { useNavigate } from "react-router-dom";
 
 const handleLogin = (
   data: User,
@@ -26,7 +27,8 @@ const handleLogout = (
     .delete("http://localhost:3001/users/logout", { withCredentials: true })
     .then((resp) => {
       // console.log(resp.data);
-    });
+    })
+    .catch((error) => console.log(error));
   setAppState({
     loggedInStatus: "NOT_LOGGED_IN",
     user: {} as User,

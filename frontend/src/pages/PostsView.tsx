@@ -1,8 +1,13 @@
 import React from "react";
 import { Box } from "@mui/material";
 import PostsList from "../components/Post/PostsList";
+import AppState from "../types/AppState";
 
-const PostsView: React.FC = () => {
+type PostViewProps = {
+  appState: AppState;
+};
+
+const PostsView: React.FC<PostViewProps> = ({ appState }) => {
   return (
     <Box
       sx={{
@@ -13,7 +18,7 @@ const PostsView: React.FC = () => {
         overflow: "auto",
       }}
     >
-      <PostsList />
+      <PostsList appState={appState} />
     </Box>
   );
 };

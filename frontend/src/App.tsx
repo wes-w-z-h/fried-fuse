@@ -18,6 +18,7 @@ import CategoriesView from "./pages/CategoriesView";
 import TopicsView from "./pages/TopicsView";
 import "./App.css";
 import PostsView from "./pages/PostsView";
+import AppState from "./types/AppState";
 
 const theme = createTheme({
   palette: {
@@ -27,7 +28,7 @@ const theme = createTheme({
 });
 
 const App: React.FC = () => {
-  const [appState, setAppState] = useState({
+  const [appState, setAppState] = useState<AppState>({
     loggedInStatus: "NOT_LOGGED_IN",
     user: {} as User,
   });
@@ -78,7 +79,10 @@ const App: React.FC = () => {
             <Route path="/dashboard" element={<CategoriesView />} />
             <Route path="/about" element={<AboutView />} />
             <Route path="/categories/:id" element={<TopicsView />} />
-            <Route path="/topics/:id" element={<PostsView />} />
+            <Route
+              path="/topics/:id"
+              element={<PostsView appState={appState} />}
+            />
             <Route path="/" element={<HomePage />} />
           </Routes>
         </BrowserRouter>

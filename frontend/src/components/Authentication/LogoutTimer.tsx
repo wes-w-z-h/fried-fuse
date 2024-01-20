@@ -1,18 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import NoticeObj from "../../types/NoticeObj";
+import AppState from "../../types/AppState";
+import { useNavigate } from "react-router-dom";
 
 type LogoutTimerProps = {
-  handleLogout: () => void;
+  handleLogout: (
+    setAppState: React.Dispatch<React.SetStateAction<AppState>>,
+    notice: NoticeObj,
+    navigate: ReturnType<typeof useNavigate>
+  ) => void;
+  setAppState: React.Dispatch<React.SetStateAction<AppState>>;
+  notice: NoticeObj;
+  navigate: ReturnType<typeof useNavigate>;
 };
 
-const LogoutTimer: React.FC<LogoutTimerProps> = ({ handleLogout }) => {
+const LogoutTimer: React.FC<LogoutTimerProps> = ({
+  handleLogout,
+  setAppState,
+  notice,
+  navigate,
+}) => {
   useEffect(() => {
     let inactivityTimer: NodeJS.Timeout;
 
     const resetInactivityTimer = () => {
       clearTimeout(inactivityTimer);
       inactivityTimer = setTimeout(() => {
-        handleLogout(); // Call your logout function when inactivity time is reached
-      }, 1 * 60 * 1000); // 10 minutes in milliseconds
+        handleLogout(setAppState, notice, navigate); // Call your logout function when inactivity time is reached
+      }, 1 * 60 * 1000); // 1 minute in milliseconds
     };
 
     const handleActivity = () => {

@@ -15,7 +15,8 @@ type SignInProps = {
   ) => void;
   handleLogout: (
     setAppState: React.Dispatch<React.SetStateAction<AppState>>,
-    notice: NoticeObj
+    notice: NoticeObj,
+    navigate: ReturnType<typeof useNavigate>
   ) => void;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
   loggedInStatus: string;
@@ -107,7 +108,10 @@ const SignIn: React.FC<SignInProps> = ({
         <Button
           size="large"
           variant="outlined"
-          onClick={() => handleLogout(setAppState, notice)}
+          onClick={() => {
+            handleLogout(setAppState, notice);
+            navigate("/");
+          }}
           color="secondary"
         >
           logout

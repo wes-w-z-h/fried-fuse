@@ -3,9 +3,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Grid, Typography } from "@mui/material";
 import PostItem from "./PostItem";
+import AppState from "../../types/AppState";
+
+type PostsListProps = {
+  appState: AppState;
+};
 
 // render relavant topics -> GET request to the categories end point
-const PostsList: React.FC = () => {
+const PostsList: React.FC<PostsListProps> = ({ appState }) => {
   const { id } = useParams();
   const [posts, setPosts] = useState<PostObj[]>([]);
 
@@ -27,7 +32,12 @@ const PostsList: React.FC = () => {
 
   const list = posts.map((item) => {
     return (
-      <PostItem key={item.id} post={item} handleUpdate={handlePostItemUpdate} />
+      <PostItem
+        key={item.id}
+        post={item}
+        handleUpdate={handlePostItemUpdate}
+        appState={appState}
+      />
     );
   });
 
