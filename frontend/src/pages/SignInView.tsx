@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import User from "../types/User";
 import Authentication from "../components/Authentication/Authentication";
 import AppState from "../types/AppState";
-import { Typography, Paper, Box } from "@mui/material";
+import { Typography, Paper, Button } from "@mui/material";
 import NoticeObj from "../types/NoticeObj";
+import { handleLogout } from "../helpers/AuthenticationHelpers";
 
 type SignInProps = {
   handleLogin: (
@@ -72,7 +73,8 @@ const SignIn: React.FC<SignInProps> = ({
         />
       )}
 
-      {loggedInStatus !== "LOGGED_IN" && (
+      {loggedInStatus !== "LOGGED_IN" ? (
+        // in case some bugger go back to the sign_in page when already signed_in
         <Fragment>
           <Typography
             variant="body1"
@@ -101,6 +103,15 @@ const SignIn: React.FC<SignInProps> = ({
             Sign in with an existing one!
           </Typography>
         </Fragment>
+      ) : (
+        <Button
+          size="large"
+          variant="outlined"
+          onClick={() => handleLogout(setAppState, notice)}
+          color="secondary"
+        >
+          logout
+        </Button>
       )}
     </Paper>
   );
