@@ -42,7 +42,11 @@ const AppTut: React.FC = () => {
   };
 
   // use effect with dependecies on authstate crashes the program even though no errors
-  useEffect(() => checkLoggedIn(appState, setAppState, NoticeObject));
+  // seems fine now KIV
+  useEffect(
+    () => checkLoggedIn(appState, setAppState, NoticeObject),
+    [appState]
+  );
 
   return (
     <div className="App Tut">

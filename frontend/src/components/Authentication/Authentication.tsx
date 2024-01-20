@@ -49,7 +49,7 @@ const Authentication: React.FC<AuthenticationProps> = ({
         }
       })
       .catch((error) => {
-        // console.log("errors:", error);
+        console.log("errors:", error);
         setFormInfo((prev: FormInfo) => ({
           ...prev,
           authenticationStatus: error.response
