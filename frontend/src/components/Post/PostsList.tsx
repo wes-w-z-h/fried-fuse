@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Grid, Typography } from "@mui/material";
 import PostItem from "./PostItem";
@@ -30,13 +30,12 @@ const PostsList: React.FC<PostsListProps> = ({
         setPosts(resp.data.included);
       })
       .catch((error) => console.log(error));
-  }, [posts.length]);
+  }, [posts.length, setPosts, id]);
 
   const handleUpdatePost = (update: PostObj) => {
     setPosts((prevPosts: PostObj[]) =>
       prevPosts.map((item) => (item.id === update.id ? update : item))
     );
-
   };
 
   const list = posts.map((item) => {

@@ -17,6 +17,7 @@ import { Button, Grid, TextField } from "@mui/material";
 import axios from "axios";
 import AppState from "../../types/AppState";
 import NoticeObj from "../../types/NoticeObj";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 type PostItemProps = {
   post: PostObj;
@@ -101,86 +102,91 @@ const PostItem: React.FC<PostItemProps> = ({
     <Card
       ref={cardRef}
       sx={{
+        display: "flex",
         marginBottom: 1.5,
         borderRadius: 7,
+        textAlign: "left",
       }}
     >
-      <CardContent>
-        <Grid container>
+      <Grid container>
+        <CardContent sx={{ maxWidth: "75%" }}>
           {/* set the cols to be max size for all screens */}
-          <Grid item xs={10} md={10} lg={10} textAlign="left">
-            <Typography color="text.secondary">
-              {post.attributes.user_id}
-            </Typography>
-            {editing ? (
-              // Display the text field when editing
-              <Fragment>
-                <TextField
-                  value={update}
-                  onChange={(e) => setUpdate(e.target.value)}
-                  fullWidth
-                  multiline
-                />
-                <Button
-                  onClick={handleSave}
-                  variant="outlined"
-                  sx={{ margin: 1 }}
-                >
-                  Update
-                </Button>
-                <Button
-                  onClick={() => setEditing(false)}
-                  variant="outlined"
-                  color="warning"
-                >
-                  Cancel
-                </Button>
-              </Fragment>
-            ) : (
-              // Display the text when not editing
-              <Typography
-                variant="body1"
-                fontSize={20}
-                sx={{ wordWrap: "break-word" }}
+          <Typography color="text.secondary">
+            {post.attributes.user_id}
+          </Typography>
+          {editing ? (
+            // Display the text field when editing
+            <Fragment>
+              <TextField
+                value={update}
+                onChange={(e) => setUpdate(e.target.value)}
+                fullWidth
+                multiline
+              />
+              <Button
+                onClick={handleSave}
+                variant="outlined"
+                sx={{ margin: 1 }}
               >
-                {post.attributes.content}
-              </Typography>
-            )}
-          </Grid>
-          <Grid item xs={1} md={1} lg={1}></Grid>
-          <Grid item xs={1} md={1} lg={1}>
-            {appState.loggedInStatus === "LOGGED_IN" &&
-              appState.user.id === parseInt(post.attributes.user_id) && (
-                <SpeedDial
-                  ariaLabel="SpeedDial"
-                  icon={<SpeedDialIcon />}
-                  onClose={handleClose}
-                  onOpen={handleOpen}
-                  open={open}
-                  FabProps={{
-                    sx: {
-                      backgroundColor: "aliceblue",
-                      color: "blueviolet",
-                      ":hover": {
-                        backgroundColor: "blueviolet",
-                        color: "aliceblue",
-                      },
+                Update
+              </Button>
+              <Button
+                onClick={() => setEditing(false)}
+                variant="outlined"
+                color="warning"
+              >
+                Cancel
+              </Button>
+            </Fragment>
+          ) : (
+            // Display the text when not editing
+            <Typography
+              variant="body1"
+              fontSize={20}
+              sx={{ wordWrap: "break-word" }}
+            >
+              {post.attributes.content}
+            </Typography>
+          )}
+        </CardContent>
+        <CardContent
+          sx={{
+            marginLeft: "auto",
+            minWidth: "20%",
+          }}
+        >
+          {appState.loggedInStatus === "LOGGED_IN" &&
+            appState.user.id === parseInt(post.attributes.user_id) && (
+              <SpeedDial
+                ariaLabel="SpeedDial"
+                icon={<MoreVertIcon />}
+                onClose={handleClose}
+                onOpen={handleOpen}
+                open={open}
+                FabProps={{
+                  sx: {
+                    backgroundColor: "aliceblue",
+                    color: "blueviolet",
+                    ":hover": {
+                      backgroundColor: "blueviolet",
+                      color: "aliceblue",
                     },
-                  }}
-                >
-                  {speedDialActions.map((action) => (
-                    <SpeedDialAction
-                      key={action.name}
-                      icon={action.icon}
-                      tooltipTitle={action.name}
-                      onClick={action.onClick}
-                    />
-                  ))}
-                </SpeedDial>
-              )}
-          </Grid>
-        </Grid>
-      </CardContent>
+                  },
+                }}
+                direction="left"
+              >
+                {speedDialActions.map((action) => (
+                  <SpeedDialAction
+                    key={action.name}
+                    icon={action.icon}
+                    tooltipTitle={action.name}
+                    onClick={action.onClick}
+                  />
+                ))}
+              </SpeedDial>
+            )}
+        </CardContent>
+      </Grid>
     </Card>
   );
 };

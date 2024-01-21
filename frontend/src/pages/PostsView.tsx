@@ -28,7 +28,7 @@ const PostsView: React.FC<PostViewProps> = ({ appState, notice }) => {
         placeItems: "center",
       }}
     >
-      <Grid item xs={8} md={8} lg={8}>
+      <Grid item xs={10} md={10} lg={10}>
         <PostsList
           appState={appState}
           posts={posts}
@@ -36,8 +36,8 @@ const PostsView: React.FC<PostViewProps> = ({ appState, notice }) => {
           notice={notice}
         />
       </Grid>
-      <Grid item xs={2}></Grid>
-      <Grid item xs={1}>
+      {/* <Grid item xs={2}></Grid> */}
+      <Grid item xs={4}>
         <AddPostCard
           cardOpen={cardOpen}
           newPostContent={newPostContent}
