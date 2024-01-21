@@ -1,4 +1,10 @@
-import React, { SetStateAction, useState, useEffect, useRef } from "react";
+import React, {
+  SetStateAction,
+  useState,
+  useEffect,
+  useRef,
+  Fragment,
+} from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -108,7 +114,7 @@ const PostItem: React.FC<PostItemProps> = ({
             </Typography>
             {editing ? (
               // Display the text field when editing
-              <>
+              <Fragment>
                 <TextField
                   value={update}
                   onChange={(e) => setUpdate(e.target.value)}
@@ -129,7 +135,7 @@ const PostItem: React.FC<PostItemProps> = ({
                 >
                   Cancel
                 </Button>
-              </>
+              </Fragment>
             ) : (
               // Display the text when not editing
               <Typography

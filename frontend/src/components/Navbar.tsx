@@ -9,6 +9,7 @@ import {
   List,
   ListItemText,
   ListItemButton,
+  Tooltip,
 } from "@mui/material";
 import {
   Menu,
@@ -91,7 +92,7 @@ const Navbar: React.FC<NavBarProps> = ({
         <Typography
           variant="h4"
           sx={{
-            color: "antiquewhite",
+            color: "aliceblue",
             fontFamily: "chatter",
             paddingRight: 2,
             paddingLeft: 1,
@@ -99,21 +100,32 @@ const Navbar: React.FC<NavBarProps> = ({
         >
           C H A T T E R
         </Typography>
-        <IconButton
-          size="large"
-          onClick={openPopup}
-          sx={{
-            marginLeft: "auto",
-            color: "white",
-            borderRadius: "50%",
-            transition: "background-color 0.5s ease-out",
-            "&:hover": {
-              backgroundColor: "#8F8F8F",
-            },
-          }}
+        <Tooltip
+          title={
+            <Typography fontFamily={"monospace"} fontSize={13}>
+              Open Menu
+            </Typography>
+          }
+          arrow
         >
-          <Menu />
-        </IconButton>
+          <IconButton
+            size="large"
+            onClick={openPopup}
+            sx={{
+              marginLeft: "auto",
+              color: popupAnchor === null ? "aliceblue" : "blueviolet",
+              backgroundColor: popupAnchor !== null ? "aliceblue" : "#14213D",
+              borderRadius: "50%",
+              transition: "background-color 0.3s ease-out",
+              "&:hover": {
+                backgroundColor: "aliceblue",
+                color: "blueviolet",
+              },
+            }}
+          >
+            <Menu />
+          </IconButton>
+        </Tooltip>
         <Popover
           anchorEl={popupAnchor}
           open={Boolean(popupAnchor)}

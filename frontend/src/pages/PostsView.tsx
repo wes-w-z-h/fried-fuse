@@ -47,7 +47,12 @@ const PostsView: React.FC<PostViewProps> = ({ appState, notice }) => {
           setPosts={setPosts}
           notice={notice}
         />
-        <AddPostButton cardOpen={cardOpen} setCardOpen={setCardOpen} />
+        <AddPostButton
+          cardOpen={cardOpen}
+          setCardOpen={setCardOpen}
+          appState={appState}
+          notice={notice}
+        />
       </Grid>
     </Grid>
   );
