@@ -40,7 +40,7 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
               sx={{ marginBottom: 1.5, backgroundColor: "white" }}
             />
             <Button
-              onClick={() => {}}
+              onClick={() => {}} // implement submit handler
               variant="contained"
               sx={{
                 marginRight: 1,

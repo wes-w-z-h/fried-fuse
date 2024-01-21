@@ -15,7 +15,6 @@ type PostViewProps = {
 const PostsView: React.FC<PostViewProps> = ({ appState }) => {
   const [cardOpen, setCardOpen] = useState(false);
   const [postContent, setPostContent] = useState("");
-  const handleAdd = () => {};
   return (
     <Grid
       container
