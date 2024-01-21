@@ -29,7 +29,7 @@ const AddPostButton: React.FC<AddPostButtonProps> = ({
         sx={{
           position: "fixed",
           bottom: 19,
-          right: 17,
+          right: 3,
           backgroundColor: "blueviolet",
           transition: "background-color 0.2s ease-in-out",
           ":hover": {

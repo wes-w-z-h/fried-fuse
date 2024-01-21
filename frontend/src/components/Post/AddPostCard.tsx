@@ -44,13 +44,14 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
         notice.setOpenNotice(true);
       })
       .catch((error) => {
-        notice.setNoticeMessage(`${error}`);
+        notice.setNoticeMessage(`Error: ${error}`);
         notice.setNoticeSeverity("error");
         notice.setOpenNotice(true);
       });
     setNewPostContent("");
     setCardOpen(false);
   };
+
   return (
     <Fragment>
       {cardOpen && (
@@ -80,9 +81,7 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
             <Button
               onClick={() => handleAddPost()} // implement submit handler
               variant="contained"
-              sx={{
-                marginRight: 1,
-              }}
+              sx={{ marginRight: 1 }}
             >
               Add Post
             </Button>
