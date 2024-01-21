@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Grid, Typography } from "@mui/material";
+import { Button, Container, Grid, Typography } from "@mui/material";
 import PostItem from "./PostItem";
 import AppState from "../../types/AppState";
 
@@ -22,7 +22,7 @@ const PostsList: React.FC<PostsListProps> = ({ appState }) => {
         setPosts(resp.data.included);
       })
       .catch((error) => console.log(error));
-  }, [posts.length, id]);
+  }, [posts.length]);
 
   const handlePostItemUpdate = (update: PostObj) => {
     setPosts((prevPosts: PostObj[]) =>
@@ -37,6 +37,7 @@ const PostsList: React.FC<PostsListProps> = ({ appState }) => {
         post={item}
         handleUpdate={handlePostItemUpdate}
         appState={appState}
+        setPosts={setPosts}
       />
     );
   });

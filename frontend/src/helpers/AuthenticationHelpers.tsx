@@ -3,7 +3,6 @@ import AppState from "../types/AppState";
 import User from "../types/User";
 import React from "react";
 import NoticeObj from "../types/NoticeObj";
-import { useNavigate } from "react-router-dom";
 
 const handleLogin = (
   data: User,
@@ -19,23 +18,26 @@ const handleLogin = (
   notice.setOpenNotice(true);
 };
 
-const handleLogout = (
+const handleLogout = async (
   setAppState: React.Dispatch<React.SetStateAction<AppState>>,
   notice: NoticeObj
-) => {
-  axios
+): Promise<void> => {
+  await axios
     .delete("http://localhost:3001/users/logout", { withCredentials: true })
     .then((resp) => {
-      // console.log(resp.data);
+      setAppState({
+        loggedInStatus: "NOT_LOGGED_IN",
+        user: {} as User,
+      });
+      notice.setNoticeMessage("LOGGED OUT SUCCESSFULLY!");
+      notice.setNoticeSeverity("success");
+      notice.setOpenNotice(true);
+      return Promise.resolve();
     })
-    .catch((error) => console.log(error));
-  setAppState({
-    loggedInStatus: "NOT_LOGGED_IN",
-    user: {} as User,
-  });
-  notice.setNoticeMessage("LOGGED OUT SUCCESSFULLY!");
-  notice.setNoticeSeverity("success");
-  notice.setOpenNotice(true);
+    .catch((error) => {
+      console.log(error);
+      return Promise.reject();
+    });
 };
 
 const checkLoggedIn = (

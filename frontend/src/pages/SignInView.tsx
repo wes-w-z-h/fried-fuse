@@ -17,7 +17,7 @@ type SignInProps = {
     setAppState: React.Dispatch<React.SetStateAction<AppState>>,
     notice: NoticeObj,
     navigate: ReturnType<typeof useNavigate>
-  ) => void;
+  ) => Promise<void>;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
   loggedInStatus: string;
   // notice props functions needed

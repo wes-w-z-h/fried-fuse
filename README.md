@@ -43,6 +43,8 @@ For test data run:
 rails db:seed
 ```
 
+IMPORTANT: UPDATE SEED WITH SERVER RUNNING WOULD CAUSE ISSUES
+
 ## Usage
 
 Information on how to use the project.

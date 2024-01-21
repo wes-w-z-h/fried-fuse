@@ -19,6 +19,7 @@ import TopicsView from "./pages/TopicsView";
 import "./App.css";
 import PostsView from "./pages/PostsView";
 import AppState from "./types/AppState";
+import LogoutTimer from "./components/Authentication/LogoutTimer";
 
 const theme = createTheme({
   palette: {
@@ -60,6 +61,11 @@ const App: React.FC = () => {
           />
           <Navbar
             loggedInStatus={appState.loggedInStatus}
+            setAppState={setAppState}
+            notice={NoticeObject}
+          />
+          <LogoutTimer
+            handleLogout={handleLogout}
             setAppState={setAppState}
             notice={NoticeObject}
           />

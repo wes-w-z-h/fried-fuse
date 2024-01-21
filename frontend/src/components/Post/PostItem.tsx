@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -15,12 +15,14 @@ type PostItemProps = {
   post: PostObj;
   appState: AppState;
   handleUpdate: (update: PostObj) => void;
+  setPosts: React.Dispatch<SetStateAction<PostObj[]>>;
 };
 
 const PostItem: React.FC<PostItemProps> = ({
   post,
   handleUpdate,
   appState,
+  setPosts,
 }) => {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -54,7 +56,15 @@ const PostItem: React.FC<PostItemProps> = ({
   };
 
   const handleDelete = () => {
-    // Implement your delete logic here
+    axios
+      .delete(`http://localhost:3001/posts/${post.id}`)
+      .then((resp) => {
+        console.log(resp);
+        setPosts((prevPosts) =>
+          prevPosts.filter((prevPost) => prevPost.id !== post.id)
+        );
+      })
+      .catch((error) => console.log(error));
   };
 
   const speedDialActions = [

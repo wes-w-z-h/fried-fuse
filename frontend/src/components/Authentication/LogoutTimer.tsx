@@ -6,28 +6,27 @@ import { useNavigate } from "react-router-dom";
 type LogoutTimerProps = {
   handleLogout: (
     setAppState: React.Dispatch<React.SetStateAction<AppState>>,
-    notice: NoticeObj,
-    navigate: ReturnType<typeof useNavigate>
-  ) => void;
+    notice: NoticeObj
+  ) => Promise<void>;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
   notice: NoticeObj;
-  navigate: ReturnType<typeof useNavigate>;
 };
 
 const LogoutTimer: React.FC<LogoutTimerProps> = ({
   handleLogout,
   setAppState,
   notice,
-  navigate,
 }) => {
+  const navigate = useNavigate();
   useEffect(() => {
     let inactivityTimer: NodeJS.Timeout;
 
     const resetInactivityTimer = () => {
       clearTimeout(inactivityTimer);
-      inactivityTimer = setTimeout(() => {
-        handleLogout(setAppState, notice, navigate); // Call your logout function when inactivity time is reached
-      }, 1 * 60 * 1000); // 1 minute in milliseconds
+      inactivityTimer = setTimeout(async () => {
+        await handleLogout(setAppState, notice); // Call your logout function when inactivity time is reached
+        navigate("/");
+      }, 30 * 60 * 1000); // 30 minute in milliseconds
     };
 
     const handleActivity = () => {
@@ -49,7 +48,7 @@ const LogoutTimer: React.FC<LogoutTimerProps> = ({
     };
   }, []);
 
-  return <></>;
+  return <div></div>;
 };
 
 export default LogoutTimer;

@@ -48,6 +48,7 @@ const Navbar: React.FC<NavBarProps> = ({
         break;
       case "logout":
         handleLogout(setAppState, notice);
+        navigate("/");
         break;
       case "signin":
         navigate("/users/sign_in");
