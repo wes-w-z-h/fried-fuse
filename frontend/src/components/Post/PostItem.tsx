@@ -1,4 +1,10 @@
-import React, { SetStateAction, useState } from "react";
+import React, {
+  SetStateAction,
+  useState,
+  useEffect,
+  MouseEventHandler,
+  useRef,
+} from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -27,6 +33,7 @@ const PostItem: React.FC<PostItemProps> = ({
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState(false);
   const [update, setUpdate] = useState(post.attributes.content);
+  const cardRef = useRef<HTMLDivElement | null>(null);
 
   const handleOpen = () => {
     setOpen(true);
@@ -34,7 +41,6 @@ const PostItem: React.FC<PostItemProps> = ({
   const handleClose = () => {
     setOpen(false);
   };
-
   const handleSave = () => {
     axios
       .patch(`http://localhost:3001/posts/${post.id}`, {
@@ -50,11 +56,9 @@ const PostItem: React.FC<PostItemProps> = ({
       })
       .catch((error) => console.log(error));
   };
-
   const handleEdit = () => {
     setEditing(true);
   };
-
   const handleDelete = () => {
     axios
       .delete(`http://localhost:3001/posts/${post.id}`)
@@ -66,14 +70,27 @@ const PostItem: React.FC<PostItemProps> = ({
       })
       .catch((error) => console.log(error));
   };
-
   const speedDialActions = [
     { icon: <EditIcon />, name: "Edit", onClick: handleEdit },
     { icon: <DeleteIcon />, name: "Delete", onClick: handleDelete },
   ];
+  // close the editing automatically if user clicks outside of card
+  useEffect(() => {
+    const handleClickOut: EventListener = (event) => {
+      if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+        setEditing(false);
+      }
+    };
+    document.addEventListener("click", handleClickOut);
+
+    return () => {
+      document.removeEventListener("click", handleClickOut);
+    };
+  }, []);
 
   return (
     <Card
+      ref={cardRef}
       sx={{
         marginBottom: 1.5,
         borderRadius: 7,
@@ -95,8 +112,19 @@ const PostItem: React.FC<PostItemProps> = ({
                   fullWidth
                   multiline
                 />
-                <Button onClick={handleSave} variant="outlined">
+                <Button
+                  onClick={handleSave}
+                  variant="outlined"
+                  sx={{ margin: 1 }}
+                >
                   Update
+                </Button>
+                <Button
+                  onClick={() => setEditing(false)}
+                  variant="outlined"
+                  color="warning"
+                >
+                  Cancel
                 </Button>
               </>
             ) : (

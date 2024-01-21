@@ -37,14 +37,14 @@ const LogoutTimer: React.FC<LogoutTimerProps> = ({
     resetInactivityTimer();
 
     // Event listeners
-    window.addEventListener("mousemove", handleActivity);
-    window.addEventListener("keydown", handleActivity);
+    document.addEventListener("mousemove", handleActivity);
+    document.addEventListener("keydown", handleActivity);
 
     // Cleanup
     return () => {
       clearTimeout(inactivityTimer);
-      window.removeEventListener("mousemove", handleActivity);
-      window.removeEventListener("keydown", handleActivity);
+      document.removeEventListener("mousemove", handleActivity);
+      document.removeEventListener("keydown", handleActivity);
     };
   }, []);
 

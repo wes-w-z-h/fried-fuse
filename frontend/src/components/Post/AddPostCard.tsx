@@ -1,19 +1,44 @@
 import { Button, Card, CardContent, TextField } from "@mui/material";
+import axios from "axios";
 import { Fragment, SetStateAction } from "react";
+import AppState from "../../types/AppState";
+import { useParams } from "react-router-dom";
 
 type AddPostCardProps = {
   cardOpen: boolean;
-  postContent: string;
-  setPostContent: React.Dispatch<SetStateAction<string>>;
+  newPostContent: string;
+  setNewPostContent: React.Dispatch<SetStateAction<string>>;
   setCardOpen: React.Dispatch<SetStateAction<boolean>>;
+  appState: AppState;
+  setPosts: React.Dispatch<SetStateAction<PostObj[]>>;
 };
 
 const AddPostCard: React.FC<AddPostCardProps> = ({
   cardOpen,
-  postContent,
+  newPostContent,
   setCardOpen,
-  setPostContent,
+  setNewPostContent,
+  appState,
+  setPosts,
 }) => {
+  const { id } = useParams();
+
+  const handleAddPost = () => {
+    axios
+      .post("http://localhost:3001/posts", {
+        post: {
+          content: newPostContent,
+          topic_id: id,
+          user_id: appState.user.id,
+        },
+      })
+      .then((resp) => {
+        const newPost: PostObj = resp.data.data;
+        console.log(newPost);
+        setPosts((prevPosts) => [...prevPosts, newPost]);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <Fragment>
       {cardOpen && (
@@ -26,6 +51,7 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
             right: 17,
             width: "70vw",
             backgroundColor: "aliceblue",
+            zIndex: 1050, // sweet spot
           }}
         >
           <CardContent>
@@ -35,12 +61,12 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
               variant="outlined"
               multiline
               fullWidth
-              value={postContent}
-              onChange={(e) => setPostContent(e.target.value)}
+              value={newPostContent}
+              onChange={(e) => setNewPostContent(e.target.value)}
               sx={{ marginBottom: 1.5, backgroundColor: "white" }}
             />
             <Button
-              onClick={() => {}} // implement submit handler
+              onClick={() => handleAddPost()} // implement submit handler
               variant="contained"
               sx={{
                 marginRight: 1,
@@ -51,7 +77,7 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
             <Button
               onClick={() => {
                 setCardOpen(false);
-                setPostContent("");
+                setNewPostContent("");
               }}
               color="error"
               variant="outlined"

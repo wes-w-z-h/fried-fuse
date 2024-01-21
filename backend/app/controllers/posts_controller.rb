@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
   # add back the assosciation with user after writing user mc
   def create
-    post = Post.new(post_params)
+    post_param = post_params
+    process_params(post_param)
+    post = Post.new(post_param)
     if post.save
       render json: PostSerializer.new(post).serializable_hash.to_json
     else
@@ -39,5 +41,21 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content, :topic_id, :user_id)
+  end
+
+  # Function to convert the slug when coming in from frontend
+  def process_params(params)
+    # the request send the slug as id
+    # retain original function to post using topic_id instead of slug
+    if !(/\d/.match?(params[:topic_id]))
+      return
+    end
+    topic = Topic.find_by(slug: params[:topic_id])
+    if topic
+      topic_id = topic.id
+      params[:topic_id] = topic_id
+    else
+      render json: {error: "Invalid topic"}, status: 404
+    end
   end
 end

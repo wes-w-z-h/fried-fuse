@@ -1,18 +1,19 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import PostItem from "./PostItem";
 import AppState from "../../types/AppState";
 
 type PostsListProps = {
   appState: AppState;
+  posts: PostObj[];
+  setPosts: React.Dispatch<SetStateAction<PostObj[]>>;
 };
 
 // render relavant topics -> GET request to the categories end point
-const PostsList: React.FC<PostsListProps> = ({ appState }) => {
+const PostsList: React.FC<PostsListProps> = ({ appState, posts, setPosts }) => {
   const { id } = useParams();
-  const [posts, setPosts] = useState<PostObj[]>([]);
 
   useEffect(() => {
     axios

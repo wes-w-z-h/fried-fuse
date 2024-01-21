@@ -14,7 +14,8 @@ type PostViewProps = {
 // TODO: handle submit and check sign in before can add almost done with basic functionality
 const PostsView: React.FC<PostViewProps> = ({ appState }) => {
   const [cardOpen, setCardOpen] = useState(false);
-  const [postContent, setPostContent] = useState("");
+  const [newPostContent, setNewPostContent] = useState("");
+  const [posts, setPosts] = useState<PostObj[]>([]);
   return (
     <Grid
       container
@@ -27,16 +28,18 @@ const PostsView: React.FC<PostViewProps> = ({ appState }) => {
         placeItems: "center",
       }}
     >
-      <Grid item xs={8} md={8} lg={8} sx={{ zIndex: -1 }}>
-        <PostsList appState={appState} />
+      <Grid item xs={8} md={8} lg={8}>
+        <PostsList appState={appState} posts={posts} setPosts={setPosts} />
       </Grid>
       <Grid item xs={2}></Grid>
       <Grid item xs={1}>
         <AddPostCard
           cardOpen={cardOpen}
-          postContent={postContent}
+          newPostContent={newPostContent}
           setCardOpen={setCardOpen}
-          setPostContent={setPostContent}
+          setNewPostContent={setNewPostContent}
+          appState={appState}
+          setPosts={setPosts}
         />
         <AddPostButton cardOpen={cardOpen} setCardOpen={setCardOpen} />
       </Grid>
