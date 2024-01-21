@@ -10,13 +10,10 @@ import { handleLogout } from "../helpers/AuthenticationHelpers";
 type SignInProps = {
   handleLogin: (
     data: User,
-    setAppState: React.Dispatch<React.SetStateAction<AppState>>,
-    notice: NoticeObj
+    setAppState: React.Dispatch<React.SetStateAction<AppState>>
   ) => void;
   handleLogout: (
-    setAppState: React.Dispatch<React.SetStateAction<AppState>>,
-    notice: NoticeObj,
-    navigate: ReturnType<typeof useNavigate>
+    setAppState: React.Dispatch<React.SetStateAction<AppState>>
   ) => Promise<void>;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
   loggedInStatus: string;
@@ -31,6 +28,18 @@ const SignIn: React.FC<SignInProps> = ({
   notice,
 }) => {
   const navigate = useNavigate();
+
+  const handleSuccessfulLogin = (data: User) => {
+    handleLogin(data, setAppState);
+    navigate("/dashboard");
+    notice.setNoticeMessage("LOGGED IN SUCCESSFULLY!");
+    notice.setNoticeSeverity("success");
+    notice.setOpenNotice(true);
+  };
+  const handleSuccessfulLogout = () => {
+    handleLogout(setAppState);
+    navigate("/");
+  };
 
   return (
     <Paper
@@ -66,10 +75,7 @@ const SignIn: React.FC<SignInProps> = ({
 
       {loggedInStatus !== "LOGGED_IN" && (
         <Authentication
-          handleSuccessfulLogin={(data) => {
-            handleLogin(data, setAppState, notice);
-            navigate("/dashboard");
-          }}
+          handleSuccessfulLogin={(data) => handleSuccessfulLogin(data)}
           notice={notice}
         />
       )}
@@ -108,10 +114,7 @@ const SignIn: React.FC<SignInProps> = ({
         <Button
           size="large"
           variant="outlined"
-          onClick={() => {
-            handleLogout(setAppState, notice);
-            navigate("/");
-          }}
+          onClick={() => handleSuccessfulLogout()}
           color="secondary"
         >
           logout

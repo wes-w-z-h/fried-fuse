@@ -47,8 +47,11 @@ const Navbar: React.FC<NavBarProps> = ({
         navigate("/dashboard");
         break;
       case "logout":
-        handleLogout(setAppState, notice);
+        handleLogout(setAppState);
         navigate("/");
+        notice.setNoticeMessage("LOGGED OUT SUCCESSFULLY!");
+        notice.setNoticeSeverity("success");
+        notice.setOpenNotice(true);
         break;
       case "signin":
         navigate("/users/sign_in");

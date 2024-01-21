@@ -1,10 +1,4 @@
-import React, {
-  SetStateAction,
-  useState,
-  useEffect,
-  MouseEventHandler,
-  useRef,
-} from "react";
+import React, { SetStateAction, useState, useEffect, useRef } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -16,12 +10,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Grid, TextField } from "@mui/material";
 import axios from "axios";
 import AppState from "../../types/AppState";
+import NoticeObj from "../../types/NoticeObj";
 
 type PostItemProps = {
   post: PostObj;
   appState: AppState;
   handleUpdate: (update: PostObj) => void;
   setPosts: React.Dispatch<SetStateAction<PostObj[]>>;
+  notice: NoticeObj;
 };
 
 const PostItem: React.FC<PostItemProps> = ({
@@ -29,6 +25,7 @@ const PostItem: React.FC<PostItemProps> = ({
   handleUpdate,
   appState,
   setPosts,
+  notice,
 }) => {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -53,6 +50,9 @@ const PostItem: React.FC<PostItemProps> = ({
           attributes: { ...post.attributes, content: update },
         });
         setEditing(false);
+        notice.setNoticeMessage("Post updated successfully!");
+        notice.setNoticeSeverity("success");
+        notice.setOpenNotice(true);
       })
       .catch((error) => console.log(error));
   };
@@ -67,6 +67,9 @@ const PostItem: React.FC<PostItemProps> = ({
         setPosts((prevPosts) =>
           prevPosts.filter((prevPost) => prevPost.id !== post.id)
         );
+        notice.setNoticeMessage("Post deleted successfully!");
+        notice.setNoticeSeverity("warning");
+        notice.setOpenNotice(true);
       })
       .catch((error) => console.log(error));
   };

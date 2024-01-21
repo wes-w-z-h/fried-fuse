@@ -6,21 +6,16 @@ import NoticeObj from "../types/NoticeObj";
 
 const handleLogin = (
   data: User,
-  setAppState: React.Dispatch<React.SetStateAction<AppState>>,
-  notice: NoticeObj
+  setAppState: React.Dispatch<React.SetStateAction<AppState>>
 ) => {
   setAppState({
     loggedInStatus: "LOGGED_IN",
     user: data,
   });
-  notice.setNoticeMessage("LOGGED IN SUCCESSFULLY!");
-  notice.setNoticeSeverity("success");
-  notice.setOpenNotice(true);
 };
 
 const handleLogout = async (
-  setAppState: React.Dispatch<React.SetStateAction<AppState>>,
-  notice: NoticeObj
+  setAppState: React.Dispatch<React.SetStateAction<AppState>>
 ): Promise<void> => {
   await axios
     .delete("http://localhost:3001/users/logout", { withCredentials: true })
@@ -29,9 +24,6 @@ const handleLogout = async (
         loggedInStatus: "NOT_LOGGED_IN",
         user: {} as User,
       });
-      notice.setNoticeMessage("LOGGED OUT SUCCESSFULLY!");
-      notice.setNoticeSeverity("success");
-      notice.setOpenNotice(true);
       return Promise.resolve();
     })
     .catch((error) => {
@@ -50,12 +42,12 @@ const checkLoggedIn = (
     .then((resp) => {
       console.log(resp.data);
       if (appState.loggedInStatus === "NOT_LOGGED_IN" && resp.data.logged_in) {
-        handleLogin(resp.data.user, setAppState, notice);
+        handleLogin(resp.data.user, setAppState);
       } else if (
         !resp.data.logged_in &&
         appState.loggedInStatus === "LOGGED_IN"
       ) {
-        handleLogout(setAppState, notice);
+        handleLogout(setAppState);
       }
     })
     .catch((errors) => {

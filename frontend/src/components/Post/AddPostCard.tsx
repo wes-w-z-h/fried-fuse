@@ -3,6 +3,7 @@ import axios from "axios";
 import { Fragment, SetStateAction } from "react";
 import AppState from "../../types/AppState";
 import { useParams } from "react-router-dom";
+import NoticeObj from "../../types/NoticeObj";
 
 type AddPostCardProps = {
   cardOpen: boolean;
@@ -11,6 +12,7 @@ type AddPostCardProps = {
   setCardOpen: React.Dispatch<SetStateAction<boolean>>;
   appState: AppState;
   setPosts: React.Dispatch<SetStateAction<PostObj[]>>;
+  notice: NoticeObj;
 };
 
 const AddPostCard: React.FC<AddPostCardProps> = ({
@@ -20,6 +22,7 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
   setNewPostContent,
   appState,
   setPosts,
+  notice,
 }) => {
   const { id } = useParams();
 
@@ -34,10 +37,19 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
       })
       .then((resp) => {
         const newPost: PostObj = resp.data.data;
-        console.log(newPost);
-        setPosts((prevPosts) => [...prevPosts, newPost]);
+        // console.log(newPost);
+        setPosts((prevPosts) => [newPost, ...prevPosts]);
+        notice.setNoticeMessage("Post added successfully!");
+        notice.setNoticeSeverity("success");
+        notice.setOpenNotice(true);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        notice.setNoticeMessage(`${error}`);
+        notice.setNoticeSeverity("error");
+        notice.setOpenNotice(true);
+      });
+    setNewPostContent("");
+    setCardOpen(false);
   };
   return (
     <Fragment>

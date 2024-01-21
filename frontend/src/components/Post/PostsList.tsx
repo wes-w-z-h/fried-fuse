@@ -4,15 +4,22 @@ import { useParams } from "react-router-dom";
 import { Container, Grid, Typography } from "@mui/material";
 import PostItem from "./PostItem";
 import AppState from "../../types/AppState";
+import NoticeObj from "../../types/NoticeObj";
 
 type PostsListProps = {
   appState: AppState;
   posts: PostObj[];
   setPosts: React.Dispatch<SetStateAction<PostObj[]>>;
+  notice: NoticeObj;
 };
 
 // render relavant topics -> GET request to the categories end point
-const PostsList: React.FC<PostsListProps> = ({ appState, posts, setPosts }) => {
+const PostsList: React.FC<PostsListProps> = ({
+  appState,
+  posts,
+  setPosts,
+  notice,
+}) => {
   const { id } = useParams();
 
   useEffect(() => {
@@ -25,10 +32,11 @@ const PostsList: React.FC<PostsListProps> = ({ appState, posts, setPosts }) => {
       .catch((error) => console.log(error));
   }, [posts.length]);
 
-  const handlePostItemUpdate = (update: PostObj) => {
+  const handleUpdatePost = (update: PostObj) => {
     setPosts((prevPosts: PostObj[]) =>
       prevPosts.map((item) => (item.id === update.id ? update : item))
     );
+
   };
 
   const list = posts.map((item) => {
@@ -36,13 +44,14 @@ const PostsList: React.FC<PostsListProps> = ({ appState, posts, setPosts }) => {
       <PostItem
         key={item.id}
         post={item}
-        handleUpdate={handlePostItemUpdate}
+        handleUpdate={handleUpdatePost}
         appState={appState}
         setPosts={setPosts}
+        notice={notice}
       />
     );
   });
-
+  const ordered = list.slice().reverse(); // see how
   return (
     <Container
       sx={{
@@ -60,7 +69,7 @@ const PostsList: React.FC<PostsListProps> = ({ appState, posts, setPosts }) => {
       >
         {id}
       </Typography>
-      <Grid style={{ width: "90vw" }}>{list}</Grid>
+      <Grid style={{ width: "90vw" }}>{ordered}</Grid>
     </Container>
   );
 };
