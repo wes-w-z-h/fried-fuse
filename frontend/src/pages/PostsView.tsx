@@ -3,7 +3,7 @@ import { AlertColor, Grid } from "@mui/material";
 import PostsList from "../components/Post/PostsList";
 import AppState from "../types/AppState";
 import AddPostCard from "../components/Post/AddPostCard";
-import AddPostButton from "../components/Post/AddPostButton";
+import AddItemButton from "../components/AddItemButton";
 
 type PostViewProps = {
   appState: AppState;
@@ -27,7 +27,7 @@ const PostsView: React.FC<PostViewProps> = ({ appState, notice }) => {
         placeItems: "center",
       }}
     >
-      <Grid item xs={10} md={10} lg={10}>
+      <Grid item>
         <PostsList
           appState={appState}
           posts={posts}
@@ -36,7 +36,7 @@ const PostsView: React.FC<PostViewProps> = ({ appState, notice }) => {
         />
       </Grid>
       {/* <Grid item xs={2}></Grid> */}
-      <Grid item xs={4}>
+      <Grid item>
         <AddPostCard
           cardOpen={cardOpen}
           newPostContent={newPostContent}
@@ -46,11 +46,12 @@ const PostsView: React.FC<PostViewProps> = ({ appState, notice }) => {
           setPosts={setPosts}
           notice={notice}
         />
-        <AddPostButton
+        <AddItemButton
           cardOpen={cardOpen}
           setCardOpen={setCardOpen}
           appState={appState}
           notice={notice}
+          message="Sign in to add posts!"
         />
       </Grid>
     </Grid>

@@ -82,7 +82,10 @@ const App: React.FC = () => {
             />
             <Route path="/dashboard" element={<CategoriesView />} />
             <Route path="/about" element={<AboutView />} />
-            <Route path="/categories/:id" element={<TopicsView />} />
+            <Route
+              path="/categories/:id"
+              element={<TopicsView appState={appState} notice={notice} />}
+            />
             <Route
               path="/topics/:id"
               element={<PostsView appState={appState} notice={notice} />}

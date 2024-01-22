@@ -31,17 +31,17 @@ users = User.create([
 
 # Create topics
 topics = Topic.create([
-  { title: 'Gen1 Starters', content: 'Discuss your favorite Generation 1 starter Pokémon', category: categories[0] },
-  { title: 'Gen1 Gyms', content: 'Toughest gyms discussion', category: categories[0] },
-  { title: 'Gen1 Pokemon', content: 'Discuss your favorite Generation 1 Pokémon', category: categories[0] },
-  { title: 'Gen1 Regions', content: 'Discuss your favorite Generation 1 region', category: categories[0] },
-  { title: 'Gen2 Legendaries', content: 'Share your thoughts on Generation 2 legendary Pokémon', category: categories[1] },
-  { title: 'Gen3 Evolutions', content: 'Discuss interesting evolutions in Generation 3', category: categories[2] },
-  { title: 'Gen4 Gym Leaders', content: 'Talk about the challenging gym leaders in Generation 4', category: categories[3] },
-  { title: 'Gen5 Unova Region', content: 'Explore the Unova region in Generation 5', category: categories[4] },
-  { title: 'Gen6 Mega Evolutions', content: 'Share your favorite Mega Evolutions from Generation 6', category: categories[5] },
-  { title: 'Gen7 Alola Region', content: 'Discuss the unique Alola region in Generation 7', category: categories[6] },
-  { title: 'Gen8 Galar Region', content: 'Share your experiences in the Galar region of Generation 8', category: categories[7] }
+  { title: 'Gen1 Starters', content: 'Discuss your favorite Generation 1 starter Pokémon', category_id: categories[0].id, user_id: users[0].id },
+  { title: 'Gen1 Gyms', content: 'Toughest gyms discussion', category_id: categories[0].id, user_id: users[0].id },
+  { title: 'Gen1 Pokemon', content: 'Discuss your favorite Generation 1 Pokémon', category_id: categories[0].id, user_id: users[0].id },
+  { title: 'Gen1 Regions', content: 'Discuss your favorite Generation 1 region', category_id: categories[0].id, user_id: users[0].id },
+  { title: 'Gen2 Legendaries', content: 'Share your thoughts on Generation 2 legendary Pokémon', category_id: categories[1].id, user_id: users[0].id },
+  { title: 'Gen3 Evolutions', content: 'Discuss interesting evolutions in Generation 3', category_id: categories[2].id, user_id: users[0].id },
+  { title: 'Gen4 Gym Leaders', content: 'Talk about the challenging gym leaders in Generation 4', category_id: categories[3].id, user_id: users[0].id },
+  { title: 'Gen5 Unova Region', content: 'Explore the Unova region in Generation 5', category_id: categories[4].id, user_id: users[0].id },
+  { title: 'Gen6 Mega Evolutions', content: 'Share your favorite Mega Evolutions from Generation 6', category_id: categories[5].id, user_id: users[0].id },
+  { title: 'Gen7 Alola Region', content: 'Discuss the unique Alola region in Generation 7', category_id: categories[6].id, user_id: users[0].id },
+  { title: 'Gen8 Galar Region', content: 'Share your experiences in the Galar region of Generation 8', category_id: categories[7].id, user_id: users[0].id }
 ])
 
 # Create posts

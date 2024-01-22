@@ -3,9 +3,10 @@ type TopicObj = {
     title: string;
     content: string;
     category_id: number;
+    user_id: number;
     slug: string;
   };
-  id: number;
+  id: string;
   type: "topic";
 };
 

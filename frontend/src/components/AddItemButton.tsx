@@ -2,28 +2,30 @@ import { Tooltip, Typography, Fab, AlertColor } from "@mui/material";
 import { SetStateAction } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import ClearIcon from "@mui/icons-material/Clear";
-import AppState from "../../types/AppState";
+import AppState from "../types/AppState";
 import { useNavigate } from "react-router-dom";
 
-type AddPostButtonProps = {
+type AddItemButtonProps = {
   cardOpen: boolean;
   setCardOpen: React.Dispatch<SetStateAction<boolean>>;
   appState: AppState;
   notice: (message: string, severity: AlertColor) => void;
+  message: string;
 };
 
-const AddPostButton: React.FC<AddPostButtonProps> = ({
+const AddItemButton: React.FC<AddItemButtonProps> = ({
   cardOpen,
   setCardOpen,
   appState,
   notice,
+  message,
 }) => {
   const handleClick = () => {
     if (appState.loggedInStatus === "LOGGED_IN") {
       cardOpen ? setCardOpen(false) : setCardOpen(true);
     } else {
       navigate("/users/sign_in");
-      notice("Sign in to add & edit posts!", "info");
+      notice(message, "info");
     }
   };
   const navigate = useNavigate();
@@ -34,8 +36,8 @@ const AddPostButton: React.FC<AddPostButtonProps> = ({
           {appState.loggedInStatus === "LOGGED_IN"
             ? cardOpen
               ? "Cancel"
-              : "Add post"
-            : "Sign in to add & edit posts!"}
+              : `Add ${message.slice(15)}`
+            : message}
         </Typography>
       }
       placement="left"
@@ -78,4 +80,4 @@ const AddPostButton: React.FC<AddPostButtonProps> = ({
   );
 };
 
-export default AddPostButton;
+export default AddItemButton;

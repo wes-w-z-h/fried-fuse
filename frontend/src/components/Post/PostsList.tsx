@@ -67,7 +67,7 @@ const PostsList: React.FC<PostsListProps> = ({
       >
         {id}
       </Typography>
-      <Grid style={{ width: "90vw" }}>{ordered}</Grid>
+      <Grid sx={{ width: "90vw" }}>{ordered}</Grid>
     </Container>
   );
 };
