@@ -42,7 +42,7 @@ const TopicCard: React.FC<TopicCardProps> = ({
       .then((resp) => {
         // console.log(resp);
         setTopics((prevTopics) =>
-          prevTopics.filter((item) => item.attributes.slug != slug)
+          prevTopics.filter((item) => item.attributes.slug !== slug)
         );
         notice("Topic deleted!", "warning");
       })
@@ -64,12 +64,22 @@ const TopicCard: React.FC<TopicCardProps> = ({
         }}
       >
         <Grid item width={"95%"}>
-          <CardActionArea onClick={() => navigate(`/topics/${slug}`)}>
-            <CardContent>
-              <Typography variant="h5">{title}</Typography>
-              <Typography color="text.secondary">{content}</Typography>
-            </CardContent>
-          </CardActionArea>
+          <Tooltip
+            title={
+              <Typography fontFamily={"monospace"} fontSize={13}>
+                Go!
+              </Typography>
+            }
+            arrow
+            placement="top"
+          >
+            <CardActionArea onClick={() => navigate(`/topics/${slug}`)}>
+              <CardContent>
+                <Typography variant="h5">{title}</Typography>
+                <Typography color="text.secondary">{content}</Typography>
+              </CardContent>
+            </CardActionArea>
+          </Tooltip>
         </Grid>
         <Grid item>
           <CardActionArea>
@@ -88,7 +98,7 @@ const TopicCard: React.FC<TopicCardProps> = ({
                   </Typography>
                 }
                 arrow
-                placement="left"
+                placement="right"
               >
                 {show ? (
                   <DeleteOutlineIcon
