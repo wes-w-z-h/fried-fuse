@@ -83,7 +83,7 @@ Information about the project's license.
 4. [x] Authentication
 5. [x] Dashboard
 6. [x] Render topics
-7. [ ] Add post functionality to frontend
+7. [x] Add post functionality to frontend
 
 ### In Progress
 
