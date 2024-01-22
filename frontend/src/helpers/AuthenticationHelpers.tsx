@@ -2,7 +2,7 @@ import axios from "axios";
 import AppState from "../types/AppState";
 import User from "../types/User";
 import React from "react";
-import NoticeObj from "../types/NoticeObj";
+import { AlertColor } from "@mui/material";
 
 const handleLogin = (
   data: User,
@@ -35,7 +35,7 @@ const handleLogout = async (
 const checkLoggedIn = (
   appState: AppState,
   setAppState: React.Dispatch<React.SetStateAction<AppState>>,
-  notice: NoticeObj
+  notice: (message: string, severity: AlertColor) => void
 ) => {
   axios
     .get("http://localhost:3001/users/logged_in", { withCredentials: true })
@@ -51,11 +51,7 @@ const checkLoggedIn = (
       }
     })
     .catch((errors) => {
-      notice.setNoticeMessage(
-        errors.response ? String(errors.response) : "error checking login"
-      );
-      notice.setNoticeSeverity("error");
-      notice.setOpenNotice(true);
+      notice(`error checking login: ${errors.response}`, "error");
     });
 };
 

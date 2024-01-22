@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import User from "../types/User";
 import Authentication from "../components/Authentication/Authentication";
 import AppState from "../types/AppState";
-import { Typography, Paper, Button } from "@mui/material";
-import NoticeObj from "../types/NoticeObj";
+import { Typography, Paper, Button, AlertColor } from "@mui/material";
 import { handleLogout } from "../helpers/AuthenticationHelpers";
 
 type SignInProps = {
@@ -17,8 +16,7 @@ type SignInProps = {
   ) => Promise<void>;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
   loggedInStatus: string;
-  // notice props functions needed
-  notice: NoticeObj;
+  notice: (message: string, severity: AlertColor) => void;
 };
 
 const SignIn: React.FC<SignInProps> = ({
@@ -32,13 +30,12 @@ const SignIn: React.FC<SignInProps> = ({
   const handleSuccessfulLogin = (data: User) => {
     handleLogin(data, setAppState);
     navigate("/dashboard");
-    notice.setNoticeMessage("LOGGED IN SUCCESSFULLY!");
-    notice.setNoticeSeverity("success");
-    notice.setOpenNotice(true);
+    notice("LOGGED IN SUCCESSFULLY!", "success");
   };
   const handleSuccessfulLogout = () => {
     handleLogout(setAppState);
     navigate("/");
+    notice("LOGGED OUT SUCCESSFULLY!", "info");
   };
 
   return (

@@ -11,7 +11,7 @@ import Navbar from "./components/Navbar";
 import { AlertColor, ThemeProvider, createTheme } from "@mui/material";
 import { blue, orange } from "@mui/material/colors";
 import Notice from "./components/Notice";
-import NoticeObj from "./types/NoticeObj";
+
 import HomePage from "./pages/HomeIndex";
 import AboutView from "./pages/AboutView";
 import CategoriesView from "./pages/CategoriesView";
@@ -37,18 +37,16 @@ const App: React.FC = () => {
   const [openNotice, setOpenNotice] = useState(false);
   const [noticeMessage, setNoticeMessage] = useState("hihi");
   const [noticeSeverity, setNoticeSeverity] = useState<AlertColor>("info");
-  const NoticeObject: NoticeObj = {
-    setNoticeMessage: setNoticeMessage,
-    setNoticeSeverity: setNoticeSeverity,
-    setOpenNotice: setOpenNotice,
+
+  const notice = (message: string, severity: AlertColor) => {
+    setNoticeMessage(message);
+    setNoticeSeverity(severity);
+    setOpenNotice(true);
   };
 
   // use effect with dependecies on authstate crashes the program even though no errors
   // seems fine now KIV
-  useEffect(
-    () => checkLoggedIn(appState, setAppState, NoticeObject),
-    [appState]
-  );
+  useEffect(() => checkLoggedIn(appState, setAppState, notice), [appState]);
 
   return (
     <div className="App Tut">
@@ -62,12 +60,12 @@ const App: React.FC = () => {
           <Navbar
             loggedInStatus={appState.loggedInStatus}
             setAppState={setAppState}
-            notice={NoticeObject}
+            notice={notice}
           />
           <LogoutTimer
             handleLogout={handleLogout}
             setAppState={setAppState}
-            notice={NoticeObject}
+            notice={notice}
           />
           <Routes>
             <Route
@@ -78,7 +76,7 @@ const App: React.FC = () => {
                   handleLogout={handleLogout}
                   setAppState={setAppState}
                   loggedInStatus={appState.loggedInStatus}
-                  notice={NoticeObject}
+                  notice={notice}
                 />
               }
             />
@@ -87,7 +85,7 @@ const App: React.FC = () => {
             <Route path="/categories/:id" element={<TopicsView />} />
             <Route
               path="/topics/:id"
-              element={<PostsView appState={appState} notice={NoticeObject} />}
+              element={<PostsView appState={appState} notice={notice} />}
             />
             <Route path="/" element={<HomePage />} />
           </Routes>

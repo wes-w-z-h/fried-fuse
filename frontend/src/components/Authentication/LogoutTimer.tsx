@@ -1,15 +1,14 @@
 import { useEffect } from "react";
-import NoticeObj from "../../types/NoticeObj";
 import AppState from "../../types/AppState";
 import { useNavigate } from "react-router-dom";
+import { AlertColor } from "@mui/material";
 
 type LogoutTimerProps = {
   handleLogout: (
-    setAppState: React.Dispatch<React.SetStateAction<AppState>>,
-    notice: NoticeObj
+    setAppState: React.Dispatch<React.SetStateAction<AppState>>
   ) => Promise<void>;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
-  notice: NoticeObj;
+  notice: (message: string, severity: AlertColor) => void;
 };
 
 const LogoutTimer: React.FC<LogoutTimerProps> = ({
@@ -24,7 +23,8 @@ const LogoutTimer: React.FC<LogoutTimerProps> = ({
     const resetInactivityTimer = () => {
       clearTimeout(inactivityTimer);
       inactivityTimer = setTimeout(async () => {
-        await handleLogout(setAppState, notice); // Call your logout function when inactivity time is reached
+        await handleLogout(setAppState); // Call your logout function when inactivity time is reached
+        notice("LOGGED OUT: Inactive", "warning");
         navigate("/");
       }, 30 * 60 * 1000); // 30 minute in milliseconds
     };

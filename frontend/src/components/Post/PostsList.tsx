@@ -1,16 +1,15 @@
 import axios from "axios";
 import { SetStateAction, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Grid, Typography } from "@mui/material";
+import { AlertColor, Container, Grid, Typography } from "@mui/material";
 import PostItem from "./PostItem";
 import AppState from "../../types/AppState";
-import NoticeObj from "../../types/NoticeObj";
 
 type PostsListProps = {
   appState: AppState;
   posts: PostObj[];
   setPosts: React.Dispatch<SetStateAction<PostObj[]>>;
-  notice: NoticeObj;
+  notice: (message: string, severity: AlertColor) => void;
 };
 
 // render relavant topics -> GET request to the categories end point

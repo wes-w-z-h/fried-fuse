@@ -1,16 +1,15 @@
-import { Tooltip, Typography, Fab } from "@mui/material";
+import { Tooltip, Typography, Fab, AlertColor } from "@mui/material";
 import { SetStateAction } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import ClearIcon from "@mui/icons-material/Clear";
 import AppState from "../../types/AppState";
 import { useNavigate } from "react-router-dom";
-import NoticeObj from "../../types/NoticeObj";
 
 type AddPostButtonProps = {
   cardOpen: boolean;
   setCardOpen: React.Dispatch<SetStateAction<boolean>>;
   appState: AppState;
-  notice: NoticeObj;
+  notice: (message: string, severity: AlertColor) => void;
 };
 
 const AddPostButton: React.FC<AddPostButtonProps> = ({
@@ -24,9 +23,7 @@ const AddPostButton: React.FC<AddPostButtonProps> = ({
       cardOpen ? setCardOpen(false) : setCardOpen(true);
     } else {
       navigate("/users/sign_in");
-      notice.setNoticeMessage("Sign in to add & edit posts!");
-      notice.setNoticeSeverity("info");
-      notice.setOpenNotice(true);
+      notice("Sign in to add & edit posts!", "info");
     }
   };
   const navigate = useNavigate();

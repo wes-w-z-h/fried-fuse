@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Grid } from "@mui/material";
+import { AlertColor, Grid } from "@mui/material";
 import PostsList from "../components/Post/PostsList";
 import AppState from "../types/AppState";
 import AddPostCard from "../components/Post/AddPostCard";
 import AddPostButton from "../components/Post/AddPostButton";
-import NoticeObj from "../types/NoticeObj";
 
 type PostViewProps = {
   appState: AppState;
-  notice: NoticeObj;
+  notice: (message: string, severity: AlertColor) => void;
 };
 
 // TODO: handle submit and check sign in before can add almost done with basic functionality

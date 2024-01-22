@@ -10,6 +10,7 @@ import {
   ListItemText,
   ListItemButton,
   Tooltip,
+  AlertColor,
 } from "@mui/material";
 import {
   Menu,
@@ -21,12 +22,11 @@ import {
 } from "@mui/icons-material";
 import { handleLogout } from "../helpers/AuthenticationHelpers";
 import AppState from "../types/AppState";
-import NoticeObj from "../types/NoticeObj";
 
 type NavBarProps = {
   loggedInStatus: string;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
-  notice: NoticeObj;
+  notice: (message: string, severity: AlertColor) => void;
 };
 
 const Navbar: React.FC<NavBarProps> = ({
@@ -50,9 +50,7 @@ const Navbar: React.FC<NavBarProps> = ({
       case "logout":
         handleLogout(setAppState);
         navigate("/");
-        notice.setNoticeMessage("LOGGED OUT SUCCESSFULLY!");
-        notice.setNoticeSeverity("success");
-        notice.setOpenNotice(true);
+        notice("LOGGED OUT SUCCESSFULLY!", "info");
         break;
       case "signin":
         navigate("/users/sign_in");

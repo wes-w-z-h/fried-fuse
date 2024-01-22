@@ -4,13 +4,18 @@ import FormInfo from "../../types/FormInfo";
 import axios from "axios";
 import User from "../../types/User";
 import TextField from "@mui/material/TextField";
-import { Button, FormControl, IconButton, InputAdornment } from "@mui/material";
+import {
+  AlertColor,
+  Button,
+  FormControl,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
 import { Send, Visibility, VisibilityOff } from "@mui/icons-material";
-import NoticeObj from "../../types/NoticeObj";
 
 type AuthenticationProps = {
   handleSuccessfulLogin: (data: User) => void;
-  notice: NoticeObj;
+  notice: (message: string, severity: AlertColor) => void;
 };
 
 const Authentication: React.FC<AuthenticationProps> = ({
@@ -56,9 +61,7 @@ const Authentication: React.FC<AuthenticationProps> = ({
             ? error.response.statusText + ": check password"
             : "error",
         }));
-        notice.setNoticeMessage("UNAUTHORIZED: Check Password");
-        notice.setNoticeSeverity("error");
-        notice.setOpenNotice(true);
+        notice("UNAUTHORIZED: Check Password", "error");
       });
   };
 

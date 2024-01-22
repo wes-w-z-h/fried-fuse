@@ -1,9 +1,14 @@
-import { Button, Card, CardContent, TextField } from "@mui/material";
+import {
+  AlertColor,
+  Button,
+  Card,
+  CardContent,
+  TextField,
+} from "@mui/material";
 import axios from "axios";
 import { Fragment, SetStateAction } from "react";
 import AppState from "../../types/AppState";
 import { useParams } from "react-router-dom";
-import NoticeObj from "../../types/NoticeObj";
 
 type AddPostCardProps = {
   cardOpen: boolean;
@@ -12,7 +17,7 @@ type AddPostCardProps = {
   setCardOpen: React.Dispatch<SetStateAction<boolean>>;
   appState: AppState;
   setPosts: React.Dispatch<SetStateAction<PostObj[]>>;
-  notice: NoticeObj;
+  notice: (message: string, severity: AlertColor) => void;
 };
 
 const AddPostCard: React.FC<AddPostCardProps> = ({
@@ -39,14 +44,10 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
         const newPost: PostObj = resp.data.data;
         // console.log(newPost);
         setPosts((prevPosts) => [newPost, ...prevPosts]);
-        notice.setNoticeMessage("Post added successfully!");
-        notice.setNoticeSeverity("success");
-        notice.setOpenNotice(true);
+        notice("Post added successfully!", "success");
       })
       .catch((error) => {
-        notice.setNoticeMessage(`Error: ${error}`);
-        notice.setNoticeSeverity("error");
-        notice.setOpenNotice(true);
+        notice(`Error: ${error}`, "error");
       });
     setNewPostContent("");
     setCardOpen(false);

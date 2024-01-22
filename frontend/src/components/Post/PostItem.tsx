@@ -9,14 +9,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
+
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Button, Grid, TextField } from "@mui/material";
+import { AlertColor, Button, Grid, TextField } from "@mui/material";
 import axios from "axios";
 import AppState from "../../types/AppState";
-import NoticeObj from "../../types/NoticeObj";
+
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 type PostItemProps = {
@@ -24,7 +24,7 @@ type PostItemProps = {
   appState: AppState;
   handleUpdate: (update: PostObj) => void;
   setPosts: React.Dispatch<SetStateAction<PostObj[]>>;
-  notice: NoticeObj;
+  notice: (message: string, severity: AlertColor) => void;
 };
 
 const PostItem: React.FC<PostItemProps> = ({
@@ -57,9 +57,7 @@ const PostItem: React.FC<PostItemProps> = ({
           attributes: { ...post.attributes, content: update },
         });
         setEditing(false);
-        notice.setNoticeMessage("Post updated successfully!");
-        notice.setNoticeSeverity("success");
-        notice.setOpenNotice(true);
+        notice("Post updated successfully!", "success");
       })
       .catch((error) => console.log(error));
   };
@@ -74,9 +72,7 @@ const PostItem: React.FC<PostItemProps> = ({
         setPosts((prevPosts) =>
           prevPosts.filter((prevPost) => prevPost.id !== post.id)
         );
-        notice.setNoticeMessage("Post deleted successfully!");
-        notice.setNoticeSeverity("warning");
-        notice.setOpenNotice(true);
+        notice("Post deleted successfully!", "warning");
       })
       .catch((error) => console.log(error));
   };
