@@ -91,6 +91,6 @@ Information about the project's license.
 2. [x] resize the images
 3. [x] topics layout
 4. [x] start posts page & components
-5. [ ] add validation for editing & deleting posts
-6. [ ] add the logout timer
+5. [x] add validation for editing & deleting posts
+6. [ ] add the logout timer + countdown
 7. [ ] add img to topics (if got time)
