@@ -18,10 +18,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  # kiv the update for topics
-  # def update
-  # end
-
   def destroy
     topic = Topic.find_by(slug: params[:id])
     if topic
