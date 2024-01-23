@@ -15,7 +15,7 @@ import TopicObj from "../../types/TopicObj";
 import AppState from "../../types/AppState";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
-interface TopicCardProps {
+type TopicCardProps = {
   title: string;
   content: string;
   slug: string;
@@ -23,7 +23,7 @@ interface TopicCardProps {
   setTopics: React.Dispatch<SetStateAction<TopicObj[]>>;
   notice: (message: string, severity: AlertColor) => void;
   appState: AppState;
-}
+};
 
 const TopicCard: React.FC<TopicCardProps> = ({
   title,
@@ -51,12 +51,13 @@ const TopicCard: React.FC<TopicCardProps> = ({
   };
   const show: boolean =
     appState.loggedInStatus === "LOGGED_IN" && appState.user.id === id;
+
   return (
+    // this will render inline
     <Grid container justifyContent={"center"}>
       <Card
         sx={{
           display: "flex",
-          margin: "auto",
           borderRadius: 7,
           marginBottom: 1.5,
           width: "100%",
@@ -95,8 +96,8 @@ const TopicCard: React.FC<TopicCardProps> = ({
               show ? handleDelete() : navigate(`/topics/${slug}`);
             }}
             sx={{
-              minWidth: "9%",
-              maxWidth: "9%",
+              minWidth: "8%",
+              maxWidth: "8%",
               backgroundColor: show ? "lightsalmon" : "aquamarine",
             }}
           >

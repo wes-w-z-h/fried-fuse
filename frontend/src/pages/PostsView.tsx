@@ -35,7 +35,6 @@ const PostsView: React.FC<PostViewProps> = ({ appState, notice }) => {
           notice={notice}
         />
       </Grid>
-      {/* <Grid item xs={2}></Grid> */}
       <Grid item>
         <AddPostCard
           cardOpen={cardOpen}
