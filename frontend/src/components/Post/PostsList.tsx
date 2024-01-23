@@ -31,7 +31,8 @@ const PostsList: React.FC<PostsListProps> = ({
       .catch((errors) => {
         notice(`Error: ${errors.data.data}`, "error");
       });
-  }, [posts.length, setPosts, id]);
+    // eslint-disable-next-line
+  }, [posts.length, id]);
 
   const handleUpdatePost = (update: PostObj) => {
     setPosts((prevPosts: PostObj[]) =>
