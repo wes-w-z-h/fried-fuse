@@ -45,15 +45,15 @@ const SignIn: React.FC<SignInProps> = ({
         paddingTop: 3,
         paddingBottom: 7,
         borderRadius: 30,
-        overflowY: "auto ",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "top",
+        // justifyContent: "top",
         alignItems: "center",
         margin: "auto",
         marginTop: 3,
-        height: "70vh",
-        width: "70vh",
+        marginBottom: 3,
+        width: "70%",
+        // height: "100%",
       }}
     >
       <Typography
@@ -101,6 +101,7 @@ const SignIn: React.FC<SignInProps> = ({
             fontSize={17}
             sx={{
               marginTop: 5,
+              marginBottom: 3,
               textAlign: "center",
             }}
           >

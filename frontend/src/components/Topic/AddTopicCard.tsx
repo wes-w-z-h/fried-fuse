@@ -66,10 +66,11 @@ const AddTopicCard: React.FC<AddTopicCardProps> = ({
           onClick={() => {}}
           // fixed the position to be just above the Button to add topic
           sx={{
-            position: "fixed",
-            bottom: 81,
-            right: 17,
-            width: "70vw",
+            // position: "relative",
+            // bottom: 81,
+            // right: 17,
+            width: "90vw",
+            borderRadius: 7,
             backgroundColor: "aliceblue",
             zIndex: 1050, // sweet spot
           }}

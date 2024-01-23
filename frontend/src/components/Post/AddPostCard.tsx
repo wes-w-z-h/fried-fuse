@@ -60,10 +60,11 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
           onClick={() => {}}
           // fixed the position to be just above the Button to add post
           sx={{
-            position: "fixed",
-            bottom: 81,
-            right: 17,
-            width: "70vw",
+            // position: "fixed",
+            // bottom: 81,
+            // right: 17,
+            width: "90vw",
+            borderRadius: 7,
             backgroundColor: "aliceblue",
             zIndex: 1050, // sweet spot
           }}

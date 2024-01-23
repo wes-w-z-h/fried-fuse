@@ -47,9 +47,8 @@ const AddItemButton: React.FC<AddItemButtonProps> = ({
         aria-label="add"
         onClick={() => handleClick()}
         sx={{
-          position: "fixed",
-          bottom: 19,
-          right: 3,
+          position: "relative",
+          margin: 1.5,
           backgroundColor: "blueviolet",
           transition: "background-color 0.2s ease-in-out",
           ":hover": {

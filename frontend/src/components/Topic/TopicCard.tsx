@@ -6,7 +6,6 @@ import {
   CardContent,
   Grid,
   Tooltip,
-  // CardMedia,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -63,58 +62,54 @@ const TopicCard: React.FC<TopicCardProps> = ({
           width: "100%",
         }}
       >
-        <Grid item width={"95%"}>
-          <Tooltip
-            title={
-              <Typography fontFamily={"monospace"} fontSize={13}>
-                Go!
-              </Typography>
-            }
-            arrow
-            placement="top"
+        <Tooltip
+          title={
+            <Typography fontFamily={"monospace"} fontSize={13}>
+              Go!
+            </Typography>
+          }
+          arrow
+          placement="top"
+        >
+          <CardActionArea
+            onClick={() => navigate(`/topics/${slug}`)}
+            sx={{ borderRadius: 0 }}
           >
-            <CardActionArea onClick={() => navigate(`/topics/${slug}`)}>
-              <CardContent>
-                <Typography variant="h5">{title}</Typography>
-                <Typography color="text.secondary">{content}</Typography>
-              </CardContent>
-            </CardActionArea>
-          </Tooltip>
-        </Grid>
-        <Grid item>
-          <CardActionArea>
+            <CardContent>
+              <Typography variant="h5">{title}</Typography>
+              <Typography color="text.secondary">{content}</Typography>
+            </CardContent>
+          </CardActionArea>
+        </Tooltip>
+        <Tooltip
+          title={
+            <Typography fontFamily={"monospace"} fontSize={13}>
+              {show ? "Delete" : "Go!"}
+            </Typography>
+          }
+          arrow
+          placement="left"
+        >
+          <CardActionArea
+            onClick={() => {
+              show ? handleDelete() : navigate(`/topics/${slug}`);
+            }}
+            sx={{
+              minWidth: "9%",
+              maxWidth: "9%",
+              backgroundColor: show ? "lightsalmon" : "aquamarine",
+            }}
+          >
             <CardContent
               sx={{
                 display: "flex",
                 justifyContent: "center",
-                alignContent: "left",
-                backgroundColor: "lightsalmon",
               }}
             >
-              <Tooltip
-                title={
-                  <Typography fontFamily={"monospace"} fontSize={13}>
-                    {show ? "Delete" : "Go!"}
-                  </Typography>
-                }
-                arrow
-                placement="right"
-              >
-                {show ? (
-                  <DeleteOutlineIcon
-                    onClick={() => handleDelete()}
-                    sx={{ padding: 2 }}
-                  />
-                ) : (
-                  <KeyboardDoubleArrowRightIcon
-                    onClick={() => navigate(`/topics/${slug}`)}
-                    sx={{ padding: 2 }}
-                  />
-                )}
-              </Tooltip>
+              {show ? <DeleteOutlineIcon /> : <KeyboardDoubleArrowRightIcon />}
             </CardContent>
           </CardActionArea>
-        </Grid>
+        </Tooltip>
       </Card>
     </Grid>
   );

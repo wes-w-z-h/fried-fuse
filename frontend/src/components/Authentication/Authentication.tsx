@@ -89,7 +89,7 @@ const Authentication: React.FC<AuthenticationProps> = ({
   return (
     <form
       onSubmit={handleSubmit}
-      style={{ width: "70%", alignItems: "center" }}
+      style={{ alignItems: "center", width: "70%" }}
     >
       <FormControl fullWidth margin="normal">
         <TextField
