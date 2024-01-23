@@ -96,17 +96,17 @@ const PostItem: React.FC<PostItemProps> = ({
     <Card
       ref={cardRef}
       sx={{
-        display: "flex",
         marginBottom: 1.5,
         borderRadius: 7,
         textAlign: "left",
       }}
     >
       <Grid container>
+        {/* Using grid container so when small size the dials dont get squeezed */}
         <CardContent sx={{ maxWidth: "75%" }}>
           {/* set the cols to be max size for all screens */}
           <Typography color="text.secondary">
-            {post.attributes.user_id}
+            User-{post.attributes.user_id}
           </Typography>
           {editing ? (
             // Display the text field when editing
