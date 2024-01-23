@@ -14,7 +14,6 @@ type TopicsViewProps = {
 const TopicsView: React.FC<TopicsViewProps> = ({ appState, notice }) => {
   const [cardOpen, setCardOpen] = useState(false);
   // only access the attributes when posting
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const [topics, setTopics] = useState<TopicObj[]>([]);
   const [newTitle, setNewTitle] = useState<string>("");
   const [newContent, setNewContent] = useState<string>("");

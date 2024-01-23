@@ -59,7 +59,7 @@ const TopicCard: React.FC<TopicCardProps> = ({
         sx={{
           display: "flex",
           borderRadius: 7,
-          marginBottom: 1.5,
+          marginBottom: 3,
           width: "100%",
         }}
       >
