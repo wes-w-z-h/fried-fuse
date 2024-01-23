@@ -28,7 +28,9 @@ const PostsList: React.FC<PostsListProps> = ({
         // console.log(resp.data.included);
         setPosts(resp.data.included);
       })
-      .catch((error) => console.log(error));
+      .catch((errors) => {
+        notice(`Error: ${errors.data.data}`, "error");
+      });
   }, [posts.length, setPosts, id]);
 
   const handleUpdatePost = (update: PostObj) => {

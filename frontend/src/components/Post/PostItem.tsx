@@ -57,7 +57,7 @@ const PostItem: React.FC<PostItemProps> = ({
         setEditing(false);
         notice("Post updated successfully!", "success");
       })
-      .catch((error) => console.log(error));
+      .catch((errors) => console.log(errors));
   };
   const handleEdit = () => {
     setEditing(true);

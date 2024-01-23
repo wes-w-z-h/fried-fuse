@@ -53,12 +53,12 @@ const Authentication: React.FC<AuthenticationProps> = ({
           handleSuccessfulLogin(user_data);
         }
       })
-      .catch((error) => {
-        console.log("errors:", error);
+      .catch((errors) => {
+        console.log("errors:", errors);
         setFormInfo((prev: FormInfo) => ({
           ...prev,
-          authenticationStatus: error.response
-            ? error.response.statusText + ": check password"
+          authenticationStatus: errors.response
+            ? errors.response.statusText + ": check password"
             : "error",
         }));
         notice("UNAUTHORIZED: Check Password", "error");

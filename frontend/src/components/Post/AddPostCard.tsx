@@ -46,8 +46,8 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
         setPosts((prevPosts) => [newPost, ...prevPosts]);
         notice("Post added successfully!", "success");
       })
-      .catch((error) => {
-        notice(`Error: ${error}`, "error");
+      .catch((errors) => {
+        notice(`Error: ${errors}`, "error");
       });
     setNewPostContent("");
     setCardOpen(false);
