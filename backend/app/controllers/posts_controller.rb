@@ -47,10 +47,11 @@ class PostsController < ApplicationController
   def process_params(params)
     # the request send the slug as id
     # retain original function to post using topic_id instead of slug
-    if !(/\d/.match?(params[:topic_id]))
+    if (/\d/.match?(params[:topic_id]))
       return
     end
     topic = Topic.find_by(slug: params[:topic_id])
+    logger.info("topic: #{topic}")
     if topic
       topic_id = topic.id
       params[:topic_id] = topic_id

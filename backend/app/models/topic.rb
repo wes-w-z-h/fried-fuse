@@ -3,7 +3,7 @@ class Topic < ApplicationRecord
 
   belongs_to :category
   belongs_to :user
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   private
 
