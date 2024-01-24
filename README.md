@@ -58,8 +58,6 @@ IMPORTANT: UPDATE SEED WITH SERVER RUNNING WOULD CAUSE ISSUES
 
 ## Usage
 
-Information on how to use the project:
-
 Rails version: 7.1.2
 
 To fire the server run:
