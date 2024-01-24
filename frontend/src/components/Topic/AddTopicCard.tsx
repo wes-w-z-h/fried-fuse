@@ -52,7 +52,12 @@ const AddTopicCard: React.FC<AddTopicCardProps> = ({
         notice("Topic posted!", "success");
       })
       .catch((error) => {
-        notice(`Error: ${error}`, "error");
+        notice(
+          error.response?.status === 500
+            ? `Error status code:${error.response.status}\nduplicate title?`
+            : `Error: ${error}`,
+          "error"
+        );
       });
     setNewContent("");
     setNewTitle("");
