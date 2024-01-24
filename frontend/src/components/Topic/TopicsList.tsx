@@ -30,6 +30,7 @@ const TopicsList: React.FC<TopicsListProps> = ({
         setTopics(resp.data.included);
       })
       .catch((error) => console.log(error));
+    // eslint-disable-next-line
   }, [topics.length, id]);
 
   const list = topics.map((item) => {

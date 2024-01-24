@@ -101,6 +101,7 @@ const LogoutTimer: React.FC<LogoutTimerProps> = ({
               Move the mouse or press a key!
             </Typography>
             <img
+              alt="Psyduck"
               src={`${process.env.PUBLIC_URL}/images/psyduck.jpg`}
               style={{ maxHeight: "65%", maxWidth: "87%" }}
             />
