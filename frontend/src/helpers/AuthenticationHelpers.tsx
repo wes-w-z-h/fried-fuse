@@ -51,7 +51,7 @@ const checkLoggedIn = (
       }
     })
     .catch((errors) => {
-      notice(`error checking login: ${errors.response}`, "error");
+      notice(`error checking login: ${errors}`, "error");
     });
 };
 
