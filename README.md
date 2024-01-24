@@ -9,7 +9,7 @@
 - [License](#license)
 - [TODO](#todo)
 
-## Roadmap
+## Roadmap -- completed
 
 1. Complete backend
 
@@ -31,13 +31,24 @@
 
 ## Installation
 
+Install frontend dependencies
 ```
-yarn install && bundle install
+cd frontend/
 ```
 
-# Initial pull
+```
+yarn install 
+```
+Set up the database
+```
+cd backend/
+```
 
-For test data run:
+```
+rails db:migrate
+```
+
+For seed data run:
 
 ```
 rails db:seed
@@ -47,22 +58,21 @@ IMPORTANT: UPDATE SEED WITH SERVER RUNNING WOULD CAUSE ISSUES
 
 ## Usage
 
-Information on how to use the project.
+Information on how to use the project:
 
-To fire the server run
+Rails version: 7.1.2
 
+To fire the server run:
 ```
 rails s -p 3001
 ```
 
-For frontend
-
+To start the frontend server run:
 ```
 yarn start
 ```
 
 To open the console
-
 ```
 rails c
 ```
@@ -92,5 +102,4 @@ Information about the project's license.
 3. [x] topics layout
 4. [x] start posts page & components
 5. [x] add validation for editing & deleting posts
-6. [ ] add the logout timer + countdown
-7. [ ] add img to topics (if got time)
+6. [x] add the logout timer + countdown
