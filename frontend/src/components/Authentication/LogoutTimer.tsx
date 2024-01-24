@@ -63,6 +63,7 @@ const LogoutTimer: React.FC<LogoutTimerProps> = ({
 
     // Initial setup
     return appState.loggedInStatus === "LOGGED_IN" ? initTimer() : undefined;
+    // eslint-disable-next-line
   }, [appState]);
 
   return (
