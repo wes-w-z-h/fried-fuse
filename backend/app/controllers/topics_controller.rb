@@ -41,9 +41,9 @@ class TopicsController < ApplicationController
   def process_params(params)
     # the request send the slug as id
     # retain original function to post using category_id instead of slug
-    if (/\d/.match?(params[:category_id]))
-      return
-    end
+    # if (/\d/.match?(params[:category_id]))
+    #   return
+    # end
     # find by name
     category = Category.find_by(name: params[:category_id])
     if category
