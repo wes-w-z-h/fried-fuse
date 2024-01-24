@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_24_163320) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_04_161330) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "description"
     t.string "img_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
     t.integer "topic_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
     t.index ["topic_id"], name: "index_posts_on_topic_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -32,11 +32,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_24_163320) do
   create_table "topics", force: :cascade do |t|
     t.string "title"
     t.string "content"
+    t.string "slug"
     t.integer "category_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug"
-    t.integer "user_id"
     t.index ["category_id"], name: "index_topics_on_category_id"
     t.index ["title"], name: "index_topics_on_title", unique: true
     t.index ["user_id"], name: "index_topics_on_user_id"
@@ -45,9 +45,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_24_163320) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.boolean "is_default_password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_default_password"
   end
 
   add_foreign_key "posts", "topics"
