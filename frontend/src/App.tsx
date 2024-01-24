@@ -64,6 +64,7 @@ const App: React.FC = () => {
           />
           <LogoutTimer
             handleLogout={handleLogout}
+            appState={appState}
             setAppState={setAppState}
             notice={notice}
           />
