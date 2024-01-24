@@ -1,8 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import AppState from "../../types/AppState";
 import { useNavigate } from "react-router-dom";
-import { AlertColor, Button, Paper, Typography } from "@mui/material";
-import { Image } from "@mui/icons-material";
+import { AlertColor, Paper, Typography } from "@mui/material";
 
 type LogoutTimerProps = {
   handleLogout: (
@@ -19,7 +18,7 @@ const LogoutTimer: React.FC<LogoutTimerProps> = ({
   notice,
   appState,
 }) => {
-  const TIMEOUT_TIMER: number = 0.3 * 60; // minutes in seconds
+  const TIMEOUT_TIMER: number = 30 * 60; // minutes in seconds
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState<number>(TIMEOUT_TIMER); // seconds
 
@@ -68,7 +67,6 @@ const LogoutTimer: React.FC<LogoutTimerProps> = ({
 
   return (
     <Fragment>
-      {countdown}
       {appState.loggedInStatus === "LOGGED_IN" && countdown <= 15 && (
         <div
           style={{
