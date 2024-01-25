@@ -20,6 +20,8 @@ import "./App.css";
 import PostsView from "./pages/PostsView";
 import AppState from "./types/AppState";
 import LogoutTimer from "./components/Authentication/LogoutTimer";
+import SearchView from "./pages/SearchView";
+import TopicObj from "./types/TopicObj";
 
 const theme = createTheme({
   palette: {
@@ -88,6 +90,10 @@ const App: React.FC = () => {
             <Route
               path="/topics/:id"
               element={<PostsView appState={appState} notice={notice} />}
+            />
+            <Route
+              path="/topics/all"
+              element={<SearchView appState={appState} notice={notice} />}
             />
             <Route path="/" element={<HomePage />} />
           </Routes>

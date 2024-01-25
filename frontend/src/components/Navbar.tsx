@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   AppBar,
   Toolbar,
@@ -11,6 +12,7 @@ import {
   ListItemButton,
   Tooltip,
   AlertColor,
+  Button,
 } from "@mui/material";
 import {
   Menu,
@@ -22,6 +24,7 @@ import {
 } from "@mui/icons-material";
 import { handleLogout } from "../helpers/AuthenticationHelpers";
 import AppState from "../types/AppState";
+import SearchComponent from "./Search/Search";
 
 type NavBarProps = {
   loggedInStatus: string;
@@ -36,6 +39,7 @@ const Navbar: React.FC<NavBarProps> = ({
 }) => {
   const navigate = useNavigate();
   const [popupAnchor, setPopupAnchor] = useState<HTMLElement | null>(null);
+  const [searchValue, setSearchValue] = useState<string>("");
   const openPopup = (event: React.MouseEvent<HTMLElement>) => {
     setPopupAnchor(event.currentTarget);
   };
@@ -98,6 +102,12 @@ const Navbar: React.FC<NavBarProps> = ({
         >
           C H A T T E R
         </Typography>
+        <SearchComponent
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          notice={notice}
+        />
+
         <Tooltip
           title={
             <Typography fontFamily={"monospace"} fontSize={13}>

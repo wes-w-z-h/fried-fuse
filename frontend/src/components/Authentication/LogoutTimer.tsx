@@ -18,53 +18,48 @@ const LogoutTimer: React.FC<LogoutTimerProps> = ({
   notice,
   appState,
 }) => {
-  const TIMEOUT_TIMER: number = 30 * 60; // minutes in seconds
+  const TIMEOUT_TIMER: number = 0.3 * 60; // minutes in seconds
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState<number>(TIMEOUT_TIMER); // seconds
 
-  let inactivityTimer: NodeJS.Timeout;
+  let countdownInterval: NodeJS.Timeout;
 
-  const resetInactivityTimer = () => {
-    clearTimeout(inactivityTimer);
-    setCountdown(TIMEOUT_TIMER);
-    inactivityTimer = setTimeout(async () => {
-      if (appState.loggedInStatus === "LOGGED_IN") {
-        await handleLogout(setAppState);
-        notice("LOGGED OUT: Inactive", "warning");
-        navigate("/");
-      }
-    }, TIMEOUT_TIMER * 1000 + 5); // in milliseconds + 4ms in case delay rendering
-  };
   const updateCountdown = () => {
     setCountdown((prevCountdown) => Math.max(0, prevCountdown - 1));
   };
 
-  useEffect(() => {
-    const handleActivity = () => {
-      resetInactivityTimer();
-    };
+  const handleActivity = () => {
+    setCountdown(TIMEOUT_TIMER);
+    updateCountdown();
+  };
 
+  useEffect(() => {
     const initTimer = () => {
-      document.addEventListener("mousemove", () => {
-        handleActivity();
-        updateCountdown();
-      });
-      document.addEventListener("keydown", () => {
-        handleActivity();
-        updateCountdown();
-      });
-      resetInactivityTimer();
-      const countdownInterval = setInterval(updateCountdown, 1002);
+      document.addEventListener("mousemove", handleActivity);
+      document.addEventListener("keydown", handleActivity);
+      setCountdown(TIMEOUT_TIMER);
+      countdownInterval = setInterval(updateCountdown, 1000);
       return () => {
         clearInterval(countdownInterval);
-        clearTimeout(inactivityTimer);
       };
     };
 
     // Initial setup
-    return appState.loggedInStatus === "LOGGED_IN" ? initTimer() : undefined;
-    // eslint-disable-next-line
-  }, [appState]);
+    return appState.loggedInStatus === "LOGGED_IN"
+      ? initTimer()
+      : () => {
+          setCountdown(TIMEOUT_TIMER);
+          clearInterval(countdownInterval);
+        };
+  }, [appState.loggedInStatus]);
+
+  useEffect(() => {
+    if (countdown === 0 && appState.loggedInStatus === "LOGGED_IN") {
+      handleLogout(setAppState);
+      notice("LOGGED OUT: Inactive", "warning");
+      navigate("/");
+    }
+  }, [countdown, appState.loggedInStatus]);
 
   return (
     <Fragment>

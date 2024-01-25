@@ -40,7 +40,7 @@ const checkLoggedIn = (
   axios
     .get("http://localhost:3001/users/logged_in", { withCredentials: true })
     .then((resp) => {
-      console.log(resp.data);
+      // console.log(resp.data);
       if (appState.loggedInStatus === "NOT_LOGGED_IN" && resp.data.logged_in) {
         handleLogin(resp.data.user, setAppState);
       } else if (
