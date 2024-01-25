@@ -93,7 +93,6 @@ class AuthenticationController < ApplicationController
     end
   end
 
-
   # check for nil pw and update to a secure default
   def create_user(user_param)
     # user_param = user_params

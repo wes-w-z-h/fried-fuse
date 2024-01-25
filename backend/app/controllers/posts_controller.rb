@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  before_action :authenticate
-
 
   def create
     post_param = post_params
