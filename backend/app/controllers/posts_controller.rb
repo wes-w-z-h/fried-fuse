@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-  # add back the assosciation with user after writing user mc
+  before_action :authenticate
+
+
   def create
     post_param = post_params
     process_params(post_param)
