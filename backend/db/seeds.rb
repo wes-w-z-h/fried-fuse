@@ -50,9 +50,9 @@ posts = Post.create([
   { content: 'Blastoise is the ultimate Gen1 starter!', topic_id: topics[0].id, user_id: users[0].id },
   { content: 'Typhlosion has the best design in Gen2', topic_id: topics[0].id, user_id: users[0].id },
   { content: 'Sceptile\'s mega evolution is amazing in Gen3', topic_id: topics[0].id, user_id: users[0].id },
-  { content: 'Lucario is my favorite from Gen4 gyms', topic_id: topics[0].id, user_id: users[0].id },
-  { content: 'Serperior is a sleek Gen5 Pokémon', topic_id: topics[0].id, user_id: users[0].id },
-  { content: 'Greninja\'s ninja-like moves in Gen6 are awesome!', topic_id: topics[0].id, user_id: users[0].id },
+  { content: 'Lucario is my favorite from Gen4 gyms', topic_id: topics[0].id, user_id: users[1].id },
+  { content: 'Serperior is a sleek Gen5 Pokémon', topic_id: topics[0].id, user_id: users[1].id },
+  { content: 'Greninja\'s ninja-like moves in Gen6 are awesome!', topic_id: topics[0].id, user_id: users[1].id },
   { content: 'Decidueye is my go-to in Gen7 Alola region', topic_id: topics[0].id, user_id: users[0].id },
   { content: 'Cinderace is a speedy choice in Gen8 Galar region', topic_id: topics[0].id, user_id: users[0].id }
 ])
