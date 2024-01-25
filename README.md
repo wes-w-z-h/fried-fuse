@@ -31,6 +31,10 @@
 
 ## Installation
 
+Rails version: 7.1.2
+
+Ruby version: 3.2.2
+
 1. [Clone](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories) this repo 
 
 ```bash
@@ -73,7 +77,6 @@ rails db:seed
 
 ## Usage
 
-Rails version: 7.1.2
 
 1. To fire the server run:
 ```bash
