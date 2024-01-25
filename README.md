@@ -50,11 +50,17 @@ cd frontend/
 yarn install
 ```
 
-Set up backend database
+Install backend dependancies
 
 ```bash
 cd backend/
 ```
+
+```bash
+bundle install
+```
+
+Set up the database
 
 ```bash
 rails db:migrate
