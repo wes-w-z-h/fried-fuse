@@ -46,10 +46,6 @@ class PostsController < ApplicationController
   # Function to convert the slug when coming in from frontend
   def process_params(params)
     # the request send the slug as id
-    # retain original function to post using topic_id instead of slug
-    # if (/\d/.match?(params[:topic_id]))
-    #   return
-    # end
     topic = Topic.find_by(slug: params[:topic_id])
     logger.info("topic: #{topic}")
     if topic
