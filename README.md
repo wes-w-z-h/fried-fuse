@@ -3,6 +3,7 @@
 ## Table of Contents
 
 <!-- - [Roadmap](#roadmap) -->
+- [Overview](#overview)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Acknowledgements](#acknowledgements)
@@ -28,8 +29,14 @@
 
    3. Check routes
 -->
+# Overview
 
-## Installation
+This react app is part of the assignment submission for CVWO 23/24.
+It is a basic webforum using ruby on rails backend with a react typescript
+frontend. Forum was designed with pokemon enthusiats in mind, provides a discussion platform.
+
+## Getting Started
+### Installation
 
 Rails version: 7.1.2
 
@@ -75,7 +82,7 @@ Seed the database:
 rails db:seed
 ```
 
-## Usage
+### Usage
 
 
 1. To fire the server run:
