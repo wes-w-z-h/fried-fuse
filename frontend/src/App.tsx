@@ -44,8 +44,6 @@ const App: React.FC = () => {
     setOpenNotice(true);
   };
 
-  // use effect with dependecies on authstate crashes the program even though no errors
-  // seems fine now KIV
   useEffect(() => checkLoggedIn(appState, setAppState, notice), [appState]);
 
   return (

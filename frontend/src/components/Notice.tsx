@@ -8,7 +8,6 @@ type NoticeProps = {
 };
 
 const Notice: React.FC<NoticeProps> = ({ message, severity, noticeState }) => {
-  // const [open, setOpen] = useState(false);
   const [open, setOpen] = noticeState;
   const handleClose = (
     event?: React.SyntheticEvent | Event,

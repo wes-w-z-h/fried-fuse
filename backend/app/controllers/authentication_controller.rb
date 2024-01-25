@@ -56,26 +56,6 @@ class AuthenticationController < ApplicationController
     end
   end
 
-
-  # currently no need for this update function KIV first
-  # def update_user
-  #   user = User.find_by(username: params[:id])
-
-  #   if user
-  #     if user.update(user_params)
-  #       render json: { user: user }, status: 200
-  #     else
-  #       render json: {
-  #         status: 422,
-  #         errors: user.errors.messages
-  #       }, status: 422
-  #     end
-  #   else
-  #     render json: { error: "user not found" }, status: 404
-  #   end
-  # end
-
-
   private
 
   # check if the user was created without pw else authenticate the pw passed

@@ -1,7 +1,6 @@
 import React from "react";
 import { Paper, Typography } from "@mui/material";
 
-// Functional component for the About Us page
 const AboutView: React.FC = () => {
   return (
     <Paper

@@ -13,8 +13,6 @@ const CategoriesList: React.FC = () => {
       .get("http://localhost:3001/categories")
       .then((resp) => {
         setCategories(resp.data.data);
-        // TODO figure out rendering of assosciations
-        // console.log("included: ", resp.data.included);
       })
       .catch((errors) => {
         console.log("errors: ", errors);

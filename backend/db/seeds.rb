@@ -24,9 +24,8 @@ categories = Category.create([
 
 # Create users
 users = User.create([
-  { username: 'pw', password_digest: BCrypt::Password.create('123'), is_default_password: false },
-  { username: 'test', password_digest: BCrypt::Password.create('123'), is_default_password: false },
-  { username: 'pwless', password_digest: BCrypt::Password.create('dfiuchn12498723906vcdescfknoq7^#$%*!#'), is_default_password: true}
+  { username: 'admin_pw', password_digest: BCrypt::Password.create('123'), is_default_password: false },
+  { username: 'admin_pwless', password_digest: BCrypt::Password.create('pwless'), is_default_password: true}
 ])
 
 # Create topics
@@ -46,17 +45,16 @@ topics = Topic.create([
 
 # Create posts
 posts = Post.create([
-  { content: 'Charizard is the best gen1 starter ever hm that\'s debatable honestly have no idea what I\'m doing but everything seems to work fro now the CRUD all there j make nicer and add the delete function maybe show that it has been updated too see how Add the notice thing on successful update and delete maybe add a warning first', topic_id: topics[0].id, user_id: users[0].id },
-  { content: 'testing many posts', topic_id: topics[0].id, user_id: users[1].id },
-  { content: 'wow this works ooo loggedInStatus -> SignInView appState -> postsView(validate user to edit posts) -> postsList -> postItem add a countdown timer to logout', topic_id: topics[0].id, user_id: users[0].id },
+  { content: 'Charizard is the best gen1 starter ever!', topic_id: topics[0].id, user_id: users[0].id },
+  { content: 'testing many posts', topic_id: topics[0].id, user_id: users[0].id },
   { content: 'Blastoise is the ultimate Gen1 starter!', topic_id: topics[0].id, user_id: users[0].id },
-  { content: 'Typhlosion has the best design in Gen2', topic_id: topics[0].id, user_id: users[2].id },
-  { content: 'Sceptile\'s mega evolution is amazing in Gen3', topic_id: topics[0].id, user_id: users[2].id },
-  { content: 'Lucario is my favorite from Gen4 gyms', topic_id: topics[6].id, user_id: users[1].id },
+  { content: 'Typhlosion has the best design in Gen2', topic_id: topics[0].id, user_id: users[0].id },
+  { content: 'Sceptile\'s mega evolution is amazing in Gen3', topic_id: topics[0].id, user_id: users[0].id },
+  { content: 'Lucario is my favorite from Gen4 gyms', topic_id: topics[0].id, user_id: users[0].id },
   { content: 'Serperior is a sleek Gen5 Pokémon', topic_id: topics[0].id, user_id: users[0].id },
-  { content: 'Greninja\'s ninja-like moves in Gen6 are awesome!', topic_id: topics[8].id, user_id: users[2].id },
-  { content: 'Decidueye is my go-to in Gen7 Alola region', topic_id: topics[0].id, user_id: users[1].id },
-  { content: 'Cinderace is a speedy choice in Gen8 Galar region', topic_id: topics[10].id, user_id: users[0].id }
+  { content: 'Greninja\'s ninja-like moves in Gen6 are awesome!', topic_id: topics[0].id, user_id: users[0].id },
+  { content: 'Decidueye is my go-to in Gen7 Alola region', topic_id: topics[0].id, user_id: users[0].id },
+  { content: 'Cinderace is a speedy choice in Gen8 Galar region', topic_id: topics[0].id, user_id: users[0].id }
 ])
 
 puts 'Seed data updated successfully!'

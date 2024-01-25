@@ -60,9 +60,6 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
           onClick={() => {}}
           // fixed the position to be just above the Button to add post
           sx={{
-            // position: "fixed",
-            // bottom: 81,
-            // right: 17,
             width: "90vw",
             borderRadius: 7,
             backgroundColor: "aliceblue",
@@ -81,7 +78,7 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
               sx={{ marginBottom: 1.5, backgroundColor: "white" }}
             />
             <Button
-              onClick={() => handleAddPost()} // implement submit handler
+              onClick={() => handleAddPost()} 
               variant="contained"
               sx={{ marginRight: 1 }}
             >

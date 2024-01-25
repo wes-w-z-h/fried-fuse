@@ -47,13 +47,11 @@ const SignIn: React.FC<SignInProps> = ({
         borderRadius: 30,
         display: "flex",
         flexDirection: "column",
-        // justifyContent: "top",
         alignItems: "center",
         margin: "auto",
         marginTop: 3,
         marginBottom: 3,
         width: "70%",
-        // height: "100%",
       }}
     >
       <Typography

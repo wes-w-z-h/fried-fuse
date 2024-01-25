@@ -26,7 +26,6 @@ const TopicsList: React.FC<TopicsListProps> = ({
     axios
       .get(`http://localhost:3001/categories/${id}`)
       .then((resp) => {
-        // console.log(resp.data.included);
         setTopics(resp.data.included);
       })
       .catch((error) => console.log(error));

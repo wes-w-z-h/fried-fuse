@@ -71,9 +71,6 @@ const AddTopicCard: React.FC<AddTopicCardProps> = ({
           onClick={() => {}}
           // fixed the position to be just above the Button to add topic
           sx={{
-            // position: "relative",
-            // bottom: 81,
-            // right: 17,
             width: "90vw",
             borderRadius: 7,
             backgroundColor: "aliceblue",
@@ -102,7 +99,7 @@ const AddTopicCard: React.FC<AddTopicCardProps> = ({
               sx={{ marginBottom: 1.5, backgroundColor: "white" }}
             />
             <Button
-              onClick={() => handleAddPost()} // implement submit handler
+              onClick={() => handleAddPost()}
               variant="contained"
               sx={{ marginRight: 1 }}
             >

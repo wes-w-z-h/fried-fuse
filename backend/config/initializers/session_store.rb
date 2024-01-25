@@ -1,8 +1,4 @@
-# Rails.application.config.session_store :cookie_store, key: '_auth'
-# Rails.application.config.middleware.use ActionDispatch::Cookies
-# Rails.application.config.middleware.use ActionDispatch::Session::CookieStore, key: '_auth'
-
-# KEY = '_auth'
+# initialize the session store since api only not loaded
 
 Rails.application.config.middleware.use ActionDispatch::Cookies
 Rails.application.config.middleware.use ActionDispatch::Session::CookieStore, key: "_auth"

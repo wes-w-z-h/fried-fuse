@@ -25,7 +25,6 @@ const PostsList: React.FC<PostsListProps> = ({
     axios
       .get(`http://localhost:3001/topics/${id}`)
       .then((resp) => {
-        // console.log(resp.data.included);
         setPosts(resp.data.included);
       })
       .catch((errors) => {
@@ -52,7 +51,7 @@ const PostsList: React.FC<PostsListProps> = ({
       />
     );
   });
-  const ordered = list.slice().reverse(); // see how
+  const ordered = list.slice().reverse(); // new posts on top
   return (
     <Container
       sx={{
