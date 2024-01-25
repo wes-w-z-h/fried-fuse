@@ -33,7 +33,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: `calc(1em + ${theme.spacing(1)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
@@ -59,8 +59,6 @@ const SearchComponent: React.FC<SearchComponentProps> = ({
     axios
       .get("http://localhost:3001/categories")
       .then((resp) => {
-        // console.log(resp.data.included);
-        // console.log(searchValue);
         let success: boolean = false;
         const topicsArr: TopicObj[] = resp.data.included;
 
