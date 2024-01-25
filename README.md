@@ -42,6 +42,8 @@ Rails version: 7.1.2
 
 Ruby version: 3.2.2
 
+Guid to installing ruby on rails [here](https://guides.rubyonrails.org/getting_started.html#creating-a-new-rails-project-installing-rails) 
+
 1. [Clone](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories) this repo 
 
 ```bash
