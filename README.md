@@ -135,13 +135,14 @@ This is the main file structure
 │   └── Rakefile
 │   
 ├── frontend
-│   ├── node_modules
-│   ├── public
-│   ├── src
+│   ├── ./node_modules
+│   ├── /public
+│   ├── /src
 │   ├── tsconfig.json
 │   ├── package.json
 │   └── yarn.lock
 │   
+├── README.md
 └── .gitignore
 
 ```
