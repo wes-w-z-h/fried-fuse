@@ -2,14 +2,13 @@
 
 ## Table of Contents
 
-- [Roadmap](#roadmap)
+<!-- - [Roadmap](#roadmap) -->
 - [Installation](#installation)
 - [Usage](#usage)
 - [Acknowledgements](#acknowledgements)
 - [Contributing](#contributing)
-- [License](#license)
-- [TODO](#todo)
-
+<!--- [TODO](#todo) -->
+<!--
 ## Roadmap -- completed
 
 1. Complete backend
@@ -29,15 +28,17 @@
    2. Organise the file structure
 
    3. Check routes
+-->
 
 ## Installation
 
-1. [Clone](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories) **your** destination
-2. Install dependencies in the appropriate folders (see below)
+1. [Clone](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories) this repo 
 
 ```bash
 git clone https://github.com/wes-w-z-h/frying-fuses.git
 ```
+
+2. Install dependencies in the appropriate folders 
 
 Install frontend dependencies
 
@@ -49,7 +50,7 @@ cd frontend/
 yarn install
 ```
 
-Set up the database
+Set up backend database
 
 ```bash
 cd backend/
@@ -59,7 +60,7 @@ cd backend/
 rails db:migrate
 ```
 
-For seed data run:
+Seed the database:
 
 ```bash
 rails db:seed
@@ -69,19 +70,23 @@ rails db:seed
 
 Rails version: 7.1.2
 
-To fire the server run:
-
+1. To fire the server run:
 ```bash
 rails s -p 3001
 ```
 
-To start the frontend server run:
+2. To start the frontend server run:
 
 ```bash
 yarn start
 ```
 
-To open the console
+3. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+4. You should see a page like this.
+![Basic Page](frontend/public/images/Page.png)
+
+To open the rails console
 
 ```bash
 rails c
@@ -90,13 +95,10 @@ rails c
 ## Acknowledgements
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-This project uses [MUI](https://mui.com/),
-[ESLint](https://eslint.org/), [Prettier](https://prettier.io/).
 
-## License
+This project uses [MUI](https://mui.com/), [ESLint](https://eslint.org/), [Prettier](https://prettier.io/).
 
-Information about the project's license.
-
+<!--
 ~~## TODO~~
 
 ~~1. [x] Create Category & Topics model/controllers/routes~~
@@ -115,3 +117,4 @@ Information about the project's license.
 ~~4. [x] start posts page & components~~
 ~~5. [x] add validation for editing & deleting posts~~
 ~~6. [x] add the logout timer + countdown~~
+-->
