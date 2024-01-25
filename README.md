@@ -32,25 +32,25 @@
 ## Installation
 
 Install frontend dependencies
-```
+```bash
 cd frontend/
 ```
 
-```
+```bash
 yarn install 
 ```
 Set up the database
-```
+```bash
 cd backend/
 ```
 
-```
+```bash
 rails db:migrate
 ```
 
 For seed data run:
 
-```
+```bash
 rails db:seed
 ```
 
@@ -61,17 +61,17 @@ IMPORTANT: UPDATE SEED WITH SERVER RUNNING WOULD CAUSE ISSUES
 Rails version: 7.1.2
 
 To fire the server run:
-```
+```bash
 rails s -p 3001
 ```
 
 To start the frontend server run:
-```
+```bash
 yarn start
 ```
 
 To open the console
-```
+```bash
 rails c
 ```
 
