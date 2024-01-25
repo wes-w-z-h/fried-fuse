@@ -6,7 +6,6 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Acknowledgements](#acknowledgements)
-- [Contributing](#contributing)
 <!--- [TODO](#todo) -->
 <!--
 ## Roadmap -- completed
