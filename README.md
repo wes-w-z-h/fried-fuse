@@ -5,6 +5,7 @@
 - [Roadmap](#roadmap)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Acknowledgements](#acknowledgements)
 - [Contributing](#contributing)
 - [License](#license)
 - [TODO](#todo)
@@ -31,15 +32,25 @@
 
 ## Installation
 
+1. [Clone](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories) **your** destination
+2. Install dependencies in the appropriate folders (see below)
+
+```bash
+git clone https://github.com/wes-w-z-h/frying-fuses.git
+```
+
 Install frontend dependencies
+
 ```bash
 cd frontend/
 ```
 
 ```bash
-yarn install 
+yarn install
 ```
+
 Set up the database
+
 ```bash
 cd backend/
 ```
@@ -54,50 +65,53 @@ For seed data run:
 rails db:seed
 ```
 
-IMPORTANT: UPDATE SEED WITH SERVER RUNNING WOULD CAUSE ISSUES
-
 ## Usage
 
 Rails version: 7.1.2
 
 To fire the server run:
+
 ```bash
 rails s -p 3001
 ```
 
 To start the frontend server run:
+
 ```bash
 yarn start
 ```
 
 To open the console
+
 ```bash
 rails c
 ```
 
-## Contributing
+## Acknowledgements
 
-Guidelines for contributing to your project.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project uses [MUI](https://mui.com/),
+[ESLint](https://eslint.org/), [Prettier](https://prettier.io/).
 
 ## License
 
 Information about the project's license.
 
-## TODO
+~~## TODO~~
 
-1. [x] Create Category & Topics model/controllers/routes
-2. [x] Create Posts model/controller/routes
-3. [x] Working optional password
-4. [x] Authentication
-5. [x] Dashboard
-6. [x] Render topics
-7. [x] Add post functionality to frontend
+~~1. [x] Create Category & Topics model/controllers/routes~~
+~~2. [x] Create Posts model/controller/routes~~
+~~3. [x] Working optional password~~
+~~4. [x] Authentication~~
+~~5. [x] Dashboard~~
+~~6. [x] Render topics~~
+~~7. [x] Add post functionality to frontend~~
 
-### In Progress
+~~### In Progress~~
 
-1. [x] hooks to generate content on the page
-2. [x] resize the images
-3. [x] topics layout
-4. [x] start posts page & components
-5. [x] add validation for editing & deleting posts
-6. [x] add the logout timer + countdown
+~~1. [x] hooks to generate content on the page~~
+~~2. [x] resize the images~~
+~~3. [x] topics layout~~
+~~4. [x] start posts page & components~~
+~~5. [x] add validation for editing & deleting posts~~
+~~6. [x] add the logout timer + countdown~~
