@@ -72,7 +72,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({
           }
         }
         if (!success) {
-          notice("Not found!: no matches", "warning");
+          notice("Not found!: no matches", "info");
           navigate("/topics/all");
         }
       })
