@@ -86,7 +86,7 @@ yarn start
 4. You should see a page like this.
 ![Basic Page](frontend/public/images/Page.png)
 
-To open the rails console
+5. To open the rails console
 
 ```bash
 rails c
