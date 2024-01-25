@@ -6,6 +6,7 @@
 - [Overview](#overview)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Navigating the code](#Navigating-the-code)
 - [Acknowledgements](#acknowledgements)
 <!--- [TODO](#todo) -->
 <!--
@@ -38,19 +39,20 @@ frontend. Forum was designed with pokemon enthusiats in mind, provides a discuss
 ## Getting Started
 ### Installation
 
-Rails version: 7.1.2
 
-Ruby version: 3.2.2
+1. Guide to installing ruby on rails can be found [here](https://guides.rubyonrails.org/getting_started.html#creating-a-new-rails-project-installing-rails) 
 
-Guid to installing ruby on rails [here](https://guides.rubyonrails.org/getting_started.html#creating-a-new-rails-project-installing-rails) 
+   Rails version: 7.1.2
 
-1. [Clone](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories) this repo 
+   Ruby version: 3.2.2
+
+2. [Clone](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories) this repo 
 
 ```bash
 git clone https://github.com/wes-w-z-h/frying-fuses.git
 ```
 
-2. Install dependencies in the appropriate folders 
+3. Install dependencies in the appropriate folders 
 
 Install frontend dependencies
 
@@ -108,6 +110,49 @@ yarn start
 ```bash
 rails c
 ```
+
+## Navigating the code
+This is the main file structure
+
+```
+├── /backend
+│   ├── /app
+│   ├── /bin
+│   ├── /config
+│   ├── /db
+│   ├── /lib
+│   ├── /log
+│   ├── /public
+│   ├── /storage
+│   ├── /test
+│   ├── /tmp
+│   ├── .dockerignore
+│   ├── .ruby-version
+│   ├── config.ru
+│   ├── Dockerfile
+│   ├── Gemfile
+│   ├── Gemfile.lock
+│   └── Rakefile
+│   
+├── frontend
+│   ├── node_modules
+│   ├── public
+│   ├── src
+│   ├── tsconfig.json
+│   ├── package.json
+│   └── yarn.lock
+│   
+└── .gitignore
+
+```
+
+Main directories/files to note:
+- `frontend/src` contains all the src code for the frontend
+- `frontend/package.json` contains all the important metadata, for example, the dependencies and available scripts in the project.
+- `backend/app` contains the folders for controllers/ models/ serializers
+- `backend/config` contains the /initializers as well as the routes.rb file
+- `backend/db` contains the migrations and schema.rb file
+- `backend/Gemfile` contains all the gems used for this project
 
 ## Acknowledgements
 
