@@ -60,7 +60,7 @@ cd backend/
 bundle install
 ```
 
-Set up the database
+Setup the database
 
 ```bash
 rails db:migrate
