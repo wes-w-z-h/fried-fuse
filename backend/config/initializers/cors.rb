@@ -28,7 +28,7 @@ if Rails.env.development?
 elsif Rails.env.production?
   Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins "https://poke-app-backend-xe80.onrender.com"
+      origins "https://poke-app-ywkg.onrender.com"
       resource "*",
         headers: :any,
         methods: [:get, :post, :put, :patch, :delete, :options, :head],
