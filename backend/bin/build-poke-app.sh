@@ -4,4 +4,5 @@ set -o errexit
 
 bundle install
 bundle exec rails db:migrate
-bundle exec rails db:seed # only seed if is initial build
+# uncomment the follwing for initial build 
+# bundle exec rails db:seed 
