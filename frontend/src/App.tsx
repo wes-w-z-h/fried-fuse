@@ -21,7 +21,6 @@ import PostsView from "./pages/PostsView";
 import AppState from "./types/AppState";
 import LogoutTimer from "./components/Authentication/LogoutTimer";
 import SearchView from "./pages/SearchView";
-import TopicObj from "./types/TopicObj";
 
 const theme = createTheme({
   palette: {

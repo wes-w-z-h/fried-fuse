@@ -32,14 +32,23 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
   const { id } = useParams();
 
   const handleAddPost = () => {
+    const token = localStorage.getItem("jwt");
     axios
-      .post("http://localhost:3001/posts", {
-        post: {
-          content: newPostContent,
-          topic_id: id,
-          user_id: appState.user.id,
+      .post(
+        "https://poke-app-backend-xe80.onrender.com/posts",
+        {
+          post: {
+            content: newPostContent,
+            topic_id: id,
+            user_id: appState.user.id,
+          },
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((resp) => {
         const newPost: PostObj = resp.data.data;
         // console.log(newPost);
@@ -78,7 +87,7 @@ const AddPostCard: React.FC<AddPostCardProps> = ({
               sx={{ marginBottom: 1.5, backgroundColor: "white" }}
             />
             <Button
-              onClick={() => handleAddPost()} 
+              onClick={() => handleAddPost()}
               variant="contained"
               sx={{ marginRight: 1 }}
             >

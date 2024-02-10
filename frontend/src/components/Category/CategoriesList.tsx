@@ -10,7 +10,7 @@ const CategoriesList: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/categories")
+      .get("https://poke-app-backend-xe80.onrender.com/categories")
       .then((resp) => {
         setCategories(resp.data.data);
       })

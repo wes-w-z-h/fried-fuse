@@ -13,7 +13,7 @@ type SignInProps = {
   ) => void;
   handleLogout: (
     setAppState: React.Dispatch<React.SetStateAction<AppState>>
-  ) => Promise<void>;
+  ) => void;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
   loggedInStatus: string;
   notice: (message: string, severity: AlertColor) => void;

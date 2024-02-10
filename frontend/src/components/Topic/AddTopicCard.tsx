@@ -37,15 +37,24 @@ const AddTopicCard: React.FC<AddTopicCardProps> = ({
   const { id } = useParams();
 
   const handleAddPost = () => {
+    const token = localStorage.getItem("jwt");
     axios
-      .post("http://localhost:3001/topics", {
-        topic: {
-          title: newTitle,
-          content: newContent,
-          category_id: id,
-          user_id: appState.user.id,
+      .post(
+        "https://poke-app-backend-xe80.onrender.com/topics",
+        {
+          topic: {
+            title: newTitle,
+            content: newContent,
+            category_id: id,
+            user_id: appState.user.id,
+          },
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((resp) => {
         const newTopic: TopicObj = resp.data.data;
         setTopics((prevTopics) => [newTopic, ...prevTopics]);

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
 import {
   AppBar,
   Toolbar,
@@ -12,7 +11,6 @@ import {
   ListItemButton,
   Tooltip,
   AlertColor,
-  Button,
 } from "@mui/material";
 import {
   Menu,

@@ -33,7 +33,7 @@ const Authentication: React.FC<AuthenticationProps> = ({
     event.preventDefault();
     axios
       .post(
-        "http://localhost:3001/users",
+        "https://poke-app-backend-xe80.onrender.com/users",
         {
           user: {
             username: formInfo.username,

@@ -23,7 +23,7 @@ const PostsList: React.FC<PostsListProps> = ({
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/topics/${id}`)
+      .get(`https://poke-app-backend-xe80.onrender.com/topics/${id}`)
       .then((resp) => {
         setPosts(resp.data.included);
       })

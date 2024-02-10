@@ -16,19 +16,23 @@ const handleLogin = (
 
 const handleLogout = async (
   setAppState: React.Dispatch<React.SetStateAction<AppState>>
-): Promise<void> => {
+) => {
+  const token = localStorage.getItem("jwt");
   await axios
-    .delete("http://localhost:3001/users/logout", { withCredentials: true })
+    .delete("https://poke-app-backend-xe80.onrender.com/users/logout", {
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then((resp) => {
       setAppState({
         loggedInStatus: "NOT_LOGGED_IN",
         user: {} as User,
       });
-      return Promise.resolve();
     })
     .catch((error) => {
       console.log(error);
-      return Promise.reject();
     });
 };
 
@@ -37,8 +41,14 @@ const checkLoggedIn = (
   setAppState: React.Dispatch<React.SetStateAction<AppState>>,
   notice: (message: string, severity: AlertColor) => void
 ) => {
+  const token = localStorage.getItem("jwt");
   axios
-    .get("http://localhost:3001/users/logged_in", { withCredentials: true })
+    .get("https://poke-app-backend-xe80.onrender.com/users/logged_in", {
+      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then((resp) => {
       // console.log(resp.data);
       if (appState.loggedInStatus === "NOT_LOGGED_IN" && resp.data.logged_in) {

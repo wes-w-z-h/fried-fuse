@@ -44,10 +44,19 @@ const PostItem: React.FC<PostItemProps> = ({
     setOpen(false);
   };
   const handleSave = () => {
+    const token = localStorage.getItem("jwt");
     axios
-      .patch(`http://localhost:3001/posts/${post.id}`, {
-        post: { content: update },
-      })
+      .patch(
+        `https://poke-app-backend-xe80.onrender.com/posts/${post.id}`,
+        {
+          post: { content: update },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((resp) => {
         console.log(resp.data);
         handleUpdate({
@@ -63,8 +72,13 @@ const PostItem: React.FC<PostItemProps> = ({
     setEditing(true);
   };
   const handleDelete = () => {
+    const token = localStorage.getItem("jwt");
     axios
-      .delete(`http://localhost:3001/posts/${post.id}`)
+      .delete(`https://poke-app-backend-xe80.onrender.com/posts/${post.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((resp) => {
         console.log(resp);
         setPosts((prevPosts) =>

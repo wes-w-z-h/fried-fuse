@@ -24,7 +24,7 @@ const TopicsList: React.FC<TopicsListProps> = ({
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/categories/${id}`)
+      .get(`https://poke-app-backend-xe80.onrender.com/categories/${id}`)
       .then((resp) => {
         setTopics(resp.data.included);
       })

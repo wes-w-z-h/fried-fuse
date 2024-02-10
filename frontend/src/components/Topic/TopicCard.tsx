@@ -36,8 +36,13 @@ const TopicCard: React.FC<TopicCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const handleDelete = () => {
+    const token = localStorage.getItem("jwt");
     axios
-      .delete(`http://localhost:3001/topics/${slug}`)
+      .delete(`https://poke-app-backend-xe80.onrender.com/topics/${slug}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((resp) => {
         // console.log(resp);
         setTopics((prevTopics) =>

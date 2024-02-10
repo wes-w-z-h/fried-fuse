@@ -57,7 +57,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({
   // limited to exact match no time to implement a string matching algo
   const handleSubmit = () => {
     axios
-      .get("http://localhost:3001/categories")
+      .get("https://poke-app-backend-xe80.onrender.com/categories")
       .then((resp) => {
         let success: boolean = false;
         const topicsArr: TopicObj[] = resp.data.included;

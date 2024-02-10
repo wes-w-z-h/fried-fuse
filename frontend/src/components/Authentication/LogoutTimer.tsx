@@ -6,7 +6,7 @@ import { AlertColor, Paper, Typography } from "@mui/material";
 type LogoutTimerProps = {
   handleLogout: (
     setAppState: React.Dispatch<React.SetStateAction<AppState>>
-  ) => Promise<void>;
+  ) => void;
   setAppState: React.Dispatch<React.SetStateAction<AppState>>;
   notice: (message: string, severity: AlertColor) => void;
   appState: AppState;
@@ -18,7 +18,7 @@ const LogoutTimer: React.FC<LogoutTimerProps> = ({
   notice,
   appState,
 }) => {
-  const TIMEOUT_TIMER: number = 0.3 * 60; // minutes in seconds
+  const TIMEOUT_TIMER: number = 30 * 60; // minutes in seconds
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState<number>(TIMEOUT_TIMER); // seconds
 
