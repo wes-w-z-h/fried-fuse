@@ -30,6 +30,7 @@ const handleLogout = async (
         loggedInStatus: "NOT_LOGGED_IN",
         user: {} as User,
       });
+      localStorage.removeItem("jwt");
     })
     .catch((error) => {
       console.log(error);
