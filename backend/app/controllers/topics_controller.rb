@@ -1,4 +1,6 @@
 class TopicsController < ApplicationController
+  skip_before_action :authorized, only: [:show]
+
   def create
     topic_param = topic_params
     process_params(topic_param)

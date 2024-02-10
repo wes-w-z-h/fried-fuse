@@ -1,5 +1,5 @@
 class AuthenticationController < ApplicationController
-  include CurrentUserConcern
+  skip_before_action :authorized, only: [:create, :logged_in]
 
   def create
     user_param = user_params
@@ -16,11 +16,11 @@ class AuthenticationController < ApplicationController
   def logged_in
     # Rails.logger.info("current session in logged in: #{session[:user_id]} \n")
     # Rails.logger.info("current user in logged in: #{@current_user} \n")
-    if @current_user
+    if current_user
         render json: {
         status: 200,
         logged_in: true,
-        user: @current_user,
+        user: @user,
       }
     else
       render json: {
@@ -31,29 +31,12 @@ class AuthenticationController < ApplicationController
 
 
   def logout
-    reset_session
+    @user = nil
     render json: {
       status: 200,
       logged_in: false,
-      user: @current_user
+      user: @user
     }
-  end
-
-
-  def destroy_user
-    user = User.find_by(username: params[:id])
-    if user
-      if user.destroy
-        render json: {
-          status: :destroyed
-        }
-      else
-        render json: {error: user.errors.messages}, status: 422
-      end
-
-    else
-      render json: {error: "user not found"}, status: 404
-    end
   end
 
   private
@@ -61,10 +44,11 @@ class AuthenticationController < ApplicationController
   # check if the user was created without pw else authenticate the pw passed
   def create_session(user, password)
     if user.accept_blank? || user.authenticate(password)
-      session[:user_id] = user.id
+      # session[:user_id] = user.id
       # Rails.logger.info("Session set: #{session.inspect}\n")
       render json: {
         status: :created,
+        token: encode_token(user_id: user.id),
         logged_in: true,
         user: user,
       }
@@ -81,9 +65,10 @@ class AuthenticationController < ApplicationController
 
     # created a user object thats not null
     if user.save
-      session[:user_id] = user.id
+      # session[:user_id] = user.id
       render json: {
         status: :created,
+        token: encode_token(user_id: user.id),
         logged_in: true,
         user: user,
       }
