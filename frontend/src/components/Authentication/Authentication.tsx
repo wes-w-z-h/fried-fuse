@@ -51,6 +51,7 @@ const Authentication: React.FC<AuthenticationProps> = ({
             authenticationStatus: "success",
           }));
           handleSuccessfulLogin(user_data);
+          localStorage.setItem("jwt", resp.data.token);
         }
       })
       .catch((errors) => {
